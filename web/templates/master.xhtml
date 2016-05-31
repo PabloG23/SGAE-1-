@@ -2,24 +2,60 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title><ui:insert name="titulo"/></title>
         <h:outputStylesheet library="css" name="estilos.css"/>
     </h:head>
     <h:body>
-        <div id="template">
-            <ui:insert name="encabezado">
-                <ui:include src="secciones/encabezado.xhtml"/>
-            </ui:insert>
+        <!--        <div id="template">
+                    <div align="left">
+                        <p:layoutUnit position="west" size="250"  >
+                            <ui:insert name="encabezado">
+                                <ui:include src="secciones/encabezado.xhtml"/>
+                            </ui:insert>
+                        </p:layoutUnit>
+                    </div>
+                    <div>
+                        <div align="left">
+                            <ui:insert name="menu">
+                                <ui:include src="secciones/menuJD.xhtml"/>
+                            </ui:insert>
+                        </div>
+                        <div align="center">
+                            <p:layoutUnit position="center" size="250"  >
+                                <ui:insert name="contenido"/>
+                            </p:layoutUnit>
+                        </div>
+                    </div>
+                </div>-->
 
-            <ui:insert name="menu">
-                <ui:include src="secciones/menuJD.xhtml"/>
-            </ui:insert>
-            <div id="contenido">
-                <ui:insert name="contenido"/>
-            </div>
-        </div>
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                <ui:insert name="encabezado">
+                    <ui:include src="secciones/encabezado.xhtml"/>
+                </ui:insert>
+            </p:layoutUnit>
+            <!--            <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                            
+                        </p:layoutUnit>-->
+            <p:layoutUnit position="west" size="250" collapsible="true">
+                <ui:insert name="menu">
+                    <ui:include src="secciones/menuJD.xhtml"/>
+                </ui:insert>
+            </p:layoutUnit>
+
+<!--            <p:layoutUnit position="center" >
+                Welcome aaaaaa
+                <ui:insert name="contenido"> 
+                    <ui:include src="secciones/welcomePrimefaces.xhtml"/>
+                </ui:insert>
+            </p:layoutUnit>-->
+
+        </p:layout>
+
     </h:body>
 </html>
 
