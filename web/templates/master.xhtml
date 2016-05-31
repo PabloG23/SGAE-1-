@@ -4,11 +4,19 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title><ui:insert name="titulo"</title>
+        <title><ui:insert name="titulo"/></title>
         <h:outputStylesheet library="css" name="estilos.css"/>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <div id="template">
+            <ui:insert name="encabezado">
+                <ui:include src="secciones/encabezado.xhtml"/>
+            </ui:insert>
+
+            <ui:insert name="menu">
+                <ui:include src="secciones/menu.xhtml"/>
+            </ui:insert>
+        </div>
     </h:body>
 </html>
 
