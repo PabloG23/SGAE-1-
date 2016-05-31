@@ -9,7 +9,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>PrimeFaces</title>
+                <title>Grupos</title>
             </f:facet>
         </h:head>
 
@@ -39,21 +39,21 @@
                     <h2>Crear Grupo.</h2>
 
                     <h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="8" cellspacing="10">
-                        
+
                         <p:selectOneRadio id="tipoGrupo"  >
                             <f:selectItem  itemLabel="Cultural" itemValue="Cultural" />
                             <f:selectItem itemLabel="Deportivo" itemValue="Deportivo" />                            
                         </p:selectOneRadio>
-                        
+
                         <p:outputLabel value="Año:" for="Año"/>
                         <p:autoComplete id="Año" dropdown="true"/>
-                        
-                         <p:outputLabel value="Semestre:" for="Semestre"/>
+
+                        <p:outputLabel value="Semestre:" for="Semestre"/>
                         <p:autoComplete id="Semestre" dropdown="true"/>                       
 
 
                     </h:panelGrid>
-                    
+
                     <h:panelGrid columns="6" style="margin-bottom: 10px" cellpadding="8" cellspacing="10">
                         <p:outputLabel value="Dias" for="Dias"/>
                         <p:selectManyCheckbox id="Dias" columns="5">
@@ -63,17 +63,17 @@
                             <f:selectItem itemLabel="Jueves" itemValue="Jueves"/>
                             <f:selectItem itemLabel="Viernes" itemValue="Viernes"/>
                         </p:selectManyCheckbox>
-                        
+
                     </h:panelGrid>
-                    
+
                     <h:panelGrid columns="1" style="margin-bottom: 10px" cellpadding="8" cellspacing="10">
                         <p:outputLabel value="Horario:" for="Horario"/>
                         <p:autoComplete id="Horario" dropdown="true"/>
-                        
-                         <p:outputLabel value="Promotor:" for="Promotor"/>
+
+                        <p:outputLabel value="Promotor:" for="Promotor"/>
                         <p:autoComplete id="Promotor" dropdown="true"/> 
-                        </h:panelGrid>
-                    
+                    </h:panelGrid>
+
 
 
                 </p:layoutUnit>
