@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:layoutUnit position="center">
+            <h1>Seleccionar Grupo.</h1>
+            <h:panelGrid columns="3" style="margin-bottom: 10px" cellpadding="8" cellspacing="10">
+
+                <p:selectOneRadio id="tipoGrupo"  >
+                    <f:selectItem  itemLabel="Cultural" itemValue="Cultural" />
+                    <f:selectItem itemLabel="Deportivo" itemValue="Deportivo" />  
+                </p:selectOneRadio>
+                <p:outputLabel value="Grupo:" />
+                
+                <select id="grupo" >
+                        <option value="0">Select One</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                    </select>
+            </h:panelGrid>
+            <h1>Registrar Alumno.</h1>
+            <p:panelGrid columns="2" style="margin-bottom: 10px">
+                <p:panelGrid columns="2" style="margin-bottom: 10px" >
+                    <p:outputLabel value="Numero de Control:" for="noctrl"/>
+                    <p:inputText id="noctrl"/>
+
+                    <p:outputLabel value="Apellido Paterno:" for="ap"/>
+                    <p:inputText id="ap"/>
+
+                    <p:outputLabel value="Apellido Materno:" for="am"/>
+                    <p:inputText id="am"/>
+
+                    <p:outputLabel value="Nombre(s):" for="nombre"/>
+                    <p:inputText id="nombre"/>
+
+                    <p:outputLabel value="Carrera:" />
+                    <select id="carrera" >
+                        <option value="0">Select One</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                    </select>
+                    
+
+
+                    <p:outputLabel value="Sexo:" />
+                    <select id="sexo" >
+                        <option value="0">Select One</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                    </select>
+
+
+                </p:panelGrid>
+
+                <p:panelGrid columns="2" style="margin-bottom: 10px">
+                    <p:outputLabel value="Edad:" for="edad"/>
+                    <p:inputText id="edad"/>
+
+                    <p:outputLabel value="Capacidades Diferentes:" />
+                    <select id="capDif" >
+                        <option value="0">Select One</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                    </select>
+
+
+                    <p:outputLabel value="¿Cuantas veces has cursado alguna Actividad Extraescolar?:" />
+                    <select id="reincidencia" >
+                        <option value="0">Select One</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                    </select>
+
+
+                    <p:outputLabel value="Contraseña:" for="pass"/>
+                    <p:inputText id="pass"/>
+
+                    <p:outputLabel value="Confirmar Contraseña:" for="pass2"/>
+                    <p:inputText id="pass2"/>
+                </p:panelGrid>
+            </p:panelGrid>
+        </p:layoutUnit>
+    </h:body>
+</html>
+
