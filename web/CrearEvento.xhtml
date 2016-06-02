@@ -22,9 +22,11 @@
             </p:layoutUnit>
             <p:layoutUnit position="center" style="border: none">
                 <h1>Crear Evento.</h1>
+                <h:panelGrid columns="2" >
 
-                <p:panelGrid columns="2" style="">
-                    <p:panelGrid columns="1" style="border: none" >
+
+
+                    <h:panelGrid columns="1"  >
                         <p:outputLabel value="Tipo de Evento:" />
                         <select id="tipoEve" >
                             <option value="0">Select One</option>
@@ -47,38 +49,43 @@
                             <option value="2">Externo</option>
                         </select>
 
+                    </h:panelGrid>
 
-                        
-                        
-                        
-                        
 
-                    </p:panelGrid>
-
-                    <p:panelGrid columns="1" style="border: none">
+                    <h:panelGrid columns="1"  >
                         <p:outputLabel value="Fecha de Realizacion:" for="calendario"/>
                         <p:calendar id="calendario" />
                         <p:outputLabel value="Numero de participantes:" />
-                        <p:panelGrid columns="2" style=" border: none">
+                        <h:panelGrid columns="2"  >
+
                             <p:outputLabel value="Hombres:" for="hombres" />
                             <p:inputText id="hombres"/>
                             <p:outputLabel value="Mujeres:" for="mujeres" />
                             <p:inputText id="mujeres"/>
                             <p:outputLabel value="Total:" for="total" />
                             <p:inputText id="total"/>
-                        </p:panelGrid>
-                        
+
+
+                        </h:panelGrid>
+
 
                         <p:outputLabel value="Resultado Obtenido:" for="resultado"/>
                         <p:inputText id="resultado"/>
 
-                    </p:panelGrid>
 
-                </p:panelGrid>
-                <p:panelGrid columns="2" style="border: none!important;">
-                    <p:commandButton value="Registrar"/>
-                    <p:commandButton value="Cancelar"/>
-                </p:panelGrid>
+
+                    </h:panelGrid>
+
+                </h:panelGrid>
+                <br/>
+                <h:panelGrid columns="2"  >
+
+                    <h:commandButton value="Crear"/>
+                    <h:commandButton value="Cancelar"/>
+
+
+                </h:panelGrid>
+
 
             </p:layoutUnit>
         </p:layout>

@@ -26,8 +26,8 @@
                     </select>
             </h:panelGrid>
             <h1>Registrar Alumno.</h1>
-            <p:panelGrid columns="2" style="">
-                <p:panelGrid columns="1" style="border: none" >
+            <h:panelGrid columns="2" style="">
+                <h:panelGrid columns="1" style="border: none" >
                     <p:outputLabel value="Numero de Control:" for="noctrl"/>
                     <p:inputText id="noctrl"/>
 
@@ -59,9 +59,9 @@
                     </select>
 
 
-                </p:panelGrid>
+                </h:panelGrid>
 
-                <p:panelGrid columns="1" style="border: none">
+                <h:panelGrid columns="1" style="border: none">
                     <p:outputLabel value="Semestre:" for="semestre"/>
                     <p:inputText id="semestre"/>
                         
@@ -91,13 +91,15 @@
 
                     <p:outputLabel value="Confirmar Contraseña:" for="pass2"/>
                     <p:inputText id="pass2"/>
-                </p:panelGrid>
+                </h:panelGrid>
                 
-            </p:panelGrid>
-            <p:panelGrid columns="2" style="border: none!important;">
+            </h:panelGrid>
+            <h:panelGrid columns="2" >
                     <p:commandButton value="Registrar"/>
                     <p:commandButton value="Cancelar"/>
-                    </p:panelGrid>
+                    </h:panelGrid>
+            
+            
             
         </p:layoutUnit>
         </p:layout>

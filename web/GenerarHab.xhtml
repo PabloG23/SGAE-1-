@@ -29,8 +29,8 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center">
-                    <h:panelGrid columns="1" style="margin-bottom:10px" >
-                        <h1 align="center">Generar Reporte de Alumnos con Habilidades para Equipos Representativos.</h1>
+                    <h:panelGrid columns="1"  >
+                        <h1>Generar Reporte de Alumnos con Habilidades para Equipos Representativos.</h1>
                         <p:outputLabel value="Grupo:" />
                         <select id="grupo" >
                             <option value="0">Seleccionar Grupo</option>
@@ -41,7 +41,7 @@
 
                     </h:panelGrid>
 
-                    <p:panelGrid columns="2">
+                    <h:panelGrid columns="2"  >
                         
                     
                         <h:dataTable>
@@ -55,14 +55,21 @@
                                 <f:facet name="carrera">Carrera</f:facet>
                             </h:column>
                             <h:column>
-                                <f:facet name="calificacion">Habilidades</f:facet>
+                                <f:facet name="calificacion">Calificacion</f:facet>
                             </h:column>
                         </h:dataTable>
                         
                         <h:commandButton value="Generar Reporte"/>
                         
                         
-</p:panelGrid>
+
+                     
+
+                   
+
+
+                </h:panelGrid>
+                    
                     
                 </p:layoutUnit>
 
