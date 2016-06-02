@@ -7,9 +7,10 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <p:layoutUnit position="center">
+        <p:layout fullPage="true">
+        <p:layoutUnit position="center" style="border: none">
             <h1>Seleccionar Grupo.</h1>
-            <h:panelGrid columns="3" style="margin-bottom: 10px" cellpadding="8" cellspacing="10">
+            <h:panelGrid columns="3" style="border: none" cellpadding="8" cellspacing="10">
 
                 <p:selectOneRadio id="tipoGrupo"  >
                     <f:selectItem  itemLabel="Cultural" itemValue="Cultural" />
@@ -25,8 +26,8 @@
                     </select>
             </h:panelGrid>
             <h1>Registrar Alumno.</h1>
-            <p:panelGrid columns="2" style="margin-bottom: 10px">
-                <p:panelGrid columns="2" style="margin-bottom: 10px" >
+            <p:panelGrid columns="2" style="">
+                <p:panelGrid columns="1" style="border: none" >
                     <p:outputLabel value="Numero de Control:" for="noctrl"/>
                     <p:inputText id="noctrl"/>
 
@@ -60,7 +61,10 @@
 
                 </p:panelGrid>
 
-                <p:panelGrid columns="2" style="margin-bottom: 10px">
+                <p:panelGrid columns="1" style="border: none">
+                    <p:outputLabel value="Semestre:" for="semestre"/>
+                    <p:inputText id="semestre"/>
+                        
                     <p:outputLabel value="Edad:" for="edad"/>
                     <p:inputText id="edad"/>
 
@@ -88,8 +92,14 @@
                     <p:outputLabel value="Confirmar Contraseña:" for="pass2"/>
                     <p:inputText id="pass2"/>
                 </p:panelGrid>
+                
             </p:panelGrid>
+            <p:panelGrid columns="2" style="border: none!important;">
+                    <p:commandButton value="Registrar"/>
+                    <p:commandButton value="Cancelar"/>
+                    </p:panelGrid>
+            
         </p:layoutUnit>
+        </p:layout>
     </h:body>
 </html>
-

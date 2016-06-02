@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Crear Evento.</title>
+    </h:head>
+    <h:body>
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" >
+                <ui:insert name="encabezado">
+                    <ui:include src="/secciones/encabezado.xhtml"/>
+                </ui:insert>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" size="250" collapsible="true">
+                <ui:insert name="menu">
+                    <ui:include src="/secciones/menuPromotor.xhtml"/>
+                </ui:insert>
+            </p:layoutUnit>
+            <p:layoutUnit position="center" style="border: none">
+                <h1>Crear Evento.</h1>
+
+                <p:panelGrid columns="2" style="">
+                    <p:panelGrid columns="1" style="border: none" >
+                        <p:outputLabel value="Tipo de Evento:" />
+                        <select id="tipoEve" >
+                            <option value="0">Select One</option>
+                            <option value="1">Cultural</option>
+                            <option value="2">DEportivo</option>
+
+                        </select>
+
+
+                        <p:outputLabel value="Nombre del Evento:" for="nombreEve"/>
+                        <p:inputText id="nombreEve"/>
+
+                        <p:outputLabel value="Institucion Organizadora:" for="institucion"/>
+                        <p:inputText id="institucion"/>
+
+                        <p:outputLabel value="Evento:" />
+                        <select id="evento" >
+                            <option value="0">Select One</option>
+                            <option value="1">Interno</option>
+                            <option value="2">Externo</option>
+                        </select>
+
+
+                        
+                        
+                        
+                        
+
+                    </p:panelGrid>
+
+                    <p:panelGrid columns="1" style="border: none">
+                        <p:outputLabel value="Fecha de Realizacion:" for="calendario"/>
+                        <p:calendar id="calendario" />
+                        <p:outputLabel value="Numero de participantes:" />
+                        <p:panelGrid columns="2" style=" border: none">
+                            <p:outputLabel value="Hombres:" for="hombres" />
+                            <p:inputText id="hombres"/>
+                            <p:outputLabel value="Mujeres:" for="mujeres" />
+                            <p:inputText id="mujeres"/>
+                            <p:outputLabel value="Total:" for="total" />
+                            <p:inputText id="total"/>
+                        </p:panelGrid>
+                        
+
+                        <p:outputLabel value="Resultado Obtenido:" for="resultado"/>
+                        <p:inputText id="resultado"/>
+
+                    </p:panelGrid>
+
+                </p:panelGrid>
+                <p:panelGrid columns="2" style="border: none!important;">
+                    <p:commandButton value="Registrar"/>
+                    <p:commandButton value="Cancelar"/>
+                </p:panelGrid>
+
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>
