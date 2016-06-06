@@ -9,7 +9,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Grupo</title>
+                <title>Actividad</title>
             </f:facet>
         </h:head>
 
@@ -18,48 +18,36 @@
 
                 <p:layoutUnit position="north" >
                     <ui:insert name="encabezado">
-                        <ui:include src="secciones/encabezado.xhtml"/>
+                        <ui:include src="/../secciones/encabezado.xhtml"/>
+                        
                     </ui:insert>
                 </p:layoutUnit>
                 <p:layoutUnit position="west" size="250" collapsible="true">
                     <ui:insert name="menu">
-                        <ui:include src="secciones/menuJD.xhtml"/>
+                        <ui:include src="/../secciones/menuJD.xhtml"/>
                     </ui:insert>
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
                     <h:panelGrid columns="1" style="margin-bottom:10px" >
-                        <h1>Crear Grupo.</h1>
+                        <h1>Crear Actividad para el Semestrerifadaaaaaaaa</h1>
+                        Tipo de actividad
                         <p:selectOneRadio id="tipoGrupo"  >
                             <f:selectItem  itemLabel="Cultural" itemValue="Cultural" />
                             <f:selectItem itemLabel="Deportivo" itemValue="Deportivo" />                            
                         </p:selectOneRadio>
-
+                        <br></br>
+                        <h:panelGrid columns="1"  >
+                            <p:outputLabel value="Nombre de la Actividad:" for="Actividad"/>
+                            <p:autoComplete id="Actividad" dropdown="true"/> 
+                        </h:panelGrid>
+                        <br></br>
                         <p:outputLabel value="Año:" for="Año"/>
                         <p:autoComplete id="Año" dropdown="true"/>
-
+                        <br></br>
                         <p:outputLabel value="Semestre:" for="Semestre"/>
                         <p:autoComplete id="Semestre" dropdown="true"/>                       
-                    </h:panelGrid>
-                    
-                    <h:panelGrid columns="6" style="margin-bottom: 10px" cellpadding="10" >
-                        <p:outputLabel value="Dias" for="Dias"/>
-                        <p:selectManyCheckbox id="Dias" columns="5">
-                            <f:selectItem itemLabel="Lunes" itemValue="Lunes"/> 
-                            <f:selectItem itemLabel="Martes" itemValue="Martes"/>
-                            <f:selectItem itemLabel="Miercoles" itemValue="Miercoles"/>
-                            <f:selectItem itemLabel="Jueves" itemValue="Jueves"/>
-                            <f:selectItem itemLabel="Viernes" itemValue="Viernes"/>
-                        </p:selectManyCheckbox>
-                    </h:panelGrid>
-                    <h:panelGrid columns="2" >
-                        <h:panelGrid columns="1" style="margin-bottom: 10px">
-                            <p:outputLabel value="Horario:" for="Horario"/>
-                            <p:autoComplete id="Horario" dropdown="true"/>
-
-                            <p:outputLabel value="Promotor:" for="Promotor"/>
-                            <p:autoComplete id="Promotor" dropdown="true"/> 
-                        </h:panelGrid>
-                    </h:panelGrid>
+                    </h:panelGrid>                  
+                    <br></br>
                     <p:panelGrid columns="2" style="margin-bottom: 30px">
                         <h:commandButton value="Guardar"/>
                         <h:commandButton value="Cancelar"/>

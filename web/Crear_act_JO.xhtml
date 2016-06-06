@@ -18,12 +18,12 @@
 
                 <p:layoutUnit position="north" >
                     <ui:insert name="encabezado">
-                        <ui:include src="encabezado.xhtml"/>
+                        <ui:include src="/secciones/encabezado.xhtml"/>
                     </ui:insert>
                 </p:layoutUnit>
                 <p:layoutUnit position="west" size="250" collapsible="true">
                     <ui:insert name="menu">
-                        <ui:include src="menuJD.xhtml"/>
+                        <ui:include src="/secciones/menuJO.xhtml"/>
                     </ui:insert>
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
@@ -47,18 +47,10 @@
                         <p:autoComplete id="Semestre" dropdown="true"/>                       
                     </h:panelGrid>                  
                     <br></br>
-                    <h:panelGrid columns="2">
+                    <p:panelGrid columns="2" style="margin-bottom: 30px">
                         <h:commandButton value="Guardar"/>
                         <h:commandButton value="Cancelar"/>
-                    </h:panelGrid>
-
-                    <h:panelGrid columns="2"  >
-                        <h:commandButton value="Crear"/>
-                        <h:commandButton value="Cancelar"/>
-
-
-                    </h:panelGrid>
-
+                    </p:panelGrid>
                 </p:layoutUnit>
 
             </p:layout>
