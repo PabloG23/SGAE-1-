@@ -29,24 +29,27 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center">
-                    <h:panelGrid columns="1"  >
-                        <h1>Generar Reporte de Lista de Asistencia.</h1>
-                        <p:outputLabel value="Grupo:" />
-                        <select id="grupo" >
-                            <option value="0">Seleccionar Grupo</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                        </select>
+<!--                    <h1>Generar Reporte de Lista de Asistencia.</h1>-->
+                    <p:fieldset legend="Generar Reporte de Lista de Asistencia." style="margin-bottom: 20px">
+                        <h:panelGrid columns="1"  >
 
-                    </h:panelGrid>
-
-                 
-                        
-                        <h:commandButton value="Generar Reporte"/>
-                
-                   
+                            <p:outputLabel value="Grupo:" />
+                            <select id="grupo" >
+                                <option value="0">Seleccionar Grupo</option>
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                            </h:panelGrid>
+                    </p:fieldset>
                     
+
+
+
+                    <h:commandButton value="Generar Reporte"/>
+
+
+
                 </p:layoutUnit>
 
             </p:layout>
