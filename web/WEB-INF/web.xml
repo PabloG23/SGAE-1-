@@ -19,6 +19,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/Crear_grupo.xhtml</welcome-file>
+        <welcome-file>faces/Crear_act_JD.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>

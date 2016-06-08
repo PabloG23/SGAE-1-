@@ -31,25 +31,25 @@
                         <h1>Crear Actividad para el Semestre</h1>
                         Tipo de actividad
                         <p:selectOneRadio id="tipoGrupo"  >
-                            <f:selectItem  itemLabel="Cultural" itemValue="Cultural" />
-                            <f:selectItem itemLabel="Deportivo" itemValue="Deportivo" />                            
+                            <f:selectItem  itemLabel="Cultural" itemValue="Cultural" value="#{actividad.tipo}"/>
+                            <f:selectItem itemLabel="Deportivo" itemValue="Deportivo" value="#{actividad.tipo}"/>                            
                         </p:selectOneRadio>
                         <br></br>
                         <h:panelGrid columns="1"  >
                             <p:outputLabel value="Nombre de la Actividad:" for="Actividad"/>
-                            <p:autoComplete id="Actividad" dropdown="true"/> 
+                            <p:autoComplete id="Actividad" dropdown="true" value="#{actividad.nombre}"/> 
                         </h:panelGrid>
                         <br></br>
                         <p:outputLabel value="Año:" for="Año"/>
-                        <p:autoComplete id="Año" dropdown="true"/>
+                        <p:autoComplete id="Año" dropdown="true" value="#{actividad.año}"/>
                         <br></br>
                         <p:outputLabel value="Semestre:" for="Semestre"/>
-                        <p:autoComplete id="Semestre" dropdown="true"/>                       
+                        <p:autoComplete id="Semestre" dropdown="true" value="#{actividad.semestre}"/>                       
                     </h:panelGrid>                  
                     <br></br>
                     <h:panelGrid columns="2" >
                         <h:commandButton value="Guardar"/>
-                        <h:commandButton value="Cancelar"/>
+                        <h:commandButton value="Cancelar" action="#{actividad.add()}"/>
                     </h:panelGrid>
                     
 

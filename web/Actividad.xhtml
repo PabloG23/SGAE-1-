@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body style="background-color: #ffffff;">
+
+        <div>
+            <h:body style="background-color: #ffffff;">
+
+                <h:form>
+                    <h1>Ingrese Datos de Cliente</h1>
+                    <p:dataTable  value="#{actividad.getCustomerList()}" var="usuario">
+                        <p:column headerText="Id">
+                            <f:facet name="header">Nombre</f:facet>
+                                #{actividad.nombre}
+                        </p:column>
+                        <p:column headerText="Year">
+                            <f:facet name="header">Semestre</f:facet>
+                                #{actividad.semestre}
+                        </p:column>
+                    </p:dataTable>
+                    <h:panelGrid class="col-md-4 col-md-offset-3 panel-grid">
+
+                        <h:panelGroup class="col-md-8">
+                            <h:outputLabel value="Nombre: " class="form-label"/>
+                            <p:inputText id="mask3" maxlength="50" required="true"  value="#{actividad.nombre}"/>
+                            <p:message for="mask3"/>
+                        </h:panelGroup>
+
+                        <h:panelGroup class="col-md-8">
+                            <h:outputLabel value="Semestre" class="form-label"/>
+                            <p:inputText id="mask4" maxlength="50" required="true"  value="#{actividad.semestre}"/>
+                            <p:message for="mask4"/>
+                        </h:panelGroup>
+
+                        <h:panelGroup class="col-md-8">
+                            <h:commandButton value="Aceptar" class="btn btn-default"  action="#{actividad.add()}" />
+                        </h:panelGroup> 
+                    </h:panelGrid>
+
+                    
+
+
+                </h:form>
+            </h:body>
+        </div>
+        <br />
+        <!--        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />-->
+    </h:body>
+</html>
+
