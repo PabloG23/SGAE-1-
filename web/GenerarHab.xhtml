@@ -29,8 +29,9 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center">
+                    <p:fieldset legend="Generar Reporte de Alumnos con Habilidades para Equipos Representativos" style="margin-bottom: 10px">
                     <h:panelGrid columns="1"  >
-                        <h1>Generar Reporte de Alumnos con Habilidades para Equipos Representativos.</h1>
+                        
                         <p:outputLabel value="Grupo:" />
                         <select id="grupo" >
                             <option value="0">Seleccionar Grupo</option>
@@ -42,35 +43,38 @@
                     </h:panelGrid>
 
                     <h:panelGrid columns="2"  >
-                        
-                    
-                        <h:dataTable>
-                            <h:column>
-                                <f:facet name="nombre">Nombre</f:facet>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="ctrl">Numero de Control</f:facet>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="carrera">Carrera</f:facet>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="calificacion">Calificacion</f:facet>
-                            </h:column>
-                        </h:dataTable>
-                        
+
+
+                        <p:dataTable value="alumnosPre">
+                            <p:column headerText="Nombre">
+                                <div align="center">
+                                <h:outputText value="Pablo Erik Gonzalez Carrasco"/>
+                                </div>
+                            </p:column>
+                            <p:column headerText="  Numero de Control">
+                                <div align="center">
+                                <h:outputText value="10280576"/>
+                                </div>
+                            </p:column>
+                            <p:column headerText="  Carrera">
+                                <div align="center">
+                                <h:outputText value="Ing. Sistemas Computacionales"/>
+                                </div>
+                            </p:column>
+                            <p:column headerText="Preseleccionado">
+                                <div align="center">
+                                    <p:selectBooleanButton id="valor"  onLabel="Si" offLabel="No" style="width:150px" />
+                                </div>
+                            </p:column>
+                        </p:dataTable>
+
                         <h:commandButton value="Generar Reporte"/>
-                        
-                        
-
-                     
-
-                   
 
 
-                </h:panelGrid>
-                    
-                    
+
+                    </h:panelGrid>
+
+</p:fieldset>
                 </p:layoutUnit>
 
             </p:layout>
