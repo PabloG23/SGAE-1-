@@ -37,90 +37,16 @@ public class Actividad_clase {
         this.nombre = nombre;
         this.semestre = semestre;
     }
-    private Integer idActividad;
-    private String tipo;
     private String nombre;
-    private Integer año;
     private String semestre;
-
     private Activi actividad;
 
-    /**
-     * @return the idActividad
-     */
-    public Integer getIdActividad() {
-        return idActividad;
-    }
-
-    /**
-     * @param idActividad the idActividad to set
-     */
-    public void setIdActividad(Integer idActividad) {
-        this.idActividad = idActividad;
-    }
-
-    /**
-     * @return the tipo
-     */
-    public String getTipo() {
-        return tipo;
-    }
-
-    /**
-     * @param tipo the tipo to set
-     */
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    /**
-     * @return the nombre
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * @param nombre the nombre to set
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    /**
-     * @return the año
-     */
-    public Integer getAño() {
-        return año;
-    }
-
-    /**
-     * @param año the año to set
-     */
-    public void setAño(Integer año) {
-        this.año = año;
-    }
-
-    /**
-     * @return the semestre
-     */
-    public String getSemestre() {
-        return semestre;
-    }
-
-    /**
-     * @param semestre the semestre to set
-     */
-    public void setSemestre(String semestre) {
-        this.semestre = semestre;
-    }
-
-    
 
     public Connection getConnection() {
         Connection con = null;
 
-        String url = "jdbc:mysql://127.0.0.1:3306/SGAE";
+        String url = "jdbc:mysql://localhost:3306/SGAE";
+        
         String user = "root";
         String password = "password";
         try {
@@ -141,12 +67,12 @@ public class Actividad_clase {
         PreparedStatement ps = null;
         Connection con = getConnection();
         ResultSet rsf = null;
-        String sql = "INSERT INTO actividad (nombre, semestre) VALUES (?,?)";
+        String sql = "INSERT INTO activi (nombre, semestre) VALUES (?,?)";
 
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, nombre);
-            ps.setString(2, semestre);
+            ps.setString(1, getNombre());
+            ps.setString(2, getSemestre());
             ps.execute();
             con.close();
             System.out.println("Data Added Successfully");
@@ -179,21 +105,21 @@ public class Actividad_clase {
 //        }
 //        return lista;
 //    }
-    public List<Actividad> getCustomerList() throws SQLException {
+    public List<Activi> getCustomerList() throws SQLException {
         Connection con = getConnection();
         PreparedStatement ps
                 = con.prepareStatement(
-                        "select nombre, semestre from actividad");
+                        "select nombre, semestre from activi");
 
         //get customer data from database
         ResultSet result = ps.executeQuery();
 
-        List<Actividad> list = new ArrayList<Actividad>();
+        List<Activi> list = new ArrayList<Activi>();
 
         while (result.next()) {
-            Actividad cust = new Actividad();
+            Activi cust = new Activi();
 
-            cust.setNombreAct(result.getString("nombre"));
+            cust.setNombre(result.getString("nombre"));
             cust.setSemestre(result.getString("semestre"));
 
             //store all data into a List
@@ -201,5 +127,47 @@ public class Actividad_clase {
         }
 
         return list;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the semestre
+     */
+    public String getSemestre() {
+        return semestre;
+    }
+
+    /**
+     * @param semestre the semestre to set
+     */
+    public void setSemestre(String semestre) {
+        this.semestre = semestre;
+    }
+
+    /**
+     * @return the actividad
+     */
+    public Activi getActividad() {
+        return actividad;
+    }
+
+    /**
+     * @param actividad the actividad to set
+     */
+    public void setActividad(Activi actividad) {
+        this.actividad = actividad;
     }
 }
