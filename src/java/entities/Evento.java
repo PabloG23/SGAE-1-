@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author omar
+ * @author pablog23
  */
 @Entity
 @Table(name = "Evento")
@@ -84,12 +84,12 @@ public class Evento implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "resultado")
     private String resultado;
-    @JoinColumn(name = "Actividad_idActividad", referencedColumnName = "idActividad", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Actividad actividad;
     @JoinColumn(name = "Promotor_idPromotor", referencedColumnName = "idPromotor", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Promotor promotor;
+    @JoinColumn(name = "Actividad_idActividad", referencedColumnName = "idActividad", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Actividad actividad;
 
     public Evento() {
     }
@@ -186,20 +186,20 @@ public class Evento implements Serializable {
         this.resultado = resultado;
     }
 
-    public Actividad getActividad() {
-        return actividad;
-    }
-
-    public void setActividad(Actividad actividad) {
-        this.actividad = actividad;
-    }
-
     public Promotor getPromotor() {
         return promotor;
     }
 
     public void setPromotor(Promotor promotor) {
         this.promotor = promotor;
+    }
+
+    public Actividad getActividad() {
+        return actividad;
+    }
+
+    public void setActividad(Actividad actividad) {
+        this.actividad = actividad;
     }
 
     @Override

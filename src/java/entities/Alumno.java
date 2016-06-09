@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author omar
+ * @author pablog23
  */
 @Entity
 @Table(name = "Alumno")
@@ -46,6 +46,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Alumno.findByGrupoActividadidActividad1", query = "SELECT a FROM Alumno a WHERE a.alumnoPK.grupoActividadidActividad1 = :grupoActividadidActividad1"),
     @NamedQuery(name = "Alumno.findByGrupoPromotoridPromotor1", query = "SELECT a FROM Alumno a WHERE a.alumnoPK.grupoPromotoridPromotor1 = :grupoPromotoridPromotor1")})
 public class Alumno implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "correo")
+    private String correo;
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected AlumnoPK alumnoPK;
@@ -112,7 +117,7 @@ public class Alumno implements Serializable {
         this.alumnoPK = alumnoPK;
     }
 
-    public Alumno(AlumnoPK alumnoPK, String apPat, String apMat, String nombre, String calificacion, int edad, String sexo) {
+    public Alumno(AlumnoPK alumnoPK, String apPat, String apMat, String nombre, String calificacion, int edad, String sexo, String correo) {
         this.alumnoPK = alumnoPK;
         this.apPat = apPat;
         this.apMat = apMat;
@@ -120,6 +125,7 @@ public class Alumno implements Serializable {
         this.calificacion = calificacion;
         this.edad = edad;
         this.sexo = sexo;
+        this.correo=correo;
     }
 
     public Alumno(int noCtrl, int grupoidGrupo1, int grupoActividadidActividad1, int grupoPromotoridPromotor1) {
@@ -249,6 +255,14 @@ public class Alumno implements Serializable {
     @Override
     public String toString() {
         return "entities.Alumno[ alumnoPK=" + alumnoPK + " ]";
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
     
 }

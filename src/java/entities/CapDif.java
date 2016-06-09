@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author omar
+ * @author pablog23
  */
 @Entity
 @Table(name = "CapDif")

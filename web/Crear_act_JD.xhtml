@@ -54,9 +54,9 @@
                             <p:message for="semestre" />
                         </h:panelGrid>
 
-                        <p:commandButton value="Guardar"  update="display" icon="ui-icon-check" oncomplete="PF('dlg').show()" action="#{beanActividad.add()}"/>
+                        <p:commandButton value="Guardar"   icon="ui-icon-check" oncomplete="PF('dlg').show()" action="#{beanActividad.add()}"/>
 
-                        <p:dialog modal="true" resizable="false" widgetVar="dlg" header="Datos de la actividad agregada" showEffect="clip">
+<!--                        <p:dialog modal="true" resizable="false" widgetVar="dlg" header="Datos de la actividad agregada" showEffect="clip">
                             <p:panelGrid columns="2" id="display" columnClasses="label,value">
                                 <h:outputText value="Tipo:" />
                                 <h:outputText value="#{beanActividad.tipoact}" />
@@ -67,7 +67,7 @@
                                 <h:outputText value="Semestre:" />
                                 <h:outputText value="#{beanActividad.semestre}" />                      
                             </p:panelGrid>
-                        </p:dialog>
+                        </p:dialog>-->
                     </h:form>
 
                 </p:layoutUnit>

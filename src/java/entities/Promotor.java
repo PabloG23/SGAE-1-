@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author omar
+ * @author pablog23
  */
 @Entity
 @Table(name = "Promotor")
@@ -85,9 +85,9 @@ public class Promotor implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "promotor")
     private Collection<Usuarios> usuariosCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "promotor")
-    private Collection<Grupo> grupoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "promotor")
     private Collection<Evento> eventoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "promotor")
+    private Collection<Grupo> grupoCollection;
 
     public Promotor() {
     }
@@ -190,21 +190,21 @@ public class Promotor implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Grupo> getGrupoCollection() {
-        return grupoCollection;
-    }
-
-    public void setGrupoCollection(Collection<Grupo> grupoCollection) {
-        this.grupoCollection = grupoCollection;
-    }
-
-    @XmlTransient
     public Collection<Evento> getEventoCollection() {
         return eventoCollection;
     }
 
     public void setEventoCollection(Collection<Evento> eventoCollection) {
         this.eventoCollection = eventoCollection;
+    }
+
+    @XmlTransient
+    public Collection<Grupo> getGrupoCollection() {
+        return grupoCollection;
+    }
+
+    public void setGrupoCollection(Collection<Grupo> grupoCollection) {
+        this.grupoCollection = grupoCollection;
     }
 
     @Override

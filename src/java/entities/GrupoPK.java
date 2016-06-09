@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author omar
+ * @author pablog23
  */
 @Embeddable
 public class GrupoPK implements Serializable {

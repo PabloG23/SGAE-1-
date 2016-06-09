@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author omar
+ * @author pablog23
  */
 @Entity
 @Table(name = "Usuarios")
@@ -58,12 +58,12 @@ public class Usuarios implements Serializable {
     @NotNull
     @Column(name = "tipos_usuario")
     private int tiposUsuario;
-    @JoinColumn(name = "Alumno_noCtrl", referencedColumnName = "noCtrl", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Alumno alumno;
     @JoinColumn(name = "Promotor_idPromotor", referencedColumnName = "idPromotor", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Promotor promotor;
+    @JoinColumn(name = "Alumno_noCtrl", referencedColumnName = "noCtrl", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Alumno alumno;
 
     public Usuarios() {
     }
@@ -124,20 +124,20 @@ public class Usuarios implements Serializable {
         this.tiposUsuario = tiposUsuario;
     }
 
-    public Alumno getAlumno() {
-        return alumno;
-    }
-
-    public void setAlumno(Alumno alumno) {
-        this.alumno = alumno;
-    }
-
     public Promotor getPromotor() {
         return promotor;
     }
 
     public void setPromotor(Promotor promotor) {
         this.promotor = promotor;
+    }
+
+    public Alumno getAlumno() {
+        return alumno;
+    }
+
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
     }
 
     @Override

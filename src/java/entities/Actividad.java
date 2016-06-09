@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author omar
+ * @author pablog23
  */
 @Entity
 @Table(name = "Actividad")
@@ -33,11 +33,16 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Actividad.findAll", query = "SELECT a FROM Actividad a"),
     @NamedQuery(name = "Actividad.findByIdActividad", query = "SELECT a FROM Actividad a WHERE a.idActividad = :idActividad"),
-    @NamedQuery(name = "Actividad.findByTipoact", query = "SELECT a FROM Actividad a WHERE a.tipoact = :tipoact"),
+    @NamedQuery(name = "Actividad.findByTipo", query = "SELECT a FROM Actividad a WHERE a.tipo = :tipo"),
     @NamedQuery(name = "Actividad.findByNombreAct", query = "SELECT a FROM Actividad a WHERE a.nombreAct = :nombreAct"),
     @NamedQuery(name = "Actividad.findByA\u00f1o", query = "SELECT a FROM Actividad a WHERE a.a\u00f1o = :a\u00f1o"),
     @NamedQuery(name = "Actividad.findBySemestre", query = "SELECT a FROM Actividad a WHERE a.semestre = :semestre")})
 public class Actividad implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "tipoact")
+    private String tipoact;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,8 +52,8 @@ public class Actividad implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "tipoact")
-    private String tipoact;
+    @Column(name = "tipo")
+    private String tipo;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -66,9 +71,9 @@ public class Actividad implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividad")
     private Collection<CatActividad> catActividadCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividad")
-    private Collection<Grupo> grupoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividad")
     private Collection<Evento> eventoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividad")
+    private Collection<Grupo> grupoCollection;
 
     public Actividad() {
     }
@@ -77,9 +82,9 @@ public class Actividad implements Serializable {
         this.idActividad = idActividad;
     }
 
-    public Actividad(Integer idActividad, String tipoact, String nombreAct, int año, String semestre) {
+    public Actividad(Integer idActividad, String tipo, String nombreAct, int año, String semestre) {
         this.idActividad = idActividad;
-        this.tipoact = tipoact;
+        this.tipo = tipo;
         this.nombreAct = nombreAct;
         this.año = año;
         this.semestre = semestre;
@@ -93,12 +98,12 @@ public class Actividad implements Serializable {
         this.idActividad = idActividad;
     }
 
-    public String getTipoact() {
-        return tipoact;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setTipoact(String tipoact) {
-        this.tipoact = tipoact;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getNombreAct() {
@@ -135,21 +140,21 @@ public class Actividad implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Grupo> getGrupoCollection() {
-        return grupoCollection;
-    }
-
-    public void setGrupoCollection(Collection<Grupo> grupoCollection) {
-        this.grupoCollection = grupoCollection;
-    }
-
-    @XmlTransient
     public Collection<Evento> getEventoCollection() {
         return eventoCollection;
     }
 
     public void setEventoCollection(Collection<Evento> eventoCollection) {
         this.eventoCollection = eventoCollection;
+    }
+
+    @XmlTransient
+    public Collection<Grupo> getGrupoCollection() {
+        return grupoCollection;
+    }
+
+    public void setGrupoCollection(Collection<Grupo> grupoCollection) {
+        this.grupoCollection = grupoCollection;
     }
 
     @Override
@@ -175,6 +180,14 @@ public class Actividad implements Serializable {
     @Override
     public String toString() {
         return "entities.Actividad[ idActividad=" + idActividad + " ]";
+    }
+
+    public String getTipoact() {
+        return tipoact;
+    }
+
+    public void setTipoact(String tipoact) {
+        this.tipoact = tipoact;
     }
     
 }

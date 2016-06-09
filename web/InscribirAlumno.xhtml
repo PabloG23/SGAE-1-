@@ -8,100 +8,98 @@
     </h:head>
     <h:body>
         <p:layout fullPage="true">
-        <p:layoutUnit position="center" style="border: none">
-            <h1>Seleccionar Grupo.</h1>
-            <h:panelGrid columns="3" style="border: none" cellpadding="8" cellspacing="10">
+            <p:layoutUnit position="center" style="border: none">
+                <p:fieldset legend="Seleccionar Grupo." style="margin-bottom: 10px">
+                <h:panelGrid columns="3" style="border: none" cellpadding="8" cellspacing="10">
 
-                <p:selectOneRadio id="tipoGrupo"  >
-                    <f:selectItem  itemLabel="Cultural" itemValue="Cultural" />
-                    <f:selectItem itemLabel="Deportivo" itemValue="Deportivo" />  
-                </p:selectOneRadio>
-                <p:outputLabel value="Grupo:" />
-                
-                <select id="grupo" >
-                        <option value="0">Select One</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select>
-            </h:panelGrid>
-            <h1>Registrar Alumno.</h1>
-            <h:panelGrid columns="2" style="">
-                <h:panelGrid columns="1" style="border: none" >
-                    <p:outputLabel value="Numero de Control:" for="noctrl"/>
-                    <p:inputText id="noctrl"/>
+                    <p:selectOneRadio id="tipoGrupo"  >
+                        <f:selectItem  itemLabel="Cultural" itemValue="Cultural" />
+                        <f:selectItem itemLabel="Deportivo" itemValue="Deportivo" />  
+                    </p:selectOneRadio>
+                    <p:outputLabel value="Grupo:" />
 
-                    <p:outputLabel value="Apellido Paterno:" for="ap"/>
-                    <p:inputText id="ap"/>
-
-                    <p:outputLabel value="Apellido Materno:" for="am"/>
-                    <p:inputText id="am"/>
-
-                    <p:outputLabel value="Nombre(s):" for="nombre"/>
-                    <p:inputText id="nombre"/>
-
-                    <p:outputLabel value="Carrera:" />
-                    <select id="carrera" >
-                        <option value="0">Select One</option>
-                        <option value="1">Sistemas Computacionales</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select>
-                    
-
-
-                    <p:outputLabel value="Sexo:" />
-                    <select id="sexo" >
-                        <option value="0">Select One</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select>
-
-
+                    <p:selectOneMenu id="grupo"   >
+                            <f:selectItem itemLabel="Seleccionar una Opcion" itemValue=""/>
+                            <f:selectItem itemLabel="Grupo 1" itemValue="Grupo 1"/>
+                            <f:selectItem itemLabel="Grupo 2" itemValue="Grupo 2"/>
+                        </p:selectOneMenu>
                 </h:panelGrid>
+                    </p:fieldset>
+                <p:fieldset legend="Seleccionar Grupo." style="margin-bottom: 10px">
+                <h:panelGrid columns="2" style="">
+                    <h:panelGrid columns="1" style="border: none" >
+                        <p:outputLabel value="Numero de Control:" for="noctrl"/>
+                        <p:inputText id="noctrl" required="true"/>
 
-                <h:panelGrid columns="1" style="border: none">
-                    <p:outputLabel value="Semestre:" for="semestre"/>
-                    <p:inputText id="semestre"/>
+                        <p:outputLabel value="Apellido Paterno:" for="ap"/>
+                        <p:inputText id="ap" required="true"/>
+
+                        <p:outputLabel value="Apellido Materno:" for="am"/>
+                        <p:inputText id="am" required="true"/>
+
+                        <p:outputLabel value="Nombre(s):" for="nombre"/>
+                        <p:inputText id="nombre" required="true"/>
+
+                        <p:outputLabel value="Carrera:" />
+                        <p:selectOneMenu id="Carrera"  >
+                            <f:selectItem itemLabel="Seleccionar una Opcion" itemValue=""/>
+                            <f:selectItem itemLabel="Ing. Sistemas Computacionales" itemValue="Ing. Sistemas Computacionales"/>
+                        </p:selectOneMenu>
+
+
+
+                        <p:outputLabel value="Sexo:" />
+                       <p:selectOneMenu id="Sexo"  >
+                            <f:selectItem itemLabel="Seleccionar una Opcion" itemValue=""/>
+                            <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
+                            <f:selectItem itemLabel="Femenino" itemValue="Femenino"/>
+                        </p:selectOneMenu>
+
+
+                    </h:panelGrid>
+
+                    <h:panelGrid columns="1" style="border: none">
+                        <p:outputLabel value="Semestre:" for="semestre"/>
+                        <p:inputText id="semestre" required="true"/>
+
+                        <p:outputLabel value="Edad:" for="edad"/>
+                        <p:inputText id="edad" required="true"/>
+
+                        <p:outputLabel value="Capacidades Diferentes:" />
+                        <p:selectOneMenu id="capdif"  >
+                            <f:selectItem itemLabel="Seleccionar una Opcion" itemValue=""/>
+                            <f:selectItem itemLabel="Lentes" itemValue="Lentes"/>
+                            <f:selectItem itemLabel="Pie Plano" itemValue="Pie Plano"/>
+                        </p:selectOneMenu>
+
+
+                        <p:outputLabel value="¿Cuantas veces has cursado alguna Actividad Extraescolar?:" />
+                        <p:selectOneMenu id="reincidencia"  >
+                            <f:selectItem itemLabel="Seleccionar una Opcion" itemValue=""/>
+                            <f:selectItem itemLabel="1" itemValue="1"/>
+                            <f:selectItem itemLabel="2" itemValue="2"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="Correo:" for="correo"/>
+                        <p:inputText id="correo" required="true"/>
                         
-                    <p:outputLabel value="Edad:" for="edad"/>
-                    <p:inputText id="edad"/>
+                        <p:outputLabel value="Contraseña:" for="pass"/>
+                        <p:inputText id="pass" required="true"/>
 
-                    <p:outputLabel value="Capacidades Diferentes:" />
-                    <select id="capDif" >
-                        <option value="0">Seleccciona </option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 222222222</option>
-                        <option value="3">Option 3</option>
-                    </select>
+                        <p:outputLabel value="Confirmar Contraseña:" for="pass2"/>
+                        <p:inputText id="pass2" required="true"/>
+                    </h:panelGrid>
 
-
-                    <p:outputLabel value="¿Cuantas veces has cursado alguna Actividad Extraescolar?:" />
-                    <select id="reincidencia" >
-                        <option value="0">Select One</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select>
-
-
-                    <p:outputLabel value="Contraseña:" for="pass"/>
-                    <p:inputText id="pass"/>
-
-                    <p:outputLabel value="Confirmar Contraseña:" for="pass2"/>
-                    <p:inputText id="pass2"/>
                 </h:panelGrid>
-                
-            </h:panelGrid>
-            <h:panelGrid columns="2" >
+                    </p:fieldset>
+                <h:panelGrid columns="2" >
                     <p:commandButton value="Registrar"/>
                     <p:commandButton value="Cancelar"/>
-                    </h:panelGrid>
-            
-            
-            
-        </p:layoutUnit>
+                </h:panelGrid>
+
+
+
+            </p:layoutUnit>
         </p:layout>
     </h:body>
 </html>
