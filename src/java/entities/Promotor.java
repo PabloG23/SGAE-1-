@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Promotor.findByEspecialidades", query = "SELECT p FROM Promotor p WHERE p.especialidades = :especialidades")})
 public class Promotor implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Basic(optional = false)
     @NotNull
@@ -43,32 +44,32 @@ public class Promotor implements Serializable {
     private Integer idPromotor;
     
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
+    @NotNull
     @Column(name = "ape_mat")
     private String apeMat;
     
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
+    @NotNull
     @Column(name = "ape_pat")
     private String apePat;
     
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
+    @NotNull
     @Column(name = "nombre")
     private String nombre;
     
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
+    @NotNull
     @Column(name = "correo")
     private String correo;
     
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
+    @NotNull
     @Column(name = "telefono")
     private String telefono;
     
@@ -78,8 +79,8 @@ public class Promotor implements Serializable {
     private Integer status;
     
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
+    @NotNull
     @Column(name = "especialidades")
     private String especialidades;
 

@@ -28,7 +28,7 @@
                 <p:layoutUnit position="center">
                     <h:form>
                         <h1>Crear Actividad para el Semestre</h1>
-                        
+
                         <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                             <p:outputLabel for="tipo" value="Tipo:" />
                             <p:selectOneRadio id="tipo" value="#{beanActividad.tipoact}">
@@ -38,36 +38,40 @@
                         </h:panelGrid>
                         <h:panelGrid columns="1"  >
                             <p:outputLabel value="Nombre de la Actividad:" for="Actividad"/>
-                            <p:autoComplete id="Actividad" dropdown="true" value="#{beanActividad.nombre}"/> 
+                           <p:selectOneMenu id="Actividad"  required="true" >
+                                <f:selectItem itemLabel="Seleccionar una Opcion" itemValue=""/>
+                            </p:selectOneMenu>
                         </h:panelGrid>
                         <h:panelGrid columns="1"  >
-                            <p:outputLabel value="Año:" for="Año"/>
-                            <p:autoComplete id="Año" dropdown="true" value="#{beanActividad.año}"/>
+                            <p:outputLabel value="Año:" for="año"/>
+                            <p:selectOneMenu id="año"  required="true" >
+                                <f:selectItem itemLabel="Seleccionar una Opcion" itemValue=""/>
+                            </p:selectOneMenu>
                         </h:panelGrid>
                         <h:panelGrid columns="1"  >
                             <h:outputLabel for="semestre" value="Semestre:" />
-                            <h:selectOneMenu id="semestre" value="#{beanActividad.semestre}" required="true" label="semestre">
+                            <p:selectOneMenu id="semestre" value="#{beanActividad.semestre}" required="true" >
                                 <f:selectItem itemLabel="Seleccion una Opción" itemValue="" noSelectionOption="true" />
                                 <f:selectItem itemLabel="Enero-Junio" itemValue="Enero-Junio" />
                                 <f:selectItem itemLabel="Agosto-Diciembre" itemValue="Agosto-Diciembre" />
-                            </h:selectOneMenu>
+                            </p:selectOneMenu>
                             <p:message for="semestre" />
                         </h:panelGrid>
 
                         <p:commandButton value="Guardar"   icon="ui-icon-check" oncomplete="PF('dlg').show()" action="#{beanActividad.add()}"/>
 
-<!--                        <p:dialog modal="true" resizable="false" widgetVar="dlg" header="Datos de la actividad agregada" showEffect="clip">
-                            <p:panelGrid columns="2" id="display" columnClasses="label,value">
-                                <h:outputText value="Tipo:" />
-                                <h:outputText value="#{beanActividad.tipoact}" />
-                                <h:outputText value="Nombre:" />
-                                <h:outputText value="#{beanActividad.nombre}" /> 
-                                <h:outputText value="Año:" />
-                                <h:outputText value="#{beanActividad.año}" /> 
-                                <h:outputText value="Semestre:" />
-                                <h:outputText value="#{beanActividad.semestre}" />                      
-                            </p:panelGrid>
-                        </p:dialog>-->
+                        <!--                        <p:dialog modal="true" resizable="false" widgetVar="dlg" header="Datos de la actividad agregada" showEffect="clip">
+                                                    <p:panelGrid columns="2" id="display" columnClasses="label,value">
+                                                        <h:outputText value="Tipo:" />
+                                                        <h:outputText value="#{beanActividad.tipoact}" />
+                                                        <h:outputText value="Nombre:" />
+                                                        <h:outputText value="#{beanActividad.nombre}" /> 
+                                                        <h:outputText value="Año:" />
+                                                        <h:outputText value="#{beanActividad.año}" /> 
+                                                        <h:outputText value="Semestre:" />
+                                                        <h:outputText value="#{beanActividad.semestre}" />                      
+                                                    </p:panelGrid>
+                                                </p:dialog>-->
                     </h:form>
 
                 </p:layoutUnit>

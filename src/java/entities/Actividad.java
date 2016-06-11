@@ -8,10 +8,10 @@ package entities;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -28,28 +28,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Actividad.findAll", query = "SELECT a FROM Actividad a"),
-    @NamedQuery(name = "Actividad.findByIdActividad", query = "SELECT a FROM Actividad a WHERE a.idActividad = :idActividad"),
-    @NamedQuery(name = "Actividad.findByTipoact", query = "SELECT a FROM Actividad a WHERE a.tipoact = :tipoact"),
-    @NamedQuery(name = "Actividad.findByNombreAct", query = "SELECT a FROM Actividad a WHERE a.nombreAct = :nombreAct"),
+    @NamedQuery(name = "Actividad.findByIdActividad", query = "SELECT a FROM Actividad a WHERE a.actividadPK.idActividad = :idActividad"),
     @NamedQuery(name = "Actividad.findByA\u00f1o", query = "SELECT a FROM Actividad a WHERE a.a\u00f1o = :a\u00f1o"),
-    @NamedQuery(name = "Actividad.findBySemestre", query = "SELECT a FROM Actividad a WHERE a.semestre = :semestre")})
+    @NamedQuery(name = "Actividad.findBySemestre", query = "SELECT a FROM Actividad a WHERE a.semestre = :semestre"),
+    @NamedQuery(name = "Actividad.findByCatActividadidCatAct", query = "SELECT a FROM Actividad a WHERE a.actividadPK.catActividadidCatAct = :catActividadidCatAct")})
 public class Actividad implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "idActividad")
-    private Integer idActividad;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "tipoact")
-    private String tipoact;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "nombreAct")
-    private String nombreAct;
+    @EmbeddedId
+    protected ActividadPK actividadPK;
     @Basic(optional = false)
     @NotNull
     @Column(name = "a\u00f1o")
@@ -59,44 +45,33 @@ public class Actividad implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "semestre")
     private String semestre;
+    @JoinColumn(name = "CatActividad_idCatAct", referencedColumnName = "idCatAct", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private CatActividad catActividad;
 
     public Actividad() {
     }
 
-    public Actividad(Integer idActividad) {
-        this.idActividad = idActividad;
+    public Actividad(ActividadPK actividadPK) {
+        this.actividadPK = actividadPK;
     }
 
-    public Actividad(Integer idActividad, String tipoact, String nombreAct, int año, String semestre) {
-        this.idActividad = idActividad;
-        this.tipoact = tipoact;
-        this.nombreAct = nombreAct;
+    public Actividad(ActividadPK actividadPK, int año, String semestre) {
+        this.actividadPK = actividadPK;
         this.año = año;
         this.semestre = semestre;
     }
 
-    public Integer getIdActividad() {
-        return idActividad;
+    public Actividad(int idActividad, int catActividadidCatAct) {
+        this.actividadPK = new ActividadPK(idActividad, catActividadidCatAct);
     }
 
-    public void setIdActividad(Integer idActividad) {
-        this.idActividad = idActividad;
+    public ActividadPK getActividadPK() {
+        return actividadPK;
     }
 
-    public String getTipoact() {
-        return tipoact;
-    }
-
-    public void setTipoact(String tipoact) {
-        this.tipoact = tipoact;
-    }
-
-    public String getNombreAct() {
-        return nombreAct;
-    }
-
-    public void setNombreAct(String nombreAct) {
-        this.nombreAct = nombreAct;
+    public void setActividadPK(ActividadPK actividadPK) {
+        this.actividadPK = actividadPK;
     }
 
     public int getAño() {
@@ -115,10 +90,18 @@ public class Actividad implements Serializable {
         this.semestre = semestre;
     }
 
+    public CatActividad getCatActividad() {
+        return catActividad;
+    }
+
+    public void setCatActividad(CatActividad catActividad) {
+        this.catActividad = catActividad;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idActividad != null ? idActividad.hashCode() : 0);
+        hash += (actividadPK != null ? actividadPK.hashCode() : 0);
         return hash;
     }
 
@@ -129,7 +112,7 @@ public class Actividad implements Serializable {
             return false;
         }
         Actividad other = (Actividad) object;
-        if ((this.idActividad == null && other.idActividad != null) || (this.idActividad != null && !this.idActividad.equals(other.idActividad))) {
+        if ((this.actividadPK == null && other.actividadPK != null) || (this.actividadPK != null && !this.actividadPK.equals(other.actividadPK))) {
             return false;
         }
         return true;
@@ -137,7 +120,7 @@ public class Actividad implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Actividad[ idActividad=" + idActividad + " ]";
+        return "entities.Actividad[ actividadPK=" + actividadPK + " ]";
     }
     
 }

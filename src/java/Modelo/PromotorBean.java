@@ -17,6 +17,7 @@ import javax.inject.Inject;
  * @author pablog23
  */
 @ManagedBean
+@SessionScoped
 public class PromotorBean {
 
     /**
@@ -116,6 +117,8 @@ public class PromotorBean {
     }
 
     public void agregarPromotor() {
+        
+        Promotor promotor = new Promotor();
         
         promotor.setIdPromotor(12);
         promotor.setApeMat(ap_mat);

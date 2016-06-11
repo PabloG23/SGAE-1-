@@ -26,8 +26,7 @@ import javax.faces.bean.ManagedBean;
 @ManagedBean
 public class BeanActividad {
 
-    private String tipoact;
-    private String nombre;
+   
     private int año;
     private String semestre;
     private Actividad actividad;
@@ -35,29 +34,27 @@ public class BeanActividad {
     @Inject
     private ActividadFacade ac;
 
-    public Connection getConnection() {
-        Connection con = null;
-        String url = "jdbc:mysql://localhost:3306/SGAE";
-        String user = "root";
-        String password = "9kLY_trkAP_k";
-        try {
-            con = DriverManager.getConnection(url, user, password);
-            if (con != null) {
-                System.out.println("Conexion exitosa");
-            } else {
-                System.out.println("error de conexion");
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        } finally {
-        }
-        return con;
-    }
+//    public Connection getConnection() {
+//        Connection con = null;
+//        String url = "jdbc:mysql://localhost:3306/SGAE";
+//        String user = "root";
+//        String password = "9kLY_trkAP_k";
+//        try {
+//            con = DriverManager.getConnection(url, user, password);
+//            if (con != null) {
+//                System.out.println("Conexion exitosa");
+//            } else {
+//                System.out.println("error de conexion");
+//            }
+//        } catch (SQLException ex) {
+//            System.out.println(ex.getMessage());
+//        } finally {
+//        }
+//        return con;
+//    }
 
     public void add() {
             Actividad actividad = new Actividad();
-        actividad.setTipoact(tipoact);
-        actividad.setNombreAct(nombre);
         actividad.setAño(año);
         actividad.setSemestre(semestre);
         ac.create(actividad);
@@ -96,31 +93,7 @@ public class BeanActividad {
     /**
      * @return the tipoact
      */
-    public String getTipoact() {
-        return tipoact;
-    }
-
-    /**
-     * @param tipoact the tipoact to set
-     */
-    public void setTipoact(String tipoact) {
-        this.tipoact = tipoact;
-    }
-
-    /**
-     * @return the nombre
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * @param nombre the nombre to set
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
+    
     /**
      * @return the año
      */
