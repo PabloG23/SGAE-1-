@@ -26,16 +26,18 @@
                     </ui:insert>
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
+                    
                     <h:form>
-                        <h1>Crear Actividad para el Semestre</h1>
+                        <p:fieldset legend="Crear Actividad para el Semestre" style="margin-bottom: 10px">
+                        
 
 
 
-                        <h:panelGrid columns="1"  >
+                        <h:panelGrid columns="1">
                             <p:outputLabel value="Año:" for="Año"/>
                             <p:autoComplete id="Año" dropdown="true" value="#{beanActividad.actividad.año}" completeMethod="#{beanActividad.completarAño(año)}" scrollHeight="100"/>
-                        </h:panelGrid>
-                        <h:panelGrid columns="1"  >
+
+
                             <h:outputLabel for="semestre" value="Semestre:" />
                             <p:selectOneMenu id="semestre" value="#{beanActividad.actividad.semestre}" required="true" >
                                 <f:selectItem itemLabel="Seleccion una Opción" itemValue="" noSelectionOption="true" />
@@ -43,19 +45,23 @@
                                 <f:selectItem itemLabel="Agosto-Diciembre" itemValue="Agosto-Diciembre" />
                             </p:selectOneMenu>
                             <p:message for="semestre" />
+
+
+                            <h:outputLabel for="nombre" value="Actividad:"/>
+                            <p:selectOneMenu id="nombre" value="#{beanActividad.actividad.catActividad}" required="true" >
+                                
+                                <f:selectItems value="#{beanActividad.jalarNombres() }" var="catalogo" itemLabel="#{catalogo.nombre}" itemValue="#{catalogo}"/>
+                            </p:selectOneMenu>
+
+
+                            <h:commandButton 
+                                
+                                value="Guardar" 
+                                action="#{beanActividad.add}"   
+                                />
+
                         </h:panelGrid>
-
-
-                        <p:selectOneMenu id="nombre" value="#{beanActividad.actividad.catActividad}" required="true" >
-                            <f:selectItems value="#{beanActividad.jalarNombres() }" var="catalogo" itemLabel="#{catalogo.nombre}" itemValue="#{catalogo}"/>
-                        </p:selectOneMenu>
-
-                        <h:commandButton 
-                            value="Guardar" 
-                            action="#{beanActividad.add}"   
-                        />
-
-
+                            </p:fieldset>
                     </h:form>
 
                 </p:layoutUnit>

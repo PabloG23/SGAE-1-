@@ -46,9 +46,19 @@
                         
                     
                          <p:dataTable value="alumnosCal">
-                            <p:column headerText="Nombre">
+                             <p:column headerText="Apellido Paterno">
                                 <div align="center">
-                                <h:outputText value="Pablo Erik Gonzalez Carrasco"/>
+                                <h:outputText value="Gonzalez"/>
+                                </div>
+                            </p:column>
+                             <p:column headerText="Apellido Materno">
+                                <div align="center">
+                                <h:outputText value="Carrasco"/>
+                                </div>
+                            </p:column>
+                            <p:column headerText="Nombre(s)">
+                                <div align="center">
+                                <h:outputText value="Pablo Erik "/>
                                 </div>
                             </p:column>
                             <p:column headerText="  Numero de Control">
@@ -63,23 +73,17 @@
                             </p:column>
                             <p:column headerText="Calificacion">
                                 <div align="center">
-                                    <p:selectBooleanButton id="valor"  onLabel="Acreditado" offLabel="No Acreditado" style="width:180px" />
+                                    <p:selectBooleanButton id="valor"  onLabel="Acreditado" offLabel="No Acreditado" style="width:120px" />
                                 </div>
                             </p:column>
                         </p:dataTable>
                         
-                        <h:commandButton value="Generar Reporte"/>
-                        
-                        
-
-                     
-
-                   
-
-
+                       
+                  
                 </h:panelGrid>
                    
                     </p:fieldset>
+                     <h:commandButton value="Generar Reporte"/>
                 </p:layoutUnit>
 
             </p:layout>

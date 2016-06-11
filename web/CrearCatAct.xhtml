@@ -27,8 +27,8 @@
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
                     <h:form>
-                        <h1>Crear Actividad para el Semestre</h1>
-
+                        
+                        <p:fieldset legend="Crear Actividad para el Semestre" style="margin-bottom: 10px">
                         <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                             <p:outputLabel for="tipo" value="Tipo:" />
                             <p:selectOneRadio id="tipo" value="#{beanCatAct.tipoact}" >
@@ -44,7 +44,7 @@
 
                         <p:commandButton value="Guardar" action="#{beanCatAct.addCatAct()}"  icon="ui-icon-check" oncomplete="PF('dlg').show()" />
 
-                        
+                        </p:fieldset>
                     </h:form>
 
                 </p:layoutUnit>
