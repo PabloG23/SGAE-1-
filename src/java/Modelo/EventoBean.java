@@ -28,7 +28,18 @@ public class EventoBean {
     private String institucion;
     private String evento;
     private Date fecha_evento;
+    private java.sql.Date sqlDate;
     private int hombres;
+
+    public java.sql.Date getSqlDate() {
+        sqlDate = new java.sql.Date(fecha_evento.getTime());
+        return sqlDate;
+    }
+
+    public void setSqlDate(java.sql.Date sqlDate) {
+        this.sqlDate = sqlDate;
+    }
+    
     private int mujeres;
     private int total;
     private String resultado;
@@ -67,6 +78,7 @@ public class EventoBean {
     }
 
     public Date getFecha_evento() {
+        
         return fecha_evento;
     }
 
@@ -113,6 +125,7 @@ public class EventoBean {
     public EventoBean() {
     }
 
+    
     public Connection getConnection() {
         Connection con = null;
         String url = "jdbc:mysql://localhost:3306/SGAE";
@@ -139,7 +152,7 @@ public class EventoBean {
         PreparedStatement ps =null;
         Connection con = getConnection();
         ResultSet rsf =null;
-        String sql = "INSERT INTO Evento (tipo_evento,nombre_evento,inst_organizadora,evento,fecha_evento,hombres,mujeres,resultado) VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Evento (tipo_evento,nombre_evento,inst_organizadora,evento,fecha_evento,hombres,mujeres,resultado) VALUES(NULL,?,?,?,?,?,?,?,?,'11','1')";
         
         try{
             ps=con.prepareStatement(sql);
@@ -148,7 +161,7 @@ public class EventoBean {
             ps.setString(2, getNombre_evento());
             ps.setString(3, getInstitucion());
             ps.setString(4, getEvento());
-            ps.setDate(5, (java.sql.Date) getFecha_evento());
+            ps.setDate(5, getSqlDate());
             ps.setInt(6, getHombres());
             ps.setInt(7, getMujeres());
             ps.setString(8, getResultado());

@@ -6,13 +6,15 @@
 package Modelo;
 
 import entities.Actividad;
+import facade.ActividadFacade;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
+//import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 
 /**
@@ -20,23 +22,24 @@ import javax.faces.bean.ManagedBean;
  * @author omar
  */
 //@Named(value = "beanActividad")
-@Dependent
+//@Dependent
 @ManagedBean
 public class BeanActividad {
 
-    
-    private String tipoact;    
+    private String tipoact;
     private String nombre;
-    private String año;
+    private int año;
     private String semestre;
     private Actividad actividad;
-    
-    
+
+    @Inject
+    private ActividadFacade ac;
+
     public Connection getConnection() {
         Connection con = null;
-        String url = "jdbc:mysql://localhost:3306/SGAE";      
+        String url = "jdbc:mysql://localhost:3306/SGAE";
         String user = "root";
-        String password = "password";
+        String password = "9kLY_trkAP_k";
         try {
             con = DriverManager.getConnection(url, user, password);
             if (con != null) {
@@ -52,32 +55,38 @@ public class BeanActividad {
     }
 
     public void add() {
-        PreparedStatement ps = null;
-        //PreparedStatement pc = null;
-        Connection con = getConnection();
-        ResultSet rsf = null;
-        String sql = "INSERT INTO Actividad (tipoact, nombreAct, año, semestre) VALUES (?,?,?,?)";
-//        String sql1 = "INSERT INTO CatActividad (nombre, Actividad_idActividad, tipo) VALUES (?,?,?)";
+            Actividad actividad = new Actividad();
+        actividad.setTipoact(tipoact);
+        actividad.setNombreAct(nombre);
+        actividad.setAño(año);
+        actividad.setSemestre(semestre);
+        ac.create(actividad);
 
-        
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setString(1, getTipoact());
-            ps.setString(2, getNombre());
-            ps.setString(3, getAño());
-            ps.setString(4, getSemestre());
-            ps.execute();
-            
-            
-            con.close();
-            System.out.println("Dato agregado correctamente");
-            System.out.println("id:"+ps.getMetaData());
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+//        PreparedStatement ps = null;
+//        //PreparedStatement pc = null;
+//        Connection con = getConnection();
+//        ResultSet rsf = null;
+//        String sql = "INSERT INTO Actividad (tipoact, nombreAct, año, semestre) VALUES (?,?,?,?)";
+////        String sql1 = "INSERT INTO CatActividad (nombre, Actividad_idActividad, tipo) VALUES (?,?,?)";
+//
+//        
+//        try {
+//            ps = con.prepareStatement(sql);
+//            ps.setString(1, getTipoact());
+//            ps.setString(2, getNombre());
+//            ps.setString(3, getAño());
+//            ps.setString(4, getSemestre());
+//            ps.execute();
+//            
+//            
+//            con.close();
+//            System.out.println("Dato agregado correctamente");
+//            System.out.println("id:"+ps.getMetaData());
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
     }
-    
-    
+
     /**
      * Creates a new instance of BeanActividad
      */
@@ -115,14 +124,14 @@ public class BeanActividad {
     /**
      * @return the año
      */
-    public String getAño() {
+    public int getAño() {
         return año;
     }
 
     /**
      * @param año the año to set
      */
-    public void setAño(String año) {
+    public void setAño(int año) {
         this.año = año;
     }
 
@@ -153,6 +162,5 @@ public class BeanActividad {
     public void setActividad(Actividad actividad) {
         this.actividad = actividad;
     }
-    
-    
+
 }

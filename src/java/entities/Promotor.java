@@ -6,21 +6,16 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -46,48 +41,47 @@ public class Promotor implements Serializable {
     @NotNull
     @Column(name = "idPromotor")
     private Integer idPromotor;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "ape_mat")
     private String apeMat;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "ape_pat")
     private String apePat;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "nombre")
     private String nombre;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "correo")
     private String correo;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "telefono")
     private String telefono;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "status")
-    private boolean status;
+    private Integer status;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "especialidades")
     private String especialidades;
-    @ManyToMany(mappedBy = "promotorCollection")
-    private Collection<CatActividad> catActividadCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "promotor")
-    private Collection<Usuarios> usuariosCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "promotor")
-    private Collection<Evento> eventoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "promotor")
-    private Collection<Grupo> grupoCollection;
 
     public Promotor() {
     }
@@ -103,7 +97,7 @@ public class Promotor implements Serializable {
         this.nombre = nombre;
         this.correo = correo;
         this.telefono = telefono;
-        this.status = status;
+        this.status = 1;
         this.especialidades = especialidades;
     }
 
@@ -155,11 +149,11 @@ public class Promotor implements Serializable {
         this.telefono = telefono;
     }
 
-    public boolean getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -169,42 +163,6 @@ public class Promotor implements Serializable {
 
     public void setEspecialidades(String especialidades) {
         this.especialidades = especialidades;
-    }
-
-    @XmlTransient
-    public Collection<CatActividad> getCatActividadCollection() {
-        return catActividadCollection;
-    }
-
-    public void setCatActividadCollection(Collection<CatActividad> catActividadCollection) {
-        this.catActividadCollection = catActividadCollection;
-    }
-
-    @XmlTransient
-    public Collection<Usuarios> getUsuariosCollection() {
-        return usuariosCollection;
-    }
-
-    public void setUsuariosCollection(Collection<Usuarios> usuariosCollection) {
-        this.usuariosCollection = usuariosCollection;
-    }
-
-    @XmlTransient
-    public Collection<Evento> getEventoCollection() {
-        return eventoCollection;
-    }
-
-    public void setEventoCollection(Collection<Evento> eventoCollection) {
-        this.eventoCollection = eventoCollection;
-    }
-
-    @XmlTransient
-    public Collection<Grupo> getGrupoCollection() {
-        return grupoCollection;
-    }
-
-    public void setGrupoCollection(Collection<Grupo> grupoCollection) {
-        this.grupoCollection = grupoCollection;
     }
 
     @Override

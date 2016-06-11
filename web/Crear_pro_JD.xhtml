@@ -26,52 +26,62 @@
                         <ui:include src="/secciones/menuJD.xhtml"/>
                     </ui:insert>
                 </p:layoutUnit>
+                <h:form>
                 <p:layoutUnit position="center">
                     <h:panelGrid columns="1" style="margin-bottom:10px" >
                         <h1>Crear Promotores</h1>
                         Cetegoria
-                        <h:form>
+                        
                             <p:multiSelectListbox value="#{multiSelectView.selection}" effect="slide">
                                 <f:selectItems value="#{multiSelectView.categories}" />
                             </p:multiSelectListbox>
                             <p:commandButton value="Save" icon="ui-icon-check" update="out" style="display:block;margin:10px 0" />
                             <h:outputText id="out" value="Value: #{multiSelectView.selection}" style="display:block" />
-                        </h:form>
+                        
 <!--                        <p:selectOneRadio id="tipoGrupo"  >
                             <f:selectItem  itemLabel="Cultural" itemValue="Cultural" />
                             <f:selectItem itemLabel="Deportivo" itemValue="Deportivo" />                            
                             <h:outputLabel for="menu" value="Location:" />
                         </p:selectOneRadio>-->
                         <br></br>
+                        
                         <h:panelGrid columns="2">
                             <h:panelGrid columns="1" width="300" >
                                 <p:outputLabel value="Apellido paterno:" for="Apellidopaterno" />
-                                <p:inputText id="Apellidopaterno"/> 
+                                <p:inputText id="Apellidopaterno" value="#{promotorBean.ap_pat}"/> 
                             </h:panelGrid>
                             <h:panelGrid columns="1" width="300" >
                                 <p:outputLabel value="Correo:" for="correo"/>
-                                <p:inputText id="correo"/> 
+                                <p:inputText id="correo" value="#{promotorBean.correo}"/> 
                             </h:panelGrid>
                             <h:panelGrid columns="1" width="300" >
                                 <p:outputLabel value="Apellido materno:" for="Apellidomaterno" />
-                                <p:inputText id="Apellidomaterno" /> 
+                                <p:inputText id="Apellidomaterno" value="#{promotorBean.ap_mat}"/> 
                             </h:panelGrid>
                             <h:panelGrid columns="1" width="300" >
                                 <p:outputLabel value="Teléfono:" for="Telefono" />
-                                <p:inputText id="Telefono" /> 
+                                <p:inputText id="Telefono" value="#{promotorBean.telefono}"/> 
                             </h:panelGrid>
                             <h:panelGrid columns="1" width="300" >
                                 <p:outputLabel value="Nombre(s):" for="nombrepromotor" />
-                                <p:inputText id="nombrepromotor" /> 
+                                <p:inputText id="nombrepromotor" value="#{promotorBean.nombre}"/> 
+                            </h:panelGrid>
+                            
+                            <h:panelGrid columns="1" width="300" >
+                                <p:outputLabel value="Especialidades:" for="especialidades" />
+                                <p:inputText id="especialidades" value="#{promotorBean.especialidades}"/> 
                             </h:panelGrid>
                         </h:panelGrid>
+                            
                     </h:panelGrid>                  
-                    <br></br>
+                    <br/>
                     <h:panelGrid columns="2" style="margin-bottom: 30px">
-                        <h:commandButton value="Guardar"/>
+                        <h:commandButton value="Guardar" action="#{promotorBean.agregarPromotor()}"/>
                         <h:commandButton value="Cancelar"/>
                     </h:panelGrid>
+                    
                 </p:layoutUnit>
+                    </h:form>
 
             </p:layout>
 
