@@ -6,6 +6,7 @@
 package facade;
 
 import entities.Actividad;
+import entities.CatActividad;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,12 +16,12 @@ import javax.persistence.PersistenceContext;
  * @author pablog23
  */
 @Stateless
-public class CatActFacade extends AbstractFacade<CatActFacade>{
+public class CatActFacade extends AbstractFacade<CatActividad>{
     @PersistenceContext(unitName = "SGAEPU")
     private EntityManager em;
     
     public CatActFacade(){
-        super(CatActFacade.class);
+        super(CatActividad.class);
     }
 
     @Override

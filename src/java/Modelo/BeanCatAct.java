@@ -28,6 +28,8 @@ public class BeanCatAct {
      private String tipoact;
     private String nombre;
     
+    CatActividad catalogo = new CatActividad();
+    
     @Inject
     private CatActFacade cat;
 
@@ -51,7 +53,7 @@ public class BeanCatAct {
         CatActividad catalogo = new CatActividad();
         catalogo.setNombre(nombre);
         catalogo.setTipo(tipoact);
-        cat.create(cat);
+        cat.create(catalogo);
         
     }
 }

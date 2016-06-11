@@ -6,16 +6,22 @@
 package Modelo;
 
 import entities.Actividad;
+import entities.CatActividad;
 import facade.ActividadFacade;
+import facade.CatActFacade;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Named;
 import javax.inject.Inject;
 //import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
@@ -24,102 +30,34 @@ import javax.faces.bean.ManagedBean;
 //@Named(value = "beanActividad")
 //@Dependent
 @ManagedBean
-public class BeanActividad {
+@SessionScoped
+public class BeanActividad implements Serializable {
 
-   
-    private int año;
-    private String semestre;
-    private Actividad actividad;
+    private Actividad actividad = new Actividad();
 
     @Inject
     private ActividadFacade ac;
-
-//    public Connection getConnection() {
-//        Connection con = null;
-//        String url = "jdbc:mysql://localhost:3306/SGAE";
-//        String user = "root";
-//        String password = "9kLY_trkAP_k";
-//        try {
-//            con = DriverManager.getConnection(url, user, password);
-//            if (con != null) {
-//                System.out.println("Conexion exitosa");
-//            } else {
-//                System.out.println("error de conexion");
-//            }
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        } finally {
-//        }
-//        return con;
-//    }
+    @Inject
+    private CatActFacade cat;
 
     public void add() {
-            Actividad actividad = new Actividad();
-        actividad.setAño(año);
-        actividad.setSemestre(semestre);
+        System.out.println("Agregando actividad");
         ac.create(actividad);
-
-//        PreparedStatement ps = null;
-//        //PreparedStatement pc = null;
-//        Connection con = getConnection();
-//        ResultSet rsf = null;
-//        String sql = "INSERT INTO Actividad (tipoact, nombreAct, año, semestre) VALUES (?,?,?,?)";
-////        String sql1 = "INSERT INTO CatActividad (nombre, Actividad_idActividad, tipo) VALUES (?,?,?)";
-//
-//        
-//        try {
-//            ps = con.prepareStatement(sql);
-//            ps.setString(1, getTipoact());
-//            ps.setString(2, getNombre());
-//            ps.setString(3, getAño());
-//            ps.setString(4, getSemestre());
-//            ps.execute();
-//            
-//            
-//            con.close();
-//            System.out.println("Dato agregado correctamente");
-//            System.out.println("id:"+ps.getMetaData());
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
     }
 
-    /**
-     * Creates a new instance of BeanActividad
-     */
-    public BeanActividad() {
+    public List<String> completarAño(String año) {
+        List<String> obj = new ArrayList<String>();
+        for (int i = 2016; i < 2030; i++) {
+            obj.add(año + i);
+        }
+
+        return obj;
     }
 
-    /**
-     * @return the tipoact
-     */
-    
-    /**
-     * @return the año
-     */
-    public int getAño() {
-        return año;
-    }
+    public List<CatActividad> jalarNombres() {
+        List<CatActividad> obj = cat.findAll();
 
-    /**
-     * @param año the año to set
-     */
-    public void setAño(int año) {
-        this.año = año;
-    }
-
-    /**
-     * @return the semestre
-     */
-    public String getSemestre() {
-        return semestre;
-    }
-
-    /**
-     * @param semestre the semestre to set
-     */
-    public void setSemestre(String semestre) {
-        this.semestre = semestre;
+        return obj;
     }
 
     /**

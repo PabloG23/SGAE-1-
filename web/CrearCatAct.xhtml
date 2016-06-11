@@ -29,33 +29,22 @@
                     <h:form>
                         <h1>Crear Actividad para el Semestre</h1>
 
-
-
-                        <h:panelGrid columns="1"  >
-                            <p:outputLabel value="Año:" for="Año"/>
-                            <p:autoComplete id="Año" dropdown="true" value="#{beanActividad.actividad.año}" completeMethod="#{beanActividad.completarAño(año)}" scrollHeight="100"/>
+                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                            <p:outputLabel for="tipo" value="Tipo:" />
+                            <p:selectOneRadio id="tipo" value="#{beanCatAct.tipoact}" >
+                                <f:selectItem itemLabel="Deportivo" itemValue="Deportivo" />
+                                <f:selectItem itemLabel="Cultural" itemValue="Cultural" />               
+                            </p:selectOneRadio>
                         </h:panelGrid>
                         <h:panelGrid columns="1"  >
-                            <h:outputLabel for="semestre" value="Semestre:" />
-                            <p:selectOneMenu id="semestre" value="#{beanActividad.actividad.semestre}" required="true" >
-                                <f:selectItem itemLabel="Seleccion una Opción" itemValue="" noSelectionOption="true" />
-                                <f:selectItem itemLabel="Enero-Junio" itemValue="Enero-Junio" />
-                                <f:selectItem itemLabel="Agosto-Diciembre" itemValue="Agosto-Diciembre" />
-                            </p:selectOneMenu>
-                            <p:message for="semestre" />
+                            <p:outputLabel value="Nombre de la Actividad:" for="Actividad"/>
+                            <p:inputText id="Actividad" value="#{beanCatAct.nombre}" required="true"/>
                         </h:panelGrid>
+                        
 
+                        <p:commandButton value="Guardar" action="#{beanCatAct.addCatAct()}"  icon="ui-icon-check" oncomplete="PF('dlg').show()" />
 
-                        <p:selectOneMenu id="nombre" value="#{beanActividad.actividad.catActividad}" required="true" >
-                            <f:selectItems value="#{beanActividad.jalarNombres() }" var="catalogo" itemLabel="#{catalogo.nombre}" itemValue="#{catalogo}"/>
-                        </p:selectOneMenu>
-
-                        <h:commandButton 
-                            value="Guardar" 
-                            action="#{beanActividad.add}"   
-                        />
-
-
+                        
                     </h:form>
 
                 </p:layoutUnit>
