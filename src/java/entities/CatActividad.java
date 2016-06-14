@@ -37,23 +37,27 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "CatActividad.findByTipo", query = "SELECT c FROM CatActividad c WHERE c.tipo = :tipo")})
 public class CatActividad implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idCatAct")
     private Integer idCatAct;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "nombre")
     private String nombre;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "tipo")
     private String tipo;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "catActividad")
-    private Collection<Actividad> actividadCollection;
+    private Collection<Actividad> actividadesSemestrales;
 
     public CatActividad() {
     }
@@ -94,11 +98,11 @@ public class CatActividad implements Serializable {
 
     @XmlTransient
     public Collection<Actividad> getActividadCollection() {
-        return actividadCollection;
+        return actividadesSemestrales;
     }
 
     public void setActividadCollection(Collection<Actividad> actividadCollection) {
-        this.actividadCollection = actividadCollection;
+       actividadesSemestrales = actividadCollection;
     }
 
     @Override

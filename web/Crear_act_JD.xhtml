@@ -28,12 +28,12 @@
                 <p:layoutUnit position="center">
                     
                     <h:form>
-                        <p:fieldset legend="Crear Actividad para el Semestre" style="margin-bottom: 10px">
+                        <p:fieldset  legend="Crear Actividad para el Semestre" style="margin-bottom: 10px">
                         
 
 
 
-                        <h:panelGrid columns="1">
+                        <h:panelGrid columns="1" >
                             <p:outputLabel value="Año:" for="Año"/>
                             <p:autoComplete id="Año" dropdown="true" value="#{beanActividad.actividad.año}" completeMethod="#{beanActividad.completarAño(año)}" scrollHeight="100"/>
 
@@ -47,17 +47,25 @@
                             <p:message for="semestre" />
 
 
-                            <h:outputLabel for="nombre" value="Actividad:"/>
-                            <p:selectOneMenu id="nombre" value="#{beanActividad.actividad.catActividad}" required="true" >
+                            h:outputLabel for="nombre" value="Actividad:"/>
+                            <p:selectOneMenu 
+                                id="nombre" 
+                                value="#{beanActividad.actividad.catActividad}" 
+                                required="true" >
                                 
-                                <f:selectItems value="#{beanActividad.jalarNombres() }" var="catalogo" itemLabel="#{catalogo.nombre}" itemValue="#{catalogo}"/>
+                                <f:selectItems 
+                                    value="#{beanActividad.jalarNombres()}" 
+                                    var="catalogo" 
+                                    itemLabel="#{catalogo.nombre}" 
+                                    itemValue="#{catalogo}"/>
                             </p:selectOneMenu>
+                            <p:message for="nombre" />
 
 
                             <h:commandButton 
                                 
                                 value="Guardar" 
-                                action="#{beanActividad.add}"   
+                                action="#{beanActividad.add()}"   
                                 />
 
                         </h:panelGrid>

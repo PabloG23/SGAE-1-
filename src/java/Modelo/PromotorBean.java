@@ -125,7 +125,7 @@ public class PromotorBean {
         promotor.setApePat(ap_pat);
         promotor.setNombre(correo); 
         promotor.setTelefono(telefono);
-        promotor.setStatus(1);
+        promotor.setStatus(false);
         promotor.setEspecialidades(especialidades);
         pc.create(promotor);
 

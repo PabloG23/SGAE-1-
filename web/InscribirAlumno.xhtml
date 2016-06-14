@@ -25,7 +25,7 @@
                         </p:selectOneMenu>
                 </h:panelGrid>
                     </p:fieldset>
-                <p:fieldset legend="Seleccionar Grupo." style="margin-bottom: 10px">
+                <p:fieldset legend="Ingresar Datos." style="margin-bottom: 10px">
                 <h:panelGrid columns="2" style="">
                     <h:panelGrid columns="1" style="border: none" >
                         <p:outputLabel value="Numero de Control:" for="noctrl"/>
@@ -48,17 +48,18 @@
 
 
 
-                        <p:outputLabel value="Sexo:" />
-                       <p:selectOneMenu id="Sexo"  >
-                            <f:selectItem itemLabel="Seleccionar una Opcion" itemValue=""/>
-                            <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
-                            <f:selectItem itemLabel="Femenino" itemValue="Femenino"/>
-                        </p:selectOneMenu>
+                       
 
 
                     </h:panelGrid>
 
                     <h:panelGrid columns="1" style="border: none">
+                         <p:outputLabel value="Sexo:" />
+                       <p:selectOneMenu id="Sexo"  >
+                            <f:selectItem itemLabel="Seleccionar una Opcion" itemValue=""/>
+                            <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
+                            <f:selectItem itemLabel="Femenino" itemValue="Femenino"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="Semestre:" for="semestre"/>
                         <p:inputText id="semestre" required="true"/>
 
@@ -80,14 +81,7 @@
                             <f:selectItem itemLabel="2" itemValue="2"/>
                         </p:selectOneMenu>
 
-                        <p:outputLabel value="Correo:" for="correo"/>
-                        <p:inputText id="correo" required="true"/>
                         
-                        <p:outputLabel value="Contraseña:" for="pass"/>
-                        <p:inputText id="pass" required="true"/>
-
-                        <p:outputLabel value="Confirmar Contraseña:" for="pass2"/>
-                        <p:inputText id="pass2" required="true"/>
                     </h:panelGrid>
 
                 </h:panelGrid>

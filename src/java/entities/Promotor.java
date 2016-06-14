@@ -35,6 +35,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Promotor.findByStatus", query = "SELECT p FROM Promotor p WHERE p.status = :status"),
     @NamedQuery(name = "Promotor.findByEspecialidades", query = "SELECT p FROM Promotor p WHERE p.especialidades = :especialidades")})
 public class Promotor implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "status")
+    private boolean status;
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -73,10 +77,6 @@ public class Promotor implements Serializable {
     @Column(name = "telefono")
     private String telefono;
     
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "status")
-    private Integer status;
     
     @Basic(optional = false)
     @Size(min = 1, max = 45)
@@ -98,7 +98,7 @@ public class Promotor implements Serializable {
         this.nombre = nombre;
         this.correo = correo;
         this.telefono = telefono;
-        this.status = 1;
+        this.status = false;
         this.especialidades = especialidades;
     }
 
@@ -150,13 +150,6 @@ public class Promotor implements Serializable {
         this.telefono = telefono;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
 
     public String getEspecialidades() {
         return especialidades;
@@ -189,6 +182,14 @@ public class Promotor implements Serializable {
     @Override
     public String toString() {
         return "entities.Promotor[ idPromotor=" + idPromotor + " ]";
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
     
 }

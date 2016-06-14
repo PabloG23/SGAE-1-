@@ -27,8 +27,6 @@ import javax.faces.bean.SessionScoped;
  *
  * @author omar
  */
-//@Named(value = "beanActividad")
-//@Dependent
 @ManagedBean
 @SessionScoped
 public class BeanActividad implements Serializable {
@@ -37,16 +35,16 @@ public class BeanActividad implements Serializable {
 
     @Inject
     private ActividadFacade ac;
+    
     @Inject
     private CatActFacade cat;
 
     public void add() {
         System.out.println("Agregando actividad");
-        ac.create(actividad);
     }
 
     public List<String> completarAño(String año) {
-        List<String> obj = new ArrayList<String>();
+        List<String> obj = new ArrayList<>();
         for (int i = 2016; i < 2030; i++) {
             obj.add(año + i);
         }
@@ -56,7 +54,6 @@ public class BeanActividad implements Serializable {
 
     public List<CatActividad> jalarNombres() {
         List<CatActividad> obj = cat.findAll();
-
         return obj;
     }
 
