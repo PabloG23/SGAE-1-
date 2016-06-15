@@ -7,8 +7,10 @@ package Modelo;
 
 import entities.CatActividad;
 import facade.CatActFacade;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 /**
@@ -16,8 +18,8 @@ import javax.inject.Inject;
  * @author pablog23
  */
 @ManagedBean
-@RequestScoped
-public class BeanCatAct {
+@SessionScoped
+public class BeanCatAct implements Serializable {
 
     /**
      * Creates a new instance of BeanCatAct
@@ -25,10 +27,8 @@ public class BeanCatAct {
     public BeanCatAct() {
     }
     
-     private String tipoact;
+    private String tipoact;
     private String nombre;
-    
-    CatActividad catalogo = new CatActividad();
     
     @Inject
     private CatActFacade cat;
@@ -49,11 +49,20 @@ public class BeanCatAct {
         this.nombre = nombre;
     }
     
-    public void addCatAct(){
+    public void addCatAct() {
         CatActividad catalogo = new CatActividad();
         catalogo.setNombre(nombre);
         catalogo.setTipo(tipoact);
         cat.create(catalogo);
-        
     }
+
+    public CatActFacade getCat() {
+        return cat;
+    }
+
+    public void setCat(CatActFacade cat) {
+        this.cat = cat;
+    }
+    
+    
 }

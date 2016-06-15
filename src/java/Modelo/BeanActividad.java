@@ -32,6 +32,8 @@ import javax.faces.bean.SessionScoped;
 public class BeanActividad implements Serializable {
 
     private Actividad actividad = new Actividad();
+    
+    private int idCatActividad;
 
     @Inject
     private ActividadFacade ac;
@@ -40,7 +42,9 @@ public class BeanActividad implements Serializable {
     private CatActFacade cat;
 
     public void add() {
-        System.out.println("Agregando actividad");
+        CatActividad catActividad = cat.find(this.idCatActividad);
+        actividad.setCatActividad(catActividad);
+        ac.create(actividad);
     }
 
     public List<String> completarAño(String año) {
@@ -70,5 +74,15 @@ public class BeanActividad implements Serializable {
     public void setActividad(Actividad actividad) {
         this.actividad = actividad;
     }
+
+    public int getIdCatActividad() {
+        return idCatActividad;
+    }
+
+    public void setIdCatActividad(int idCatActividad) {
+        this.idCatActividad = idCatActividad;
+    }
+    
+    
 
 }

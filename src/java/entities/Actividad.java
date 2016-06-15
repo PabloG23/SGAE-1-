@@ -46,7 +46,7 @@ public class Actividad implements Serializable {
     @Column(name = "semestre")
     private String semestre;
     
-    @JoinColumn(name = "CatActividad_idCatAct", referencedColumnName = "idCatAct", insertable = false, updatable = false)
+    @JoinColumn(name = "CatActividad_idCatAct", referencedColumnName = "idCatAct", insertable = true, updatable = true)
     @ManyToOne(optional = false)
     private CatActividad catActividad;
 

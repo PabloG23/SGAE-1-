@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -32,57 +34,43 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Promotor.findByNombre", query = "SELECT p FROM Promotor p WHERE p.nombre = :nombre"),
     @NamedQuery(name = "Promotor.findByCorreo", query = "SELECT p FROM Promotor p WHERE p.correo = :correo"),
     @NamedQuery(name = "Promotor.findByTelefono", query = "SELECT p FROM Promotor p WHERE p.telefono = :telefono"),
-    @NamedQuery(name = "Promotor.findByStatus", query = "SELECT p FROM Promotor p WHERE p.status = :status"),
-    @NamedQuery(name = "Promotor.findByEspecialidades", query = "SELECT p FROM Promotor p WHERE p.especialidades = :especialidades")})
+    @NamedQuery(name = "Promotor.findByStatus", query = "SELECT p FROM Promotor p WHERE p.status = :status")})
 public class Promotor implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "idPromotor")
+    private Integer idPromotor;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "ape_mat")
+    private String apeMat;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "ape_pat")
+    private String apePat;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "nombre")
+    private String nombre;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "correo")
+    private String correo;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "telefono")
+    private String telefono;
     @Basic(optional = false)
     @NotNull
     @Column(name = "status")
     private boolean status;
-    private static final long serialVersionUID = 1L;
-    
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "idPromotor")
-    private Integer idPromotor;
-    
-    @Basic(optional = false)
-    @Size(min = 1, max = 45)
-    @NotNull
-    @Column(name = "ape_mat")
-    private String apeMat;
-    
-    @Basic(optional = false)
-    @Size(min = 1, max = 45)
-    @NotNull
-    @Column(name = "ape_pat")
-    private String apePat;
-    
-    @Basic(optional = false)
-    @Size(min = 1, max = 45)
-    @NotNull
-    @Column(name = "nombre")
-    private String nombre;
-    
-    @Basic(optional = false)
-    @Size(min = 1, max = 45)
-    @NotNull
-    @Column(name = "correo")
-    private String correo;
-    
-    @Basic(optional = false)
-    @Size(min = 1, max = 45)
-    @NotNull
-    @Column(name = "telefono")
-    private String telefono;
-    
-    
-    @Basic(optional = false)
-    @Size(min = 1, max = 45)
-    @NotNull
-    @Column(name = "especialidades")
-    private String especialidades;
 
     public Promotor() {
     }
@@ -91,15 +79,14 @@ public class Promotor implements Serializable {
         this.idPromotor = idPromotor;
     }
 
-    public Promotor(Integer idPromotor, String apeMat, String apePat, String nombre, String correo, String telefono, boolean status, String especialidades) {
+    public Promotor(Integer idPromotor, String apeMat, String apePat, String nombre, String correo, String telefono, boolean status) {
         this.idPromotor = idPromotor;
         this.apeMat = apeMat;
         this.apePat = apePat;
         this.nombre = nombre;
         this.correo = correo;
         this.telefono = telefono;
-        this.status = false;
-        this.especialidades = especialidades;
+        this.status = status;
     }
 
     public Integer getIdPromotor() {
@@ -150,13 +137,12 @@ public class Promotor implements Serializable {
         this.telefono = telefono;
     }
 
-
-    public String getEspecialidades() {
-        return especialidades;
+    public boolean getStatus() {
+        return status;
     }
 
-    public void setEspecialidades(String especialidades) {
-        this.especialidades = especialidades;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     @Override
@@ -182,14 +168,6 @@ public class Promotor implements Serializable {
     @Override
     public String toString() {
         return "entities.Promotor[ idPromotor=" + idPromotor + " ]";
-    }
-
-    public boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
     }
     
 }
