@@ -17,6 +17,15 @@
             <p:commandButton value="Save" icon="ui-icon-check" update="out" style="display:block;margin:10px 0" />
 
             <h:outputText id="out" value="Value: #{multiSelectView.selection}" style="display:block" />
+            
+            <p:multiSelectListbox value="#{multiSelectView.selection}" effect="slide" required="true">
+                <f:selectItems 
+                    value="#{beanActividad.jalarNombres()}" 
+                    var="catalogo" 
+                    itemLabel="#{catalogo.nombre}" 
+                    itemValue="#{catalogo.idCatAct}"
+                    />
+            </p:multiSelectListbox>
         </h:form>
     </h:body>
 </html>
