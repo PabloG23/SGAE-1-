@@ -31,7 +31,7 @@ public class BeanCatAct implements Serializable {
     private String nombre;
     
     @Inject
-    private CatActFacade cat;
+    private CatActFacade catalogoFacade;
 
     public String getTipoact() {
         return tipoact;
@@ -50,18 +50,18 @@ public class BeanCatAct implements Serializable {
     }
     
     public void addCatAct() {
-        CatActividad catalogo = new CatActividad();
-        catalogo.setNombre(nombre);
-        catalogo.setTipo(tipoact);
-        cat.create(catalogo);
+        CatActividad catalogoEntidad = new CatActividad();
+        catalogoEntidad.setNombre(nombre);
+        catalogoEntidad.setTipo(tipoact);
+        catalogoFacade.create(catalogoEntidad);
     }
 
     public CatActFacade getCat() {
-        return cat;
+        return catalogoFacade;
     }
 
     public void setCat(CatActFacade cat) {
-        this.cat = cat;
+        this.catalogoFacade = cat;
     }
     
     

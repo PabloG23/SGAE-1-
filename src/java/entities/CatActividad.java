@@ -36,28 +36,24 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "CatActividad.findByNombre", query = "SELECT c FROM CatActividad c WHERE c.nombre = :nombre"),
     @NamedQuery(name = "CatActividad.findByTipo", query = "SELECT c FROM CatActividad c WHERE c.tipo = :tipo")})
 public class CatActividad implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "catActividad")
+    private Collection<Actividad> actividadCollection;
     private static final long serialVersionUID = 1L;
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idCatAct")
     private Integer idCatAct;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "nombre")
     private String nombre;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "tipo")
     private String tipo;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "catActividad")
-    private Collection<Actividad> actividadesSemestrales;
 
     public CatActividad() {
     }
@@ -96,15 +92,6 @@ public class CatActividad implements Serializable {
         this.tipo = tipo;
     }
 
-    @XmlTransient
-    public Collection<Actividad> getActividadCollection() {
-        return actividadesSemestrales;
-    }
-
-    public void setActividadCollection(Collection<Actividad> actividadCollection) {
-       actividadesSemestrales = actividadCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -128,6 +115,15 @@ public class CatActividad implements Serializable {
     @Override
     public String toString() {
         return "entities.CatActividad[ idCatAct=" + idCatAct + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Actividad> getActividadCollection() {
+        return actividadCollection;
+    }
+
+    public void setActividadCollection(Collection<Actividad> actividadCollection) {
+        this.actividadCollection = actividadCollection;
     }
     
 }

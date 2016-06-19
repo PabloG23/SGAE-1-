@@ -36,15 +36,15 @@ public class BeanActividad implements Serializable {
     private int idCatActividad;
 
     @Inject
-    private ActividadFacade ac;
+    private ActividadFacade actividadFacade;
     
     @Inject
-    private CatActFacade cat;
+    private CatActFacade catalogoFacade;
 
     public void add() {
-        CatActividad catActividad = cat.find(this.idCatActividad);
+        CatActividad catActividad = catalogoFacade.find(this.idCatActividad);
         actividad.setCatActividad(catActividad);
-        ac.create(actividad);
+        actividadFacade.create(actividad);
     }
 
     public List<String> completarAño(String año) {
@@ -57,7 +57,7 @@ public class BeanActividad implements Serializable {
     }
 
     public List<CatActividad> jalarNombres() {
-        List<CatActividad> obj = cat.findAll();
+        List<CatActividad> obj = catalogoFacade.findAll();
         return obj;
     }
 

@@ -5,9 +5,12 @@
  */
 package Modelo;
 
+import entities.CatActividad;
 import entities.Promotor;
+import facade.CatActFacade;
 import facade.PromotorFacade;
 import java.io.Serializable;
+import java.util.Collection;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
@@ -19,28 +22,31 @@ import javax.inject.Inject;
  */
 @ManagedBean
 @SessionScoped
-public class PromotorBean implements Serializable {
+public class BeanPromotor implements Serializable {
 
-    private Promotor promotor = new Promotor();
+    private Promotor promotorEntidad = new Promotor();
 
     @Inject
-    private PromotorFacade pro;
+    private PromotorFacade promotorFacade;
 
-    public PromotorBean() {
+
+    public BeanPromotor() {
 
     }
 
     public void agregarPromotor() {
-        promotor.setStatus(true);
-        pro.create(promotor);
+        
+      
+        promotorEntidad.setStatus(true);
+        promotorFacade.create(promotorEntidad);
 
     }
 
     public Promotor getPromotor() {
-        return promotor;
+        return promotorEntidad;
     }
 
     public void setPromotor(Promotor promotor) {
-        this.promotor = promotor;
+        this.promotorEntidad = promotor;
     }
 }

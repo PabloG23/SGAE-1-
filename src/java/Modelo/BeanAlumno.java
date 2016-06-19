@@ -19,13 +19,13 @@ import javax.faces.bean.RequestScoped;
  */
 @ManagedBean
 @RequestScoped
-public class AlumnoBean {
+public class BeanAlumno {
 
     /**
      * Creates a new instance of AlumnoBean
      */
     
-    public AlumnoBean() {
+    public BeanAlumno() {
     }
     
     private int ctrl;

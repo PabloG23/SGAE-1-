@@ -29,7 +29,7 @@
 
                     <h:panelGrid columns="1"  >
                         <p:outputLabel value="Tipo de Evento:" for="tipoEve"/>
-                        <p:selectOneMenu id="tipoEve" value="#{eventoBean.tipo_evento}"  >
+                        <p:selectOneMenu id="tipoEve" value="#{beanEvento.entidadEvento.tipoEvento}" required="true" >
                             <f:selectItem itemLabel="Seleccionar una Opcion" itemValue=""/>
                             <f:selectItem itemLabel="Cultural" itemValue="Cultural"/>
                             <f:selectItem itemLabel="Deportivo" itemValue="Deportivo"/>
@@ -37,13 +37,13 @@
 
 
                         <p:outputLabel value="Nombre del Evento:" for="nombreEve"/>
-                        <p:inputText id="nombreEve" value="#{eventoBean.nombre_evento}" required="true"/>
+                        <p:inputText id="nombreEve" value="#{beanEvento.entidadEvento.nombreEvento}" required="true"/>
 
                         <p:outputLabel value="Institucion Organizadora:" for="institucion"/>
-                        <p:inputText id="institucion" value="#{eventoBean.institucion}" required="true"/>
+                        <p:inputText id="institucion" value="#{beanEvento.entidadEvento.instOrganizadora}" required="true"/>
 
                         <p:outputLabel value="Evento:" />
-                        <p:selectOneMenu id="evento" value="#{eventoBean.evento}" required="true" >
+                        <p:selectOneMenu id="evento" value="#{beanEvento.entidadEvento.evento}" required="true" >
                             <f:selectItem itemLabel="Seleccionar una Opcion" itemValue=""/>
                             <f:selectItem itemLabel="Interno" itemValue="Cultural"/>
                             <f:selectItem itemLabel="Externo" itemValue="Deportivo"/>
@@ -54,23 +54,22 @@
 
                     <h:panelGrid columns="1"  >
                         <p:outputLabel value="Fecha de Realizacion:" for="calendario"/>
-                        <p:calendar id="calendario" value="#{eventoBean.fecha_evento}" required="true" />
+                        <p:calendar id="calendario" value="#{beanEvento.entidadEvento.fechaEvento}" required="true" />
                         <p:outputLabel value="Numero de participantes:" />
                         <h:panelGrid columns="2"  >
 
                             <p:outputLabel value="Hombres:" for="hombres" />
-                            <p:inputText id="hombres" value="#{eventoBean.hombres}" required="true"/>
+                            <p:inputText id="hombres" value="#{beanEvento.entidadEvento.hombres}" required="true"/>
                             <p:outputLabel value="Mujeres:" for="mujeres" />
-                            <p:inputText id="mujeres" value="#{eventoBean.mujeres}" required="true"/>
-                            <p:outputLabel value="Total:" for="total" />
-                            <p:inputText id="total" value="#{eventoBean.total}" required="true"/>
+                            <p:inputText id="mujeres" value="#{beanEvento.entidadEvento.mujeres}" required="true"/>
+                            
 
 
                         </h:panelGrid>
 
 
                         <p:outputLabel value="Resultado Obtenido:" for="resultado"/>
-                        <p:inputText id="resultado" value="#{eventoBean.resultado}" required="true"/>
+                        <p:inputText id="resultado" value="#{beanEvento.entidadEvento.resultado}" required="true"/>
 
 
 
@@ -82,7 +81,7 @@
                 <br/>
                 <h:panelGrid columns="2"  >
 
-                    <p:commandButton value="Crear" action="#{eventoBean.agregarEventoo()}"/>
+                    <p:commandButton value="Crear" action="#{beanEvento.agregarEventoo()}"/>
                     <p:commandButton value="Cancelar" action="indexPromotor"/>
 
                 </h:panelGrid>
