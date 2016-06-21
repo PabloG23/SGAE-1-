@@ -6,7 +6,9 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -17,11 +19,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-    
+import javax.xml.bind.annotation.XmlTransient;
+
 /**
  *
  * @author pablog23
@@ -31,19 +35,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 
 public class Grupo implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "grupo")
+    private Collection<Alumno> alumnoCollection;
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @Column(name = "idGrupo")
     private Integer idGrupo;
-      
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "dias")
     private String dias;
-    
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -59,11 +65,11 @@ public class Grupo implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "a\u00f1o")
     private String año;
-    
+
     @JoinColumn(name = "Promotor_idPromotor", referencedColumnName = "idPromotor")
     @ManyToOne(optional = false)
     private Promotor promotor;
-    
+
     @JoinColumn(name = "Actividad_idActividad", referencedColumnName = "idActividad")
     @ManyToOne(optional = false)
     private Actividad actividad;
@@ -78,10 +84,6 @@ public class Grupo implements Serializable {
     public void setIdGrupo(Integer idGrupo) {
         this.idGrupo = idGrupo;
     }
-
-    
-
-    
 
     public String getDias() {
         return dias;
@@ -131,6 +133,4 @@ public class Grupo implements Serializable {
         this.actividad = actividad;
     }
 
- 
-    
 }
