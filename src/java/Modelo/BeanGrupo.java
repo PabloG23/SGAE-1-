@@ -52,7 +52,7 @@ public class BeanGrupo {
         entidadGrupo.setPromotor(obj1);
         
         entidadGrupo.setDias(concatenar());
-        entidadGrupo.setIdGrupo(11);
+        entidadGrupo.setIdGrupo(14);
         grupoFacade.create(entidadGrupo);
     }
 

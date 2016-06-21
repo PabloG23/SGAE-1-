@@ -79,10 +79,10 @@ public class Evento implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "total")
     private int total;
-    @JoinColumn(name = "Promotor_idPromotor", referencedColumnName = "idPromotor", insertable = false, updatable = false)
+    @JoinColumn(name = "Promotor_idPromotor", referencedColumnName = "idPromotor")
     @ManyToOne(optional = false)
     private Promotor promotor;
-    @JoinColumn(name = "Actividad_idActividad", referencedColumnName = "idActividad", insertable = false, updatable = false)
+    @JoinColumn(name = "Actividad_idActividad", referencedColumnName = "idActividad")
     @ManyToOne(optional = false)
     private Actividad actividad;
 

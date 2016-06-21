@@ -77,6 +77,7 @@
                                     <p:selectOneMenu id="promotoresGru"
                                                      value="#{beanGrupo.idpromotor}"
                                                      required="true">
+                                         <f:selectItem itemLabel="Seleccion una Opción" itemValue="" noSelectionOption="true" />
                                         <f:selectItems
                                             value="#{beanGrupo.jalarNombresPromotores()}"
                                             var="promotor"
@@ -89,6 +90,7 @@
                                     <p:selectOneMenu id="actividad"
                                                      required="true"
                                                      value="#{beanGrupo.idactividad}">
+                                        <f:selectItem itemLabel="Seleccion una Opción" itemValue="" noSelectionOption="true" />
                                     
                                         <f:selectItems value="#{beanGrupo.jalarActividades()}"
                                                        var="actividad"
@@ -99,9 +101,7 @@
                                     
                                 </h:panelGrid>
                             </h:panelGrid>
-                            
-                                
-                                
+                
                             
                         </p:fieldset>
                         <h:commandButton value="Guardar" action="#{beanGrupo.agregarGrupo()}"/>

@@ -52,6 +52,7 @@ public class BeanEvento {
         
         Promotor obj1 = promotorFacade.find(this.idpromotor);
         entidadEvento.setPromotor(obj1);
+        
         entidadEvento.setTotal(total());
         eventoFacade.create(entidadEvento);
         

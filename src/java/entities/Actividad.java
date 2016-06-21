@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "Actividad")
 @XmlRootElement
 public class Actividad implements Serializable {
+   
     
    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividad")
@@ -39,6 +40,7 @@ public class Actividad implements Serializable {
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividad")
     private Collection<Grupo> grupoCollection;
+    
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -148,5 +150,5 @@ public class Actividad implements Serializable {
         this.eventoCollection = eventoCollection;
     }
 
-   
+    
 }
