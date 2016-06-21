@@ -30,29 +30,31 @@ public class BeanGrupo {
 
     @Inject
     private GrupoFacade grupoFacade;
-    
+
     @Inject
     private PromotorFacade promotorFacade;
-    
+
     @Inject
     private ActividadFacade actividadFacade;
-    
+
     private int idpromotor;
     private int idactividad;
     private List<String> lista = new ArrayList<>();
 
     public BeanGrupo() {
     }
-    
-    public void agregarGrupo(){
+
+    public void agregarGrupo() {
         Actividad obj = actividadFacade.find(this.idactividad);
         entidadGrupo.setActividad(obj);
-        
+
         Promotor obj1 = promotorFacade.find(this.idpromotor);
         entidadGrupo.setPromotor(obj1);
-        
+
+        //generarIdGrupo(idactividad, idpromotor, obj.getAño());
+
         entidadGrupo.setDias(concatenar());
-        entidadGrupo.setIdGrupo(14);
+        entidadGrupo.setIdGrupo(generarIdGrupo(idactividad, idpromotor, obj.getAño()));
         grupoFacade.create(entidadGrupo);
     }
 
@@ -64,7 +66,18 @@ public class BeanGrupo {
         this.entidadGrupo = entidadGrupo;
     }
 
-    
+    public int generarIdGrupo(Integer idactividad, Integer idpromotor, Integer año) {
+        String idgrupo = "";
+        String g_idact = String.valueOf(idactividad);
+        String g_idprom = String.valueOf(idpromotor);
+        String g_año = String.valueOf(año);
+        idgrupo += g_idact + g_idprom + g_año;
+        
+        int id_grupo = Integer.parseInt(idgrupo);
+        System.out.println("idgrupoGenerado:" + id_grupo);
+        return id_grupo;
+    }
+
     public List<String> completarAño(String año) {
         List<String> obj = new ArrayList<>();
         for (int i = 2016; i < 2030; i++) {
@@ -72,12 +85,12 @@ public class BeanGrupo {
         }
         return obj;
     }
-    
-    public String concatenar(){
-        String x="";
-        for(String dia : lista){
-            
-            x+=dia+" ";
+
+    public String concatenar() {
+        String x = "";
+        for (String dia : lista) {
+
+            x += dia + " ";
         }
         return x;
     }
@@ -89,19 +102,16 @@ public class BeanGrupo {
     public void setIdpromotor(int idpromotor) {
         this.idpromotor = idpromotor;
     }
-    
-     public List<Promotor> jalarNombresPromotores() {
+
+    public List<Promotor> jalarNombresPromotores() {
         List<Promotor> obj = promotorFacade.findAll();
         return obj;
     }
-     
-     public List<Actividad> jalarActividades(){
-         List<Actividad> obj= actividadFacade.findAll();
-         return obj;
-     }
-     
-     
-   
+
+    public List<Actividad> jalarActividades() {
+        List<Actividad> obj = actividadFacade.findAll();
+        return obj;
+    }
 
     public int getIdactividad() {
         return idactividad;
@@ -118,6 +128,5 @@ public class BeanGrupo {
     public void setLista(List<String> lista) {
         this.lista = lista;
     }
-    
-     
+
 }
