@@ -68,9 +68,14 @@ public class Alumno implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "calificacion")
-    private String calificacion;
+    @Column(name = "acreditado")
+    private boolean acreditado;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "noAcreditado")
+    private boolean noAcreditado;
+    
     
     @Basic(optional = false)
     @NotNull
@@ -100,6 +105,10 @@ public class Alumno implements Serializable {
     @JoinColumn(name = "CatCarreras_idCatCarreras", referencedColumnName = "idCatCarreras")
     @ManyToOne(optional = false)
     private CatCarreras catCarreras;
+    
+    @JoinColumn(name = "CapDif_idCapDif", referencedColumnName = "idCapDif")
+    @ManyToOne(optional = false)
+    private CapDif capDif;
 
     public Alumno() {
     }
@@ -130,13 +139,23 @@ public class Alumno implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getCalificacion() {
-        return calificacion;
+    public boolean isAcreditado() {
+        return acreditado;
     }
 
-    public void setCalificacion(String calificacion) {
-        this.calificacion = calificacion;
+    public void setAcreditado(boolean acreditado) {
+        this.acreditado = acreditado;
     }
+
+    public boolean isNoAcreditado() {
+        return noAcreditado;
+    }
+
+    public void setNoAcreditado(boolean noAcreditado) {
+        this.noAcreditado = noAcreditado;
+    }
+
+    
 
     public int getEdad() {
         return edad;
@@ -208,6 +227,14 @@ public class Alumno implements Serializable {
 
     public void setReincidencia(String reincidencia) {
         this.reincidencia = reincidencia;
+    }
+
+    public CapDif getCapDif() {
+        return capDif;
+    }
+
+    public void setCapDif(CapDif capDif) {
+        this.capDif = capDif;
     }
 
     

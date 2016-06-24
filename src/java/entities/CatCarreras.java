@@ -31,16 +31,19 @@ import javax.xml.bind.annotation.XmlTransient;
 
 public class CatCarreras implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "idCatCarreras")
     private Integer idCatCarreras;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "nomCarrera")
     private String nomCarrera;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "catCarreras")
     private Collection<Alumno> alumnoCollection;
 

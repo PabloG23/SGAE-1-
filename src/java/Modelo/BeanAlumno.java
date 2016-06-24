@@ -6,9 +6,11 @@
 package Modelo;
 
 import entities.Alumno;
+import entities.CapDif;
 import entities.CatCarreras;
 import entities.Grupo;
 import facade.AlumnoFacade;
+import facade.CapacidadesFacade;
 import facade.CatCarrerasFacade;
 import facade.GrupoFacade;
 import java.sql.Connection;
@@ -29,40 +31,55 @@ import javax.inject.Inject;
 @RequestScoped
 public class BeanAlumno {
 
-   private Alumno entidadAlumno = new Alumno();
-   
-   @Inject
-   private AlumnoFacade alumnoFacade;
-   @Inject
-   private CatCarrerasFacade carrerasFacade;
-   @Inject 
-   GrupoFacade grupoFacade;
-   
-   private int idCatCarreras;
-   private int idGrupo;
-    
+    private Alumno entidadAlumno = new Alumno();
+
+    @Inject
+    private AlumnoFacade alumnoFacade;
+    @Inject
+    private CatCarrerasFacade carrerasFacade;
+    @Inject
+    GrupoFacade grupoFacade;
+    @Inject
+    CapacidadesFacade capacidadFacade;
+
+    private int idCatCarreras;
+    private int idGrupo;
+    private int idCapDif;
+
     public BeanAlumno() {
     }
-    
-    public void agregarAlumno(){
+
+    public void agregarAlumno() {
+
+        CapDif capac = capacidadFacade.find(this.idCapDif);
+        Grupo grupo = grupoFacade.find(this.idGrupo);
+        CatCarreras carrera= carrerasFacade.find(this.idCatCarreras);
         
-        entidadAlumno.setCalificacion("No Acreditado");
-        entidadAlumno.setSeleccionado(false);
+        entidadAlumno.setCatCarreras(carrera);
+        entidadAlumno.setGrupo(grupo);
+        entidadAlumno.setCapDif(capac);
+        entidadAlumno.setAcreditado(false);
+        entidadAlumno.setNoAcreditado(true);
         entidadAlumno.setReconocimiento(false);
+        entidadAlumno.setSeleccionado(false);
+
         alumnoFacade.create(entidadAlumno);
     }
-  
-   
-    
-     public List<CatCarreras> jalarCarreras()
-     {
-        List<CatCarreras> obj= carrerasFacade.findAll();
+
+    public List<CatCarreras> jalarCarreras() {
+        List<CatCarreras> obj = carrerasFacade.findAll();
         return obj;
     }
-     public List<Grupo> jalarGrupos(){
-         List<Grupo> obj = grupoFacade.findAll();
-         return obj;
-     }
+
+    public List<Grupo> jalarGrupos() {
+        List<Grupo> obj = grupoFacade.findAll();
+        return obj;
+    }
+
+    public List<CapDif> jalarCapacidades() {
+        List<CapDif> obj = capacidadFacade.findAll();
+        return obj;
+    }
 
     public int getIdCatCarreras() {
         return idCatCarreras;
@@ -88,5 +105,12 @@ public class BeanAlumno {
         this.entidadAlumno = entidadAlumno;
     }
 
-    
+    public int getIdCapDif() {
+        return idCapDif;
+    }
+
+    public void setIdCapDif(int idCapDif) {
+        this.idCapDif = idCapDif;
+    }
+
 }
