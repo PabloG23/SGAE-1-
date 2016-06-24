@@ -28,21 +28,13 @@
                 <p:layoutUnit position="center">
                     
                     <h:form>
-                        <p:fieldset  legend="Crear Actividad para Semestre " style="margin-bottom: 10px">
+                        <p:fieldset  legend="Crear Nueva Actividad " style="margin-bottom: 10px">
             
 
                         <h:panelGrid columns="1" >
-<!--                            <p:outputLabel value="Año:" for="Año"/>
-                            <p:autoComplete id="Año" dropdown="true" value="#{beanActividad.actividad.año}" completeMethod="#{beanActividad.completarAño(año)}" scrollHeight="100"/>-->
+                            <p:outputLabel value="Año:" for="Año"/>
+                            <p:autoComplete id="Año" dropdown="true" value="#{beanActividad.actividad.año}" completeMethod="#{beanActividad.completarAño(año)}" scrollHeight="100"/>
 
-                            <h:outputLabel for="Año" value="Año:" />
-                            <p:selectOneMenu id="Año" value="#{beanActividad.actividad.año}" required="true" >
-                                <f:selectItem itemLabel="Seleccion una Opción" itemValue="" noSelectionOption="true" />
-                                <f:selectItem itemLabel="2016" itemValue="2016" />
-                                <f:selectItem itemLabel="2017" itemValue="2017" />
-                            </p:selectOneMenu>
-                            <p:message for="Año" />
-                            
 
                             <h:outputLabel for="semestre" value="Semestre:" />
                             <p:selectOneMenu id="semestre" value="#{beanActividad.actividad.semestre}" required="true" >
