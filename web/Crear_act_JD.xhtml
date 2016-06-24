@@ -62,6 +62,9 @@
                             </p:selectOneMenu>
                             <p:message for="nombre" />
                             
+                            <h:outputLabel value="¿No existe la actividad? "/>
+                            <p:link outcome="CrearCatAct" value="Registrar Aqui"/>
+                            
                             
                             
 
@@ -70,8 +73,8 @@
 
                         </h:panelGrid>
                             </p:fieldset>
-                         <h:commandButton 
-                                
+                         <p:commandButton 
+                                icon="ui-icon-check"
                                 value="Guardar" 
                                 action="#{beanActividad.add()}"   
                                 />

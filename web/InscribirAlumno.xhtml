@@ -10,6 +10,8 @@
         <h:form>
         <p:layout fullPage="true">
             <p:layoutUnit position="center" style="border: none">
+                <h1>Bienvenido,Alumno.</h1>
+                <h3>Inscripcion a las Actividades Extraescolares, ingresa tus datos.</h3>
                 <p:fieldset legend="Seleccionar Grupo." style="margin-bottom: 10px">
                 <h:panelGrid columns="3" style="border: none" cellpadding="8" cellspacing="10">
 
@@ -126,8 +128,8 @@
                 </h:panelGrid>
                     </p:fieldset>
                 <h:panelGrid columns="2" >
-                    <p:commandButton value="Registrar"/>
-                    <p:commandButton value="Cancelar"/>
+                    <p:commandButton value="Registrar" action="#{beanAlumno.agregarAlumno()}"/>
+                    
                 </h:panelGrid>
 
 
