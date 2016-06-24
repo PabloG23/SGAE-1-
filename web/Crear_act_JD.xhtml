@@ -26,58 +26,71 @@
                     </ui:insert>
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
-                    
+
                     <h:form>
                         <p:fieldset  legend="Crear Nueva Actividad para el Semestre " style="margin-bottom: 10px">
-            
-
-                        <h:panelGrid columns="1" >
-                            <p:outputLabel value="Año:" for="Año"/>
-                            <p:autoComplete id="Año" dropdown="true" value="#{beanActividad.actividad.año}" completeMethod="#{beanActividad.completarAño(año)}" scrollHeight="100"/>
 
 
-                            <h:outputLabel for="semestre" value="Semestre:" />
-                            <p:selectOneMenu id="semestre" value="#{beanActividad.actividad.semestre}" required="true" >
-                                <f:selectItem itemLabel="Seleccion una Opción" itemValue="" noSelectionOption="true" />
-                                <f:selectItem itemLabel="Enero-Junio" itemValue="Enero-Junio" />
-                                <f:selectItem itemLabel="Agosto-Diciembre" itemValue="Agosto-Diciembre" />
-                            </p:selectOneMenu>
-                            <p:message for="semestre" />
+                            <h:panelGrid columns="1" >
+
+                                <h:outputLabel for="Año" value="Año:" />
+                                <p:selectOneMenu id="Año" value="#{beanActividad.actividad.año}" required="true" >
+                                    <f:selectItem itemLabel="Selecciona un Año" itemValue="" noSelectionOption="true" />
+                                    <f:selectItem itemLabel="2016" itemValue="2016" />
+                                    <f:selectItem itemLabel="2017" itemValue="2017" />
+                                    <f:selectItem itemLabel="2018" itemValue="2018" />
+                                    <f:selectItem itemLabel="2019" itemValue="2019" />
+                                    <f:selectItem itemLabel="2020" itemValue="2020" />
+                                    <f:selectItem itemLabel="2021" itemValue="2022" />
+                                    <f:selectItem itemLabel="2022" itemValue="2022" />
+                                    <f:selectItem itemLabel="2023" itemValue="2023" />
+                                    <f:selectItem itemLabel="2024" itemValue="2024" />
+                                    <f:selectItem itemLabel="2025" itemValue="2025" />
+                                </p:selectOneMenu>
+                                <p:message for="Año" />
+
+                                <h:outputLabel for="semestre" value="Semestre:" />
+                                <p:selectOneMenu id="semestre" value="#{beanActividad.actividad.semestre}" required="true" >
+                                    <f:selectItem itemLabel="Selecciona un Semestre" itemValue="" noSelectionOption="true" />
+                                    <f:selectItem itemLabel="Enero-Junio" itemValue="Enero-Junio" />
+                                    <f:selectItem itemLabel="Agosto-Diciembre" itemValue="Agosto-Diciembre" />
+                                </p:selectOneMenu>
+                                <p:message for="semestre" />
 
 
-                            <h:outputLabel for="nombre" value="Actividad:"/>
-                            
-                            <p:selectOneMenu 
-                                id="nombre" 
-                                value="#{beanActividad.idCatActividad}" 
-                                required="true" >
-                                 <f:selectItem itemLabel="Seleccion una Opción" itemValue="" noSelectionOption="true" />
-                                
-                                <f:selectItems 
-                                    value="#{beanActividad.jalarNombres()}" 
-                                    var="catalogo" 
-                                    itemLabel="#{catalogo.nombre}" 
-                                    itemValue="#{catalogo.idCatAct}"
-                                    />
-                            </p:selectOneMenu>
-                            <p:message for="nombre" />
-                            
-                            <h:outputLabel value="¿No existe la actividad? "/>
-                            <p:link outcome="CrearCatAct" value="Registrar Aqui"/>
-                           
-                            
-                            
+                                <h:outputLabel for="nombre" value="Actividad:"/>
+
+                                <p:selectOneMenu 
+                                    id="nombre" 
+                                    value="#{beanActividad.idCatActividad}" 
+                                    required="true" >
+                                    <f:selectItem itemLabel="Selecciona una Actividad" itemValue="" noSelectionOption="true" />
+
+                                    <f:selectItems 
+                                        value="#{beanActividad.jalarNombres()}" 
+                                        var="catalogo" 
+                                        itemLabel="#{catalogo.nombre}" 
+                                        itemValue="#{catalogo.idCatAct}"
+                                        />
+                                </p:selectOneMenu>
+                                <p:message for="nombre" />
+
+                                <h:outputLabel value="¿No existe la actividad? "/>
+                                <p:link outcome="CrearCatAct" value="Registrar Aqui"/>
 
 
-                           
 
-                        </h:panelGrid>
-                            </p:fieldset>
-                         <p:commandButton 
-                                icon="ui-icon-check"
-                                value="Guardar" 
-                                action="#{beanActividad.add()}"   
-                                />
+
+
+
+
+                            </h:panelGrid>
+                        </p:fieldset>
+                        <p:commandButton 
+                            icon="ui-icon-check"
+                            value="Guardar" 
+                            action="#{beanActividad.add()}"   
+                            />
                     </h:form>
 
                 </p:layoutUnit>
