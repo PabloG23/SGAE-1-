@@ -31,16 +31,6 @@
                         <p:fieldset legend="Crear Grupo." style="margin-bottom: 10px">
                             <h:panelGrid columns="1" style="margin-bottom:10px" >
 
-
-
-
-                                <p:outputLabel value="Año:" for="Año"/>
-                                <p:autoComplete id="Año" 
-                                                dropdown="true"
-                                                value="#{beanGrupo.entidadGrupo.año}"
-                                                completeMethod="#{beanGrupo.completarAño(año)}"
-                                                scrollHeight="100"
-                                                required="true"/>
                                 <p:outputLabel value="Semestre" for="semestre"/>
                                 <p:selectOneMenu id="semestre" value="#{beanGrupo.entidadGrupo.semestre}" required="true" >
                                     <f:selectItem itemLabel="Seleccion una Opción" itemValue="" noSelectionOption="true" />

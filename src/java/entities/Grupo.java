@@ -62,9 +62,8 @@ public class Grupo implements Serializable {
     private String semestre;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "a\u00f1o")
-    private String año;
+    private int año;
 
     @JoinColumn(name = "Promotor_idPromotor", referencedColumnName = "idPromotor")
     @ManyToOne(optional = false)
@@ -109,11 +108,11 @@ public class Grupo implements Serializable {
         this.semestre = semestre;
     }
 
-    public String getAño() {
+    public int getAño() {
         return año;
     }
 
-    public void setAño(String año) {
+    public void setAño(int año) {
         this.año = año;
     }
 
