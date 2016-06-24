@@ -32,28 +32,32 @@
                         <p:fieldset legend="Crear Promotores" style="margin-bottom: 10px">
                         
                         <h:panelGrid columns="2">
-                            <h:panelGrid columns="1" width="300" >
-                                <p:outputLabel value="Apellido paterno:" for="Apellidopaterno" />
-                                <p:inputText id="Apellidopaterno" value="#{beanPromotor.promotor.apePat}" required="true"/> 
-                            </h:panelGrid>
-                            <h:panelGrid columns="1" width="300" >
-                                <p:outputLabel value="Correo:" for="correo"/>
-                                <p:inputText id="correo" value="#{beanPromotor.promotor.correo}" required="true"/> 
-                            </h:panelGrid>
-                            <h:panelGrid columns="1" width="300" >
-                                <p:outputLabel value="Apellido materno:" for="Apellidomaterno" />
-                                <p:inputText id="Apellidomaterno" value="#{beanPromotor.promotor.apeMat}" required="true"/> 
-                            </h:panelGrid>
-                            <h:panelGrid columns="1" width="300" >
-                                <p:outputLabel value="Teléfono:" for="Telefono" />
-                                <p:inputText id="Telefono" value="#{beanPromotor.promotor.telefono}" required="true"/> 
-                            </h:panelGrid>
-                            <h:panelGrid columns="1" width="300" >
-                                <p:outputLabel value="Nombre(s):" for="nombrepromotor" />
-                                <p:inputText id="nombrepromotor" value="#{beanPromotor.promotor.nombre}" required="true" /> 
-                            </h:panelGrid>
-                            
-                            
+                            <h:panelGrid columns="1">
+                                        <h:panelGrid columns="1" width="300" >
+                                            <p:outputLabel value="Apellido paterno:" for="Apellidopaterno" />
+                                            <p:inputText id="Apellidopaterno" value="#{beanPromotor.promotor.apePat}" required="true"/> 
+                                        </h:panelGrid>
+                                        <h:panelGrid columns="1" width="300" >
+                                            <p:outputLabel value="Apellido materno:" for="Apellidomaterno" />
+                                            <p:inputText id="Apellidomaterno" value="#{beanPromotor.promotor.apeMat}" required="true"/> 
+                                        </h:panelGrid>
+                                        <h:panelGrid columns="1" width="300" >
+                                            <p:outputLabel value="Nombre(s):" for="nombrepromotor" />
+                                            <p:inputText id="nombrepromotor" value="#{beanPromotor.promotor.nombre}" required="true" /> 
+                                        </h:panelGrid>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="1">
+
+                                        <h:panelGrid columns="1" width="300" >
+                                            <p:outputLabel value="Correo:" for="correo"/>
+                                            <p:inputText id="correo" value="#{beanPromotor.promotor.correo}" required="true"/> 
+                                        </h:panelGrid>
+
+                                        <h:panelGrid columns="1" width="300" >
+                                            <p:outputLabel value="Teléfono:" for="Telefono" />
+                                            <p:inputText id="Telefono" value="#{beanPromotor.promotor.telefono}" required="true"/> 
+                                        </h:panelGrid>
+                                    </h:panelGrid>
                         </h:panelGrid>
                         </p:fieldset>
                             
