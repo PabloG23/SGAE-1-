@@ -39,16 +39,19 @@ public class CatActividad implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "catActividad")
     private Collection<Actividad> actividadCollection;
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idCatAct")
     private Integer idCatAct;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "nombre")
     private String nombre;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)

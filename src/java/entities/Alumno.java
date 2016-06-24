@@ -5,6 +5,7 @@
  */
 package entities;
 
+
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -30,49 +31,72 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 public class Alumno implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Column(name = "noCtrl")
     private Integer noCtrl;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "apPat")
     private String apPat;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "apMat")
     private String apMat;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "nombre")
     private String nombre;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "semestre")
+    private String semestre;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "reincidencia")
+    private String reincidencia;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "calificacion")
     private String calificacion;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "edad")
     private int edad;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 2)
     @Column(name = "sexo")
     private String sexo;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "seleccionado")
     private boolean seleccionado;
+   
     @Basic(optional = false)
     @NotNull
     @Column(name = "reconocimiento")
     private boolean reconocimiento;
+    
     @JoinColumn(name = "Grupo_idGrupo1", referencedColumnName = "idGrupo")
     @ManyToOne(optional = false)
     private Grupo grupo;
+    
     @JoinColumn(name = "CatCarreras_idCatCarreras", referencedColumnName = "idCatCarreras")
     @ManyToOne(optional = false)
     private CatCarreras catCarreras;
@@ -162,6 +186,31 @@ public class Alumno implements Serializable {
         this.catCarreras = catCarreras;
     }
 
+    public Integer getNoCtrl() {
+        return noCtrl;
+    }
+
+    public void setNoCtrl(Integer noCtrl) {
+        this.noCtrl = noCtrl;
+    }
+
+    public String getSemestre() {
+        return semestre;
+    }
+
+    public void setSemestre(String semestre) {
+        this.semestre = semestre;
+    }
+
+    public String getReincidencia() {
+        return reincidencia;
+    }
+
+    public void setReincidencia(String reincidencia) {
+        this.reincidencia = reincidencia;
+    }
+
+    
     
 
     

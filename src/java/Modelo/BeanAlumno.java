@@ -7,6 +7,7 @@ package Modelo;
 
 import entities.Alumno;
 import entities.CatCarreras;
+import entities.Grupo;
 import facade.AlumnoFacade;
 import facade.CatCarrerasFacade;
 import facade.GrupoFacade;
@@ -43,6 +44,11 @@ public class BeanAlumno {
     public BeanAlumno() {
     }
     
+    public void agregarAlumno(){
+        entidadAlumno.setCalificacion("No Acreditado");
+        entidadAlumno.setSeleccionado(false);
+        entidadAlumno.setReconocimiento(false);
+    }
   
    
     
@@ -51,6 +57,10 @@ public class BeanAlumno {
         List<CatCarreras> obj= carrerasFacade.findAll();
         return obj;
     }
+     public List<Grupo> jalarGrupos(){
+         List<Grupo> obj = grupoFacade.findAll();
+         return obj;
+     }
 
     public int getIdCatCarreras() {
         return idCatCarreras;
@@ -66,6 +76,14 @@ public class BeanAlumno {
 
     public void setIdGrupo(int idGrupo) {
         this.idGrupo = idGrupo;
+    }
+
+    public Alumno getEntidadAlumno() {
+        return entidadAlumno;
+    }
+
+    public void setEntidadAlumno(Alumno entidadAlumno) {
+        this.entidadAlumno = entidadAlumno;
     }
 
     
