@@ -45,9 +45,11 @@ public class BeanAlumno {
     }
     
     public void agregarAlumno(){
+        
         entidadAlumno.setCalificacion("No Acreditado");
         entidadAlumno.setSeleccionado(false);
         entidadAlumno.setReconocimiento(false);
+        alumnoFacade.create(entidadAlumno);
     }
   
    
