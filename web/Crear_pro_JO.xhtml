@@ -1,0 +1,76 @@
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Promotor</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" >
+                    <ui:insert name="encabezado">
+                        <ui:include src="/secciones/encabezado.xhtml"/>
+                    </ui:insert>
+                </p:layoutUnit>
+                <p:layoutUnit position="west" size="250" collapsible="true">
+                    <ui:insert name="menu">
+                        <ui:include src="/secciones/menuJO.xhtml"/>
+                    </ui:insert>
+                </p:layoutUnit>
+                <h:form>
+                <p:layoutUnit position="center">
+                    <h:panelGrid columns="1" style="margin-bottom:10px" >
+                        <p:fieldset legend="Crear Promotores" style="margin-bottom: 10px">
+                        
+                        <h:panelGrid columns="2">
+                            <h:panelGrid columns="1" width="300" >
+                                <p:outputLabel value="Apellido paterno:" for="Apellidopaterno" />
+                                <p:inputText id="Apellidopaterno" value="#{beanPromotor.promotor.apePat}" required="true"/> 
+                            </h:panelGrid>
+                            <h:panelGrid columns="1" width="300" >
+                                <p:outputLabel value="Correo:" for="correo"/>
+                                <p:inputText id="correo" value="#{beanPromotor.promotor.correo}" required="true"/> 
+                            </h:panelGrid>
+                            <h:panelGrid columns="1" width="300" >
+                                <p:outputLabel value="Apellido materno:" for="Apellidomaterno" />
+                                <p:inputText id="Apellidomaterno" value="#{beanPromotor.promotor.apeMat}" required="true"/> 
+                            </h:panelGrid>
+                            <h:panelGrid columns="1" width="300" >
+                                <p:outputLabel value="Teléfono:" for="Telefono" />
+                                <p:inputText id="Telefono" value="#{beanPromotor.promotor.telefono}" required="true"/> 
+                            </h:panelGrid>
+                            <h:panelGrid columns="1" width="300" >
+                                <p:outputLabel value="Nombre(s):" for="nombrepromotor" />
+                                <p:inputText id="nombrepromotor" value="#{beanPromotor.promotor.nombre}" required="true" /> 
+                            </h:panelGrid>
+                            
+                            
+                        </h:panelGrid>
+                        </p:fieldset>
+                            
+                    </h:panelGrid>                  
+                    <br/>
+                    <h:panelGrid columns="2" style="margin-bottom: 30px">
+                        <h:commandButton value="Guardar" action="#{beanPromotor.agregarPromotor()}"/>
+                        <h:commandButton value="Cancelar"/>
+                    </h:panelGrid>
+                    
+                </p:layoutUnit>
+                    </h:form>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+
