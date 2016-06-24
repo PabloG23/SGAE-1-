@@ -51,11 +51,10 @@ public class BeanGrupo {
         Promotor obj1 = promotorFacade.find(this.idpromotor);
         entidadGrupo.setPromotor(obj1);
         
-        //generarIdGrupo(idactividad, idpromotor, obj.getAño());
-        //puto
-
+        
+        entidadGrupo.setAño("2017");
         entidadGrupo.setDias(concatenar());
-        entidadGrupo.setIdGrupo(14);
+        entidadGrupo.setIdGrupo(generarIdGrupo(idactividad, idpromotor, obj.getAño()));
         grupoFacade.create(entidadGrupo);
     }
 
