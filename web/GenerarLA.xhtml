@@ -34,12 +34,16 @@
                         <h:panelGrid columns="1"  >
 
                             <p:outputLabel value="Grupo:" />
-                            <select id="grupo" >
-                                <option value="0">Seleccionar Grupo</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                            </select>
+                            <p:selectOneMenu id="Grupo"
+                                         value="#{beanAlumno.idGrupo}"
+                                         required="true">
+                        <f:selectItem itemLabel="Seleccionar una Opción" itemValue="" noSelectionOption="true" />
+                        <f:selectItems
+                            value="#{beanAlumno.jalarGrupos()}"
+                            var="grupo"
+                            itemLabel="#{grupo.actividad.catActividad.nombre} #{grupo.dias} #{grupo.horario}"
+                            itemValue="#{grupo.idGrupo}"/>
+                        </p:selectOneMenu>
                             </h:panelGrid>
                     </p:fieldset>
                     

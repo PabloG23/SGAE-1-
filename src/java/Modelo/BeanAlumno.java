@@ -80,6 +80,11 @@ public class BeanAlumno {
         List<CapDif> obj = capacidadFacade.findAll();
         return obj;
     }
+    
+    public List<Alumno> jalarAlumnos(){
+        List<Alumno> obj=alumnoFacade.findAll();
+        return obj;
+    }
 
     public int getIdCatCarreras() {
         return idCatCarreras;
