@@ -8,9 +8,11 @@ package Modelo;
 import entities.CatActividad;
 import facade.CatActFacade;
 import java.io.Serializable;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 /**
@@ -54,6 +56,7 @@ public class BeanCatAct implements Serializable {
         catalogoEntidad.setNombre(nombre);
         catalogoEntidad.setTipo(tipoact);
         catalogoFacade.create(catalogoEntidad);
+        displayLocation();
     }
 
     public CatActFacade getCat() {
@@ -63,6 +66,14 @@ public class BeanCatAct implements Serializable {
     public void setCat(CatActFacade cat) {
         this.catalogoFacade = cat;
     }
-    
+    public void displayLocation() {
+        FacesMessage msg;
+        if(nombre != null && tipoact != null)
+            msg = new FacesMessage("Registro exitoso", nombre + " of " + tipoact);
+        else
+            msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Necesita Ingresar Nombre y", "su tipo"); 
+             
+        FacesContext.getCurrentInstance().addMessage(null, msg);  
+    }
     
 }
