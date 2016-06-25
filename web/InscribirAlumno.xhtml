@@ -15,12 +15,7 @@
                     <p:fieldset legend="Seleccionar Grupo." style="margin-bottom: 10px">
                         <h:panelGrid columns="3" style="border: none" cellpadding="8" cellspacing="10">
 
-                            <p:selectOneRadio id="tipoGrupo"  >
-                                <f:selectItem  itemLabel="Cultural" itemValue="Cultural" />
-                                <f:selectItem itemLabel="Deportivo" itemValue="Deportivo" />  
-                            </p:selectOneRadio>
                             <p:outputLabel value="Grupo:" for="grupo"/>
-
                             <p:selectOneMenu 
                                 id="grupo"
                                 value="#{beanAlumno.idGrupo}"
@@ -89,7 +84,7 @@
                                     <f:selectItem itemLabel="13" itemValue="13"/>
                                 </p:selectOneMenu>
 
-                                
+
                                 <p:outputLabel value="Edad:" for="edad" />
                                 <p:inputText id="edad" value="#{beanAlumno.entidadAlumno.edad}" required="true"/> 
 
@@ -126,13 +121,13 @@
 
 
                             </h:panelGrid>
-
+                            <h:panelGrid columns="2" >
+                                <h:commandButton value="Registrar" action="#{beanAlumno.agregarAlumno()}"/>
+                            </h:panelGrid>
                         </h:panelGrid>
-                    </p:fieldset>
-                    <h:panelGrid columns="2" >
-                        <h:commandButton value="Registrar" action="#{beanAlumno.agregarAlumno()}"/>
 
-                    </h:panelGrid>
+                    </p:fieldset>
+
 
                 </p:layoutUnit>
             </p:layout>
