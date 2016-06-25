@@ -28,13 +28,13 @@
                 <p:layoutUnit position="center">
 
                     <h:form>
-                        <p:fieldset  legend="Crear Nueva Actividad para el Semestre " style="margin-bottom: 10px">
+                        <p:fieldset   id="grid" legend="Crear Nueva Actividad para el Semestre " style="margin-bottom: 10px">
 
 
                             <h:panelGrid columns="1" >
 
                                 <h:outputLabel for="Año" value="Año:" />
-                                <p:selectOneMenu id="Año" value="#{beanActividad.actividad.año}" required="true" >
+                                <p:selectOneMenu id="Año" value="#{beanActividad.actividad.año}" required="true" requiredMessage="Nesecitas elegir un año">
                                     <f:selectItem itemLabel="Selecciona un Año" itemValue="" noSelectionOption="true" />
                                     <f:selectItem itemLabel="2016" itemValue="2016" />
                                     <f:selectItem itemLabel="2017" itemValue="2017" />
@@ -47,15 +47,15 @@
                                     <f:selectItem itemLabel="2024" itemValue="2024" />
                                     <f:selectItem itemLabel="2025" itemValue="2025" />
                                 </p:selectOneMenu>
-                                <p:message for="Año" />
+                                <p:message for="Año" display="text"/>
 
                                 <h:outputLabel for="semestre" value="Semestre:" />
-                                <p:selectOneMenu id="semestre" value="#{beanActividad.actividad.semestre}" required="true" >
+                                <p:selectOneMenu id="semestre" value="#{beanActividad.actividad.semestre}" required="true" requiredMessage="Nesecitas elegir un semestre">
                                     <f:selectItem itemLabel="Selecciona un Semestre" itemValue="" noSelectionOption="true" />
                                     <f:selectItem itemLabel="Enero-Junio" itemValue="Enero-Junio" />
                                     <f:selectItem itemLabel="Agosto-Diciembre" itemValue="Agosto-Diciembre" />
                                 </p:selectOneMenu>
-                                <p:message for="semestre" />
+                                <p:message for="semestre" display="text"/>
 
 
                                 <h:outputLabel for="nombre" value="Actividad:"/>
@@ -63,7 +63,8 @@
                                 <p:selectOneMenu 
                                     id="nombre" 
                                     value="#{beanActividad.idCatActividad}" 
-                                    required="true" >
+                                    required="true" 
+                                    requiredMessage="Nesecitas elegir una Actividad">
                                     <f:selectItem itemLabel="Selecciona una Actividad" itemValue="" noSelectionOption="true" />
 
                                     <f:selectItems 
@@ -73,23 +74,17 @@
                                         itemValue="#{catalogo.idCatAct}"
                                         />
                                 </p:selectOneMenu>
-                                <p:message for="nombre" />
+                                <p:message for="nombre" display="text" />
 
                                 <h:outputLabel value="¿No existe la actividad? "/>
                                 <p:link outcome="CrearCatAct" value="Registrar Aqui"/>
-
-
-
-
-
-
-
                             </h:panelGrid>
                         </p:fieldset>
                         <p:commandButton 
                             icon="ui-icon-check"
                             value="Guardar" 
                             action="#{beanActividad.add()}"   
+                            update="grid" 
                             />
                     </h:form>
 

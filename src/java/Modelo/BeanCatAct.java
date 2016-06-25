@@ -56,7 +56,7 @@ public class BeanCatAct implements Serializable {
         catalogoEntidad.setNombre(nombre);
         catalogoEntidad.setTipo(tipoact);
         catalogoFacade.create(catalogoEntidad);
-        displayLocation();
+              
     }
 
     public CatActFacade getCat() {
@@ -74,6 +74,11 @@ public class BeanCatAct implements Serializable {
             msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Necesita Ingresar Nombre y", "su tipo"); 
              
         FacesContext.getCurrentInstance().addMessage(null, msg);  
+    }
+    
+    public void save() {
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Welcome " + nombre));
     }
     
 }

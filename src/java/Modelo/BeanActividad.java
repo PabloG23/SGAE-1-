@@ -60,6 +60,10 @@ public class BeanActividad implements Serializable {
         List<CatActividad> obj = catalogoFacade.findAll();
         return obj;
     }
+    
+    public boolean buscaractividad(){
+    return false;
+    }
 
     /**
      * @return the actividad
