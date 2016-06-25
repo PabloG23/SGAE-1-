@@ -9,7 +9,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Grupo</title>
+                <title>Generar Cedulas de Resultados</title>
             </f:facet>
         </h:head>
 
@@ -30,60 +30,68 @@
 
                 <p:layoutUnit position="center">
                     <p:fieldset legend="Generar Cedulas de Resultados" style="margin-bottom: 10px">
+                        <h:form>
                     <h:panelGrid columns="1"  >
                         
-                        <p:outputLabel value="Grupo:" />
-                        <select id="grupo" >
-                            <option value="0">Seleccionar Grupo</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                        </select>
+                        <p:outputLabel value="Grupo:" for="Grupo"/>
+                        <p:selectOneMenu id="Grupo"
+                                         value="#{beanAlumno.idGrupo}"
+                                         required="true">
+                        <f:selectItem itemLabel="Seleccionar una Opción" itemValue="" noSelectionOption="true" />
+                        <f:selectItems
+                            value="#{beanAlumno.jalarGrupos()}"
+                            var="grupo"
+                            itemLabel="#{grupo.actividad.catActividad.nombre} #{grupo.dias} #{grupo.horario}"
+                            itemValue="#{grupo.idGrupo}"/>
+                        </p:selectOneMenu>
 
                     </h:panelGrid>
+                        
 
                     <h:panelGrid columns="2"  >
                         
                     
-                         <p:dataTable value="alumnosCal">
+                        <p:dataTable value="#{beanAlumno.jalarAlumnos()}" var="alumno">
                              <p:column headerText="Apellido Paterno">
                                 <div align="center">
-                                <h:outputText value="Gonzalez"/>
+                                    <h:outputText value="#{alumno.apPat}"/>
                                 </div>
                             </p:column>
-                             <p:column headerText="Apellido Materno">
+                            <p:column headerText="Apellido Materno">
                                 <div align="center">
-                                <h:outputText value="Carrasco"/>
+                                    <h:outputText value="#{alumno.apMat}"/>
                                 </div>
                             </p:column>
-                            <p:column headerText="Nombre(s)">
+                             <p:column headerText="Nombre(s)">
                                 <div align="center">
-                                <h:outputText value="Pablo Erik "/>
+                                    <h:outputText value="#{alumno.nombre}"/>
                                 </div>
                             </p:column>
-                            <p:column headerText="  Numero de Control">
+                            <p:column headerText="Numero de control">
                                 <div align="center">
-                                <h:outputText value="10280576"/>
+                                    <h:outputText value="#{alumno.noCtrl}"/>
                                 </div>
                             </p:column>
-                            <p:column headerText="  Carrera">
+                            <p:column headerText="Carrera">
                                 <div align="center">
-                                <h:outputText value="Ing. Sistemas Computacionales"/>
+                                    <h:outputText value="#{alumno.catCarreras.nomCarrera}"/>
                                 </div>
                             </p:column>
                             <p:column headerText="Calificacion">
                                 <div align="center">
-                                    <p:selectBooleanButton id="valor"  onLabel="Acreditado" offLabel="No Acreditado" style="width:120px" />
+                                    <h:outputText value="#{alumno.acreditado}"/>
                                 </div>
                             </p:column>
+                             
                         </p:dataTable>
                         
                        
                   
                 </h:panelGrid>
-                   
+                   </h:form>
                     </p:fieldset>
-                     <h:commandButton value="Generar Reporte"/>
+                     <h:commandButton value="Generar Reporte" />
+                     
                 </p:layoutUnit>
 
             </p:layout>

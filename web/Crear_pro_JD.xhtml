@@ -29,7 +29,39 @@
                 <h:form>
                     <p:layoutUnit position="center">
                         <h:panelGrid columns="1" style="margin-bottom:10px" >
-                            <p:fieldset legend="Crear Promotores" style="margin-bottom: 10px">
+                            <p:fieldset legend="Promotores Registrados" style="margin-bottom: 10px" toggleable="true">
+                                
+                                <p:dataTable value="#{beanPromotor.jalarPromotores()}" var="promotor">
+                             <p:column headerText="Apellido Paterno">
+                                <div align="center">
+                                    <h:outputText value="#{promotor.apePat}"/>
+                                </div>
+                            </p:column>
+                            <p:column headerText="Apellido Materno">
+                                <div align="center">
+                                    <h:outputText value="#{promotor.apeMat}"/>
+                                </div>
+                            </p:column>
+                             <p:column headerText="Nombre(s)">
+                                <div align="center">
+                                    <h:outputText value="#{promotor.nombre}"/>
+                                </div>
+                            </p:column>
+                            <p:column headerText="Correo">
+                                <div align="center">
+                                    <h:outputText value="#{promotor.correo}"/>
+                                </div>
+                            </p:column>
+                            <p:column headerText="Telefono">
+                                <div align="center">
+                                    <h:outputText value="#{promotor.telefono}"/>
+                                </div>
+                            </p:column>
+                            
+                             
+                        </p:dataTable>
+                            </p:fieldset>
+                            <p:fieldset legend="Registrar Promotor" style="margin-bottom: 10px">
 
                                 <h:panelGrid columns="2">
                                     <h:panelGrid columns="1">

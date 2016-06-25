@@ -33,50 +33,55 @@
                         <h:panelGrid columns="1"  >
 
                             <p:outputLabel value="Grupo:" />
-                            <select id="grupo" >
-                                <option value="0">Seleccionar Grupo</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                            </select>
+                            <p:selectOneMenu id="Grupo"
+                                         value="#{beanAlumno.idGrupo}"
+                                         required="true">
+                        <f:selectItem itemLabel="Seleccionar una Opción" itemValue="" noSelectionOption="true" />
+                        <f:selectItems
+                            value="#{beanAlumno.jalarGrupos()}"
+                            var="grupo"
+                            itemLabel="#{grupo.actividad.catActividad.nombre} #{grupo.dias} #{grupo.horario}"
+                            itemValue="#{grupo.idGrupo}"/>
+                        </p:selectOneMenu>
 
                         </h:panelGrid>
 
                         <h:panelGrid columns="2"  >
 
 
-                            <p:dataTable value="alumnosCal">
-                                <p:column headerText="Apellido Paterno">
-                                    <div align="center">
-                                        <h:outputText value="Gonzalez"/>
-                                    </div>
-                                </p:column>
-                                <p:column headerText="Apellido Materno">
-                                    <div align="center">
-                                        <h:outputText value="Carrasco"/>
-                                    </div>
-                                </p:column>
-                                <p:column headerText="Nombre(s)">
-                                    <div align="center">
-                                        <h:outputText value="Pablo Erik "/>
-                                    </div>
-                                </p:column>
-                                <p:column headerText="  Numero de Control">
-                                    <div align="center">
-                                        <h:outputText value="10280576"/>
-                                    </div>
-                                </p:column>
-                                <p:column headerText="  Carrera">
-                                    <div align="center">
-                                        <h:outputText value="Ing. Sistemas Computacionales"/>
-                                    </div>
-                                </p:column>
-                                <p:column headerText="Calificacion">
-                                    <div align="center">
-                                        <p:selectBooleanButton id="valor"  onLabel="Acreditado" offLabel="No Acreditado" style="width:120px" />
-                                    </div>
-                                </p:column>
-                            </p:dataTable>
+                            <p:dataTable value="#{beanAlumno.jalarAlumnos()}" var="alumno">
+                             <p:column headerText="Apellido Paterno">
+                                <div align="center">
+                                    <h:outputText value="#{alumno.apPat}"/>
+                                </div>
+                            </p:column>
+                            <p:column headerText="Apellido Materno">
+                                <div align="center">
+                                    <h:outputText value="#{alumno.apMat}"/>
+                                </div>
+                            </p:column>
+                             <p:column headerText="Nombre(s)">
+                                <div align="center">
+                                    <h:outputText value="#{alumno.nombre}"/>
+                                </div>
+                            </p:column>
+                            <p:column headerText="Numero de control">
+                                <div align="center">
+                                    <h:outputText value="#{alumno.noCtrl}"/>
+                                </div>
+                            </p:column>
+                            <p:column headerText="Carrera">
+                                <div align="center">
+                                    <h:outputText value="#{alumno.catCarreras.nomCarrera}"/>
+                                </div>
+                            </p:column>
+                            <p:column headerText="Calificacion">
+                                <div align="center">
+                                    <h:outputText value="#{alumno.acreditado}"/>
+                                </div>
+                            </p:column>
+                             
+                        </p:dataTable>
 
 
 

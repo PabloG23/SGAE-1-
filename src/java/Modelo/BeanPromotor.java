@@ -11,6 +11,7 @@ import facade.CatActFacade;
 import facade.PromotorFacade;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
@@ -32,6 +33,12 @@ public class BeanPromotor implements Serializable {
 
     public BeanPromotor() {
 
+    }
+    
+    public List<Promotor> jalarPromotores(){
+        List<Promotor> obj= promotorFacade.findAll();
+        return obj;
+        
     }
 
     public void agregarPromotor() {
