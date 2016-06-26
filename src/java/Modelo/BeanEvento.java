@@ -11,13 +11,7 @@ import entities.Promotor;
 import facade.ActividadFacade;
 import facade.EventoFacade;
 import facade.PromotorFacade;
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Date;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;

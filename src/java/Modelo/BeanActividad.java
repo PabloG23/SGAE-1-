@@ -10,18 +10,13 @@ import entities.CatActividad;
 import facade.ActividadFacade;
 import facade.CatActFacade;
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.faces.application.FacesMessage;
-import javax.inject.Named;
+
 import javax.inject.Inject;
-//import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;

@@ -13,11 +13,7 @@ import facade.AlumnoFacade;
 import facade.CapacidadesFacade;
 import facade.CatCarrerasFacade;
 import facade.GrupoFacade;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;

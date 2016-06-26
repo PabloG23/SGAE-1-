@@ -6,7 +6,7 @@
 package Modelo;
 
 import entities.Actividad;
-import entities.CatActividad;
+
 import entities.Grupo;
 import entities.Promotor;
 import facade.ActividadFacade;
