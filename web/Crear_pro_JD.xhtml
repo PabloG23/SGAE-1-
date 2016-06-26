@@ -26,42 +26,53 @@
                         <ui:include src="/secciones/menuJD.xhtml"/>
                     </ui:insert>
                 </p:layoutUnit>
-                <h:form>
-                    <p:layoutUnit position="center">
-                        <h:panelGrid columns="1" style="margin-bottom:10px" >
+
+                <p:layoutUnit position="center">
+                    <h:panelGrid columns="1" style="margin-bottom:10px" >
+                        <h:form>
                             <p:fieldset legend="Promotores Registrados" style="margin-bottom: 10px" toggleable="true">
 
-                                <p:dataTable value="#{beanPromotor.jalarPromotores()}" var="promotor">
-                                    <p:column headerText="Apellido Paterno">
-                                        <div align="center">
-                                            <h:outputText value="#{promotor.apePat}"/>
-                                        </div>
-                                    </p:column>
-                                    <p:column headerText="Apellido Materno">
-                                        <div align="center">
-                                            <h:outputText value="#{promotor.apeMat}"/>
-                                        </div>
-                                    </p:column>
-                                    <p:column headerText="Nombre(s)">
-                                        <div align="center">
-                                            <h:outputText value="#{promotor.nombre}"/>
-                                        </div>
-                                    </p:column>
-                                    <p:column headerText="Correo">
-                                        <div align="center">
-                                            <h:outputText value="#{promotor.correo}"/>
-                                        </div>
-                                    </p:column>
-                                    <p:column headerText="Telefono">
-                                        <div align="center">
-                                            <h:outputText value="#{promotor.telefono}"/>
-                                        </div>
-                                    </p:column>
+                                <p:dataTable value="#{beanPromotor.jalarPromotores()}" var="promotor" id="tbl">
 
-
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Apellido Paterno" />
+                                        </f:facet>
+                                        <h:outputText value="#{promotor.apePat}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Apellido Materno" />
+                                        </f:facet>
+                                        <h:outputText value="#{promotor.apeMat}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Nombre(s)" />
+                                        </f:facet>
+                                        <h:outputText value="#{promotor.nombre}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Correo" />
+                                        </f:facet>
+                                        <h:outputText value="#{promotor.correo}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Telefono" />
+                                        </f:facet>
+                                        <h:outputText value="#{promotor.telefono}" />
+                                    </p:column>
                                 </p:dataTable>
+                                <h:commandLink id="pdf">
+                                    <p:commandButton value="Generar pdf"/>
+                                    <p:dataExporter type="pdf" target="tbl" fileName="cars" preProcessor="#{beanPromotor.preProcessPDF}" />
+                                </h:commandLink>
 
                             </p:fieldset>
+                        </h:form>
+                        <h:form>
                             <p:fieldset id="grid" legend="Registrar Promotor" style="margin-bottom: 10px">
 
                                 <h:panelGrid columns="2">
@@ -113,12 +124,12 @@
                                     <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                                 </p:confirmDialog>
                             </p:fieldset>
+                        </h:form>
+                    </h:panelGrid>                  
 
-                        </h:panelGrid>                  
 
+                </p:layoutUnit>
 
-                    </p:layoutUnit>
-                </h:form>
 
             </p:layout>
 
