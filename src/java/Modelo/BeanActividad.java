@@ -18,11 +18,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.inject.Named;
 import javax.inject.Inject;
 //import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -46,6 +48,7 @@ public class BeanActividad implements Serializable {
         CatActividad catActividad = catalogoFacade.find(this.idCatActividad);
         actividad.setCatActividad(catActividad);
         actividadFacade.create(actividad);
+        destroyWorld();
     }
 
     public List<String> completarAño(String año) {
@@ -69,8 +72,8 @@ public class BeanActividad implements Serializable {
 
         System.out.println("haber: " + catActividad.getIdCatAct());
         Iterator<Actividad> it = obj.iterator();
-        
-        while(it.hasNext()) {
+
+        while (it.hasNext()) {
             if (catActividad.getIdCatAct().equals(it.next().getCatActividad().getIdCatAct())) {
                 System.out.println("SI ESTA: " + ((it.next().getCatActividad().getIdCatAct()) - 1));
                 respuesta = true;
@@ -107,4 +110,12 @@ public class BeanActividad implements Serializable {
         this.idCatActividad = idCatActividad;
     }
 
+    public void destroyWorld() {
+        addMessage("Actividad del semestre Agregada", "Agregada");
+    }
+
+    public void addMessage(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
 }

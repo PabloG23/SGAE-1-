@@ -30,36 +30,37 @@
                     <p:layoutUnit position="center">
                         <h:panelGrid columns="1" style="margin-bottom:10px" >
                             <p:fieldset legend="Promotores Registrados" style="margin-bottom: 10px" toggleable="true">
-                                
+
                                 <p:dataTable value="#{beanPromotor.jalarPromotores()}" var="promotor">
-                             <p:column headerText="Apellido Paterno">
-                                <div align="center">
-                                    <h:outputText value="#{promotor.apePat}"/>
-                                </div>
-                            </p:column>
-                            <p:column headerText="Apellido Materno">
-                                <div align="center">
-                                    <h:outputText value="#{promotor.apeMat}"/>
-                                </div>
-                            </p:column>
-                             <p:column headerText="Nombre(s)">
-                                <div align="center">
-                                    <h:outputText value="#{promotor.nombre}"/>
-                                </div>
-                            </p:column>
-                            <p:column headerText="Correo">
-                                <div align="center">
-                                    <h:outputText value="#{promotor.correo}"/>
-                                </div>
-                            </p:column>
-                            <p:column headerText="Telefono">
-                                <div align="center">
-                                    <h:outputText value="#{promotor.telefono}"/>
-                                </div>
-                            </p:column>
-                            
-                             
-                        </p:dataTable>
+                                    <p:column headerText="Apellido Paterno">
+                                        <div align="center">
+                                            <h:outputText value="#{promotor.apePat}"/>
+                                        </div>
+                                    </p:column>
+                                    <p:column headerText="Apellido Materno">
+                                        <div align="center">
+                                            <h:outputText value="#{promotor.apeMat}"/>
+                                        </div>
+                                    </p:column>
+                                    <p:column headerText="Nombre(s)">
+                                        <div align="center">
+                                            <h:outputText value="#{promotor.nombre}"/>
+                                        </div>
+                                    </p:column>
+                                    <p:column headerText="Correo">
+                                        <div align="center">
+                                            <h:outputText value="#{promotor.correo}"/>
+                                        </div>
+                                    </p:column>
+                                    <p:column headerText="Telefono">
+                                        <div align="center">
+                                            <h:outputText value="#{promotor.telefono}"/>
+                                        </div>
+                                    </p:column>
+
+
+                                </p:dataTable>
+
                             </p:fieldset>
                             <p:fieldset id="grid" legend="Registrar Promotor" style="margin-bottom: 10px">
 
@@ -96,27 +97,25 @@
                                         <h:panelGrid columns="1" width="300" >
                                             <p:outputLabel value="Teléfono:" for="Telefono" />
                                             <p:inputText id="Telefono" value="#{beanPromotor.promotor.telefono}" 
-                                                     required="true" requiredMessage="Ingresar Telefono"/> 
+                                                         required="true" requiredMessage="Ingresar Telefono"/> 
                                             <p:message for="Telefono" display="text"/>
                                         </h:panelGrid>
                                     </h:panelGrid>
 
 
                                 </h:panelGrid>
+                                <p:commandButton value="Guardar" update="grid" actionListener="#{beanPromotor.agregarPromotor()}" icon="ui-icon-check" >
+                                    <p:confirm header="Confirmation" message="¿Estas seguro de agregar este Promotor?" icon="ui-icon-alert" />
+                                </p:commandButton>               
+                                <p:growl id="message"/>
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
                             </p:fieldset>
 
                         </h:panelGrid>                  
-                        <br/>
-                        <h:panelGrid columns="2" style="margin-bottom: 30px">
-                            
-                            <p:commandButton 
-                            icon="ui-icon-check"
-                            value="Guardar" 
-                            action="#{beanPromotor.agregarPromotor()}"
-                            update="grid" 
-                            />
-                            <h:commandButton value="Cancelar"/>
-                        </h:panelGrid>
+
 
                     </p:layoutUnit>
                 </h:form>

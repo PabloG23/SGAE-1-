@@ -26,13 +26,9 @@
                     </ui:insert>
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
-
                     <h:form>
                         <p:fieldset   id="grid" legend="Crear Nueva Actividad para el Semestre " style="margin-bottom: 10px">
-
-
                             <h:panelGrid columns="1" >
-
                                 <h:outputLabel for="Año" value="Año:" />
                                 <p:selectOneMenu id="Año" value="#{beanActividad.actividad.año}" required="true" requiredMessage="Nesecitas elegir un año">
                                     <f:selectItem itemLabel="Selecciona un Año" itemValue="" noSelectionOption="true" />
@@ -48,7 +44,8 @@
                                     <f:selectItem itemLabel="2025" itemValue="2025" />
                                 </p:selectOneMenu>
                                 <p:message for="Año" display="text"/>
-
+                            </h:panelGrid>
+                            <h:panelGrid columns="1" >
                                 <h:outputLabel for="semestre" value="Semestre:" />
                                 <p:selectOneMenu id="semestre" value="#{beanActividad.actividad.semestre}" required="true" requiredMessage="Nesecitas elegir un semestre">
                                     <f:selectItem itemLabel="Selecciona un Semestre" itemValue="" noSelectionOption="true" />
@@ -56,10 +53,9 @@
                                     <f:selectItem itemLabel="Agosto-Diciembre" itemValue="Agosto-Diciembre" />
                                 </p:selectOneMenu>
                                 <p:message for="semestre" display="text"/>
-
-
+                            </h:panelGrid>
+                            <h:panelGrid>
                                 <h:outputLabel for="nombre" value="Actividad:"/>
-
                                 <p:selectOneMenu 
                                     id="nombre" 
                                     value="#{beanActividad.idCatActividad}" 
@@ -75,17 +71,20 @@
                                         />
                                 </p:selectOneMenu>
                                 <p:message for="nombre" display="text" />
-
+                            </h:panelGrid>
+                            <h:panelGrid>
                                 <h:outputLabel value="¿No existe la actividad? "/>
                                 <p:link outcome="CrearCatAct" value="Registrar Aqui"/>
                             </h:panelGrid>
+                            <p:commandButton value="Guardar" update="grid" actionListener="#{beanActividad.add()}" icon="ui-icon-check" >
+                                <p:confirm header="Confirmation" message="¿Estas seguro de agregar esta actividad?" icon="ui-icon-alert" />
+                            </p:commandButton>               
+                            <p:growl id="message"/>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
                         </p:fieldset>
-                        <p:commandButton 
-                            icon="ui-icon-check"
-                            value="Guardar" 
-                            action="#{beanActividad.add()}"   
-                            update="grid" 
-                            />
                     </h:form>
 
                 </p:layoutUnit>
