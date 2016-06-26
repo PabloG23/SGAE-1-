@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.inject.Named;
 import javax.inject.Inject;
@@ -32,12 +33,12 @@ import javax.faces.bean.SessionScoped;
 public class BeanActividad implements Serializable {
 
     private Actividad actividad = new Actividad();
-    
+
     private int idCatActividad;
 
     @Inject
     private ActividadFacade actividadFacade;
-    
+
     @Inject
     private CatActFacade catalogoFacade;
 
@@ -60,9 +61,28 @@ public class BeanActividad implements Serializable {
         List<CatActividad> obj = catalogoFacade.findAll();
         return obj;
     }
-    
-    public boolean buscaractividad(){
-    return false;
+
+    public boolean buscaractividad() {
+        boolean respuesta = false;
+        CatActividad catActividad = catalogoFacade.find(this.idCatActividad);
+        List<Actividad> obj = actividadFacade.findAll();
+
+        System.out.println("haber: " + catActividad.getIdCatAct());
+        Iterator<Actividad> it = obj.iterator();
+        
+        while(it.hasNext()) {
+            if (catActividad.getIdCatAct().equals(it.next().getCatActividad().getIdCatAct())) {
+                System.out.println("SI ESTA: " + ((it.next().getCatActividad().getIdCatAct()) - 1));
+                respuesta = true;
+                System.out.println("respuesta: " + respuesta);
+            } else {
+                respuesta = false;
+                System.out.println("NO ESTA respuesta: " + respuesta);
+
+            }
+        }
+
+        return respuesta;
     }
 
     /**
@@ -86,7 +106,5 @@ public class BeanActividad implements Serializable {
     public void setIdCatActividad(int idCatActividad) {
         this.idCatActividad = idCatActividad;
     }
-    
-    
 
 }

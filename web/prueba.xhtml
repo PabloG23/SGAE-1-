@@ -11,28 +11,60 @@
     <h:body>
         <h:form>
             <p:fieldset  id="panel" legend="Crear Actividad para el Semestre" style="margin-bottom: 10px">             
-                    <p:messages id="msgs" />
-                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                        <p:outputLabel for="tipo" value="Tipo:" />
-                        <p:selectOneRadio id="tipo" value="#{beanCatAct.tipoact}"  
-                                          required="true" 
-                                          requiredMessage="Nesecitas elegir un tipo">
-                            <f:selectItem itemLabel="Deportivo" itemValue="Deportivo" />
-                            <f:selectItem itemLabel="Cultural" itemValue="Cultural" />               
-                        </p:selectOneRadio>
-                        <p:message for="tipo" display="text" />
-                    </h:panelGrid>
-                    <h:panelGrid columns="1" id="grid"  >
-                        <p:outputLabel value="Nombre de la Actividad:" for="Actividad"/>
-                        <p:inputText id="Actividad" 
-                                     value="#{beanCatAct.nombre}" 
-                                     required="true"
-                                     requiredMessage="Nesecitas ingresar nombre de actividad"/>
-                        <p:message for="Actividad" display="text" />
-                    </h:panelGrid>
-                    <p:commandButton value="Save" update="panel" actionListener="#{beanCatAct.addCatAct()}" icon="ui-icon-check" />               
+                <p:messages id="msgs" />
+                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                    <p:outputLabel for="tipo" value="Tipo:" />
+                    <p:selectOneRadio id="tipo" value="#{beanCatAct.tipoact}"  
+                                      required="true" 
+                                      requiredMessage="Nesecitas elegir un tipo">
+                        <f:selectItem itemLabel="Deportivo" itemValue="Deportivo" />
+                        <f:selectItem itemLabel="Cultural" itemValue="Cultural" />               
+                    </p:selectOneRadio>
+                    <p:message for="tipo" display="text" />
+                </h:panelGrid>
+                <h:panelGrid columns="1" id="grid"  >
+                    <p:outputLabel value="Nombre de la Actividad:" for="Actividad"/>
+                    <p:inputText id="Actividad" 
+                                 value="#{beanCatAct.nombre}" 
+                                 required="true"
+                                 requiredMessage="Nesecitas ingresar nombre de actividad"/>
+                    <p:message for="Actividad" display="text" />
+                </h:panelGrid>
+                <p:commandButton value="Save" update="panel" actionListener="#{beanCatAct.addCatAct()}" icon="ui-icon-check" />               
             </p:fieldset>
         </h:form>
+        <h:form>
+            <p:fieldset  id="panel" legend="Crear Actividad Nueva" style="margin-bottom: 10px">             
+                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                    <p:outputLabel for="tipo" value="Tipo:" />
+                    <p:selectOneRadio id="tipo" value="#{beanCatAct.tipoact}"  
+                                      required="true" 
+                                      requiredMessage="Nesecitas elegir un tipo">
+                        <f:selectItem itemLabel="Deportivo" itemValue="Deportivo" />
+                        <f:selectItem itemLabel="Cultural" itemValue="Cultural" />               
+                    </p:selectOneRadio>
+                    <p:message for="tipo" display="text" />
+                </h:panelGrid>
+                <h:panelGrid columns="1" id="grid"  >
+                    <p:outputLabel value="Nombre de la Actividad:" for="Actividad"/>
+                    <p:inputText id="Actividad" 
+                                 value="#{beanCatAct.nombre}" 
+                                 required="true"
+                                 requiredMessage="Nesecitas ingresar nombre de actividad"/>
+                    <p:message for="Actividad" display="text" />
+                </h:panelGrid>
+                <p:commandButton value="Guardar" update="panel" actionListener="#{beanCatAct.addCatAct()}" icon="ui-icon-check" >
+                    <p:confirm header="Confirmation" message="Estas seguro de agragar esta actividad?" icon="ui-icon-alert" />
+                </p:commandButton>               
+                <p:growl id="message" showDetail="true" />
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+            </p:fieldset>
+        </h:form>
+
+
     </h:body>
 </html>
 

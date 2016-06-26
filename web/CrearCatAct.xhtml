@@ -47,16 +47,20 @@
                                              requiredMessage="Nesecitas ingresar nombre de actividad"/>
                                 <p:message for="Actividad" display="text" />
                             </h:panelGrid>
-                            <p:commandButton value="Guardar" update="panel" actionListener="#{beanCatAct.addCatAct()}" icon="ui-icon-check" />               
+
+                            <p:commandButton value="Guardar" update="panel" actionListener="#{beanCatAct.addCatAct()}" icon="ui-icon-check" >
+                                <p:confirm header="Confirmation" message="Estas seguro de agregar esta actividad?" icon="ui-icon-alert" />
+                            </p:commandButton>               
+                            <p:growl id="message"/>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
                         </p:fieldset>
                     </h:form>
-
                 </p:layoutUnit>
-
             </p:layout>
-
         </h:body>
-
     </f:view>
 </html>
 

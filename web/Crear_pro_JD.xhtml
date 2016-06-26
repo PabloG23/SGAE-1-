@@ -61,33 +61,43 @@
                              
                         </p:dataTable>
                             </p:fieldset>
-                            <p:fieldset legend="Registrar Promotor" style="margin-bottom: 10px">
+                            <p:fieldset id="grid" legend="Registrar Promotor" style="margin-bottom: 10px">
 
                                 <h:panelGrid columns="2">
                                     <h:panelGrid columns="1">
                                         <h:panelGrid columns="1" width="300" >
                                             <p:outputLabel value="Apellido paterno:" for="Apellidopaterno" />
-                                            <p:inputText id="Apellidopaterno" value="#{beanPromotor.promotor.apePat}" required="true"/> 
+                                            <p:inputText id="Apellidopaterno" value="#{beanPromotor.promotor.apePat}" 
+                                                         required="true" requiredMessage="Ingresar Ape Paterno"/> 
+                                            <p:message for="Apellidopaterno" display="text"/>
                                         </h:panelGrid>
                                         <h:panelGrid columns="1" width="300" >
                                             <p:outputLabel value="Apellido materno:" for="Apellidomaterno" />
-                                            <p:inputText id="Apellidomaterno" value="#{beanPromotor.promotor.apeMat}" required="true"/> 
+                                            <p:inputText id="Apellidomaterno" value="#{beanPromotor.promotor.apeMat}" 
+                                                         required="true" requiredMessage="Ingresar Ape Materno"/> 
+                                            <p:message for="Apellidomaterno" display="text"/>
                                         </h:panelGrid>
                                         <h:panelGrid columns="1" width="300" >
                                             <p:outputLabel value="Nombre(s):" for="nombrepromotor" />
-                                            <p:inputText id="nombrepromotor" value="#{beanPromotor.promotor.nombre}" required="true" /> 
+                                            <p:inputText id="nombrepromotor" value="#{beanPromotor.promotor.nombre}" 
+                                                         required="true" requiredMessage="Ingresar Nombre"/> 
+                                            <p:message for="nombrepromotor" display="text"/>
                                         </h:panelGrid>
                                     </h:panelGrid>
                                     <h:panelGrid columns="1">
 
                                         <h:panelGrid columns="1" width="300" >
                                             <p:outputLabel value="Correo:" for="correo"/>
-                                            <p:inputText id="correo" value="#{beanPromotor.promotor.correo}" required="true"/> 
+                                            <p:inputText id="correo" value="#{beanPromotor.promotor.correo}"
+                                                         required="true" requiredMessage="Ingresar correo"/> 
+                                            <p:message for="correo" display="text"/>
                                         </h:panelGrid>
 
                                         <h:panelGrid columns="1" width="300" >
                                             <p:outputLabel value="Teléfono:" for="Telefono" />
-                                            <p:inputText id="Telefono" value="#{beanPromotor.promotor.telefono}" required="true"/> 
+                                            <p:inputText id="Telefono" value="#{beanPromotor.promotor.telefono}" 
+                                                     required="true" requiredMessage="Ingresar Telefono"/> 
+                                            <p:message for="Telefono" display="text"/>
                                         </h:panelGrid>
                                     </h:panelGrid>
 
@@ -98,7 +108,13 @@
                         </h:panelGrid>                  
                         <br/>
                         <h:panelGrid columns="2" style="margin-bottom: 30px">
-                            <h:commandButton value="Guardar" action="#{beanPromotor.agregarPromotor()}"/>
+                            
+                            <p:commandButton 
+                            icon="ui-icon-check"
+                            value="Guardar" 
+                            action="#{beanPromotor.agregarPromotor()}"
+                            update="grid" 
+                            />
                             <h:commandButton value="Cancelar"/>
                         </h:panelGrid>
 

@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
 import javax.inject.Inject;
@@ -58,5 +60,13 @@ public class MultiSelectView {
 
     public void setSelection(String selection) {
         this.selection = selection;
+    }
+    public void destroyWorld() {
+        addMessage("Actividad", "Agregada");
+    }
+     
+    public void addMessage(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 }
