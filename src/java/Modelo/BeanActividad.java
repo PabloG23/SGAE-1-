@@ -64,15 +64,14 @@ public class BeanActividad implements Serializable {
         boolean respuesta = false;
         CatActividad catActividad = catalogoFacade.find(this.idCatActividad);
         List<Actividad> obj = actividadFacade.findAll();
-
-        System.out.println("haber: " + catActividad.getIdCatAct());
         Iterator<Actividad> it = obj.iterator();
 
-        while (it.hasNext()) {
+        for (int i = 0; i < obj.size(); i++) {
             if (catActividad.getIdCatAct().equals(it.next().getCatActividad().getIdCatAct())) {
                 System.out.println("SI ESTA: " + ((it.next().getCatActividad().getIdCatAct()) - 1));
                 respuesta = true;
                 System.out.println("respuesta: " + respuesta);
+                break;
             } else {
                 respuesta = false;
                 System.out.println("NO ESTA respuesta: " + respuesta);
