@@ -26,8 +26,9 @@
                         <ui:include src="/secciones/menuJO.xhtml"/>
                     </ui:insert>
                 </p:layoutUnit>
-                <h:form>
-                    <p:layoutUnit position="center">
+
+                <p:layoutUnit position="center">
+                    <h:form>
                         <p:fieldset id="grid" legend="Crear Grupo." style="margin-bottom: 10px">
                             <h:panelGrid columns="1" style="margin-bottom:10px" >
                                 <p:outputLabel value="Semestre" for="semestre"/>
@@ -95,12 +96,24 @@
                                     <p:message for="actividad" display="text"/>
                                 </h:panelGrid>
                             </h:panelGrid>
-
-
+                            <p:commandButton value="Guardar" update="grid" actionListener="#{beanGrupo.agregarGrupo()}" icon="ui-icon-check" >
+                                <p:confirm header="Confirmation" message="¿Estas seguro de agregar este Promotor?" icon="ui-icon-alert" />
+                            </p:commandButton>               
+                            <p:growl id="message"/>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
                         </p:fieldset>
-                        <p:commandButton value="Guardar" action="#{beanGrupo.agregarGrupo()}" update="grid"/>
-                    </p:layoutUnit>
-                </h:form>
+
+                    </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" >
+                    <ui:insert name="footer">
+                        <ui:include src="/secciones/footer.xhtml"/>
+                    </ui:insert>
+                </p:layoutUnit>
             </p:layout>
 
         </h:body>

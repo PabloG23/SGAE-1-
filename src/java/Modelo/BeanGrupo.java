@@ -14,8 +14,10 @@ import facade.GrupoFacade;
 import facade.PromotorFacade;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 /**
@@ -55,6 +57,7 @@ public class BeanGrupo {
         entidadGrupo.setDias(concatenar());
         entidadGrupo.setIdGrupo(generarIdGrupo(idactividad, idpromotor, obj.getAño()));
         grupoFacade.create(entidadGrupo);
+        destroyWorld();
     }
 
     public Grupo getEntidadGrupo() {
@@ -131,4 +134,12 @@ public class BeanGrupo {
         this.lista = lista;
     }
 
+    public void destroyWorld() {
+        addMessage("Grupo Agregado", "Agregada");
+    }
+
+    public void addMessage(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
 }

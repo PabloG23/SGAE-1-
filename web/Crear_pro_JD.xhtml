@@ -116,7 +116,7 @@
 
                                 </h:panelGrid>
                                 <p:commandButton value="Guardar" update="grid" actionListener="#{beanPromotor.agregarPromotor()}" icon="ui-icon-check" >
-                                    <p:confirm header="Confirmation" message="¿Estas seguro de agregar este Promotor?" icon="ui-icon-alert" />
+                                    <p:confirm header="Confirmation" message="¿Estas seguro de agregar este Grupo?" icon="ui-icon-alert" />
                                 </p:commandButton>               
                                 <p:growl id="message"/>
                                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
@@ -130,7 +130,11 @@
 
                 </p:layoutUnit>
 
-
+                <p:layoutUnit position="south" >
+                    <ui:insert name="footer">
+                        <ui:include src="/secciones/footer.xhtml"/>
+                    </ui:insert>
+                </p:layoutUnit>
             </p:layout>
 
         </h:body>

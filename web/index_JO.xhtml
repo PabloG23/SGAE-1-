@@ -9,7 +9,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Pincipal</title>
+                <title>Jefe Oficina</title>
             </f:facet>
         </h:head>
 
@@ -29,6 +29,11 @@
                 <p:layoutUnit position="center">
                     <h1>WELCOME</h1>                   
                 </p:layoutUnit>
+                <p:layoutUnit position="south" >
+                <ui:insert name="footer">
+                    <ui:include src="/secciones/footer.xhtml"/>
+                </ui:insert>
+            </p:layoutUnit>
             </p:layout>
         </h:body>
     </f:view>
