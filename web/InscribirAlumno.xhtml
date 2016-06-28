@@ -2,13 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Inscripcion a las Actividades Extraescolares</title>
     </h:head>
     <h:body>
         <h:form>
             <p:layout fullPage="true">
+                 <p:layoutUnit position="north" >
+                    <ui:insert name="encabezado">
+                        <ui:include src="/secciones/encabezado.xhtml"/>
+                    </ui:insert>
+                </p:layoutUnit>
                 <p:layoutUnit position="center" style="border: none">
                     <h1>Bienvenido,Alumno.</h1>
                     <h3>Inscripcion a las Actividades Extraescolares, ingresa tus datos.</h3>
@@ -19,7 +25,8 @@
                             <p:selectOneMenu 
                                 id="grupo"
                                 value="#{beanAlumno.idGrupo}"
-                                required="true" >
+                                required="true" 
+                                requiredMessage="Ingresar Grupo">
                                 <f:selectItem itemLabel="Seleccion una Opción" itemValue="" noSelectionOption="true" />
 
                                 <f:selectItems 
@@ -29,26 +36,29 @@
                                     itemValue="#{grupo.idGrupo}"/>
 
                             </p:selectOneMenu>
+                            <p:message for="grupo" display="text"/>
                         </h:panelGrid>
                     </p:fieldset>
-                    <p:fieldset legend="Ingresar Datos." style="margin-bottom: 10px">
+                    <p:fieldset id="grid" legend="Ingresar Datos." style="margin-bottom: 10px">
                         <h:panelGrid columns="2" style="">
                             <h:panelGrid columns="1" style="border: none" >
                                 <p:outputLabel value="Numero de Control:" for="noctrl"/>
-                                <p:inputText id="noctrl" required="true" value="#{beanAlumno.entidadAlumno.noCtrl}"/>
-
+                                <p:inputText id="noctrl" required="true"  requiredMessage="Ingresar Numero de Control" value="#{beanAlumno.entidadAlumno.noCtrl}"/>
+                                <p:message for="noctrl" display="text"/>
                                 <p:outputLabel value="Apellido Paterno:" for="ap"/>
-                                <p:inputText id="ap" required="true" value="#{beanAlumno.entidadAlumno.apPat}"/>
-
+                                <p:inputText id="ap" required="true" requiredMessage="Ingresar Apellido Paterno" value="#{beanAlumno.entidadAlumno.apPat}"/>
+                                <p:message for="ap" display="text"/>
                                 <p:outputLabel value="Apellido Materno:" for="am" />
-                                <p:inputText id="am" required="true" value="#{beanAlumno.entidadAlumno.apMat}"/>
-
+                                <p:inputText id="am" required="true" requiredMessage="Ingresar Apellido Materno" value="#{beanAlumno.entidadAlumno.apMat}"/>
+                                <p:message for="am" display="text"/>
                                 <p:outputLabel value="Nombre(s):" for="nombre" />
-                                <p:inputText id="nombre" required="true" value="#{beanAlumno.entidadAlumno.nombre}"/>
+                                <p:inputText id="nombre" required="true" requiredMessage=" Ingresar Nombre" value="#{beanAlumno.entidadAlumno.nombre}"/>
+                                <p:message for="nombre" display="text"/>
 
                                 <p:outputLabel value="Carrera:" for="carrera" />
                                 <p:selectOneMenu id="carrera"
                                                  required="true"
+                                                 requiredMessage="Ingresar Carrera"
                                                  value="#{beanAlumno.idCatCarreras}">
                                     <f:selectItem itemLabel="Seleccion una Opción" itemValue="" noSelectionOption="true" />
 
@@ -58,16 +68,19 @@
                                                      itemValue="#{carrera.idCatCarreras}"/>
 
                                 </p:selectOneMenu>
+                                <p:message for="carrera" display="text"/>
                             </h:panelGrid>
                             <h:panelGrid columns="1" style="border: none">
                                 <p:outputLabel value="Sexo:" />
-                                <p:selectOneMenu id="Sexo" required="true" value="#{beanAlumno.entidadAlumno.sexo}">
+                                <p:selectOneMenu id="Sexo" required="true" requiredMessage="Ingresar Sexo" value="#{beanAlumno.entidadAlumno.sexo}">
                                     <f:selectItem itemLabel="Seleccion una Opción" itemValue="" noSelectionOption="true" />
                                     <f:selectItem itemLabel="Masculino" itemValue="M"/>
                                     <f:selectItem itemLabel="Femenino" itemValue="F"/>
                                 </p:selectOneMenu>
+                                <p:message for="Sexo" display="text"/>
+
                                 <p:outputLabel value="Semestre:" for="semestre"/>
-                                <p:selectOneMenu id="semestre" required="true" value="#{beanAlumno.entidadAlumno.semestre}">
+                                <p:selectOneMenu id="semestre" required="true" requiredMessage="Ingresar Semestre" value="#{beanAlumno.entidadAlumno.semestre}">
                                     <f:selectItem itemLabel="Seleccion una Opción" itemValue="" noSelectionOption="true" />
                                     <f:selectItem itemLabel="1" itemValue="1"/>
                                     <f:selectItem itemLabel="2" itemValue="2"/>
@@ -83,16 +96,17 @@
                                     <f:selectItem itemLabel="12" itemValue="12"/>
                                     <f:selectItem itemLabel="13" itemValue="13"/>
                                 </p:selectOneMenu>
-
+                                <p:message for="semestre" display="text"/>
 
                                 <p:outputLabel value="Edad:" for="edad" />
-                                <p:inputText id="edad" value="#{beanAlumno.entidadAlumno.edad}" required="true"/> 
-
+                                <p:inputText id="edad" value="#{beanAlumno.entidadAlumno.edad}" required="true" requiredMessage="Ingresar Edad"/> 
+                                <p:message for="edad" display="text"/>
 
                                 <p:outputLabel value="Capacidades Diferentes:" />
                                 <p:selectOneMenu 
                                     id="capdif"
-                                    required="true" 
+                                    required="true"
+                                    requiredMessage="Ingresar Capacidad Diferente"
                                     value="#{beanAlumno.idCapDif}">
                                     <f:selectItem itemLabel="Seleccion una Opción" itemValue="" noSelectionOption="true" />
                                     <f:selectItems
@@ -102,10 +116,11 @@
                                         itemValue="#{capacidad.idCapDif}"/>
 
                                 </p:selectOneMenu>
+                                <p:message for="capdif" display="text"/>
 
 
                                 <p:outputLabel value="¿Cuantas veces has cursado alguna Actividad Extraescolar?:" />
-                                <p:selectOneMenu id="reincidencia" required="true" value="#{beanAlumno.entidadAlumno.reincidencia}" >
+                                <p:selectOneMenu id="reincidencia" required="true" requiredMessage="Ingresar reincidencia" value="#{beanAlumno.entidadAlumno.reincidencia}" >
                                     <f:selectItem itemLabel="Seleccion una Opción" itemValue="" noSelectionOption="true" />
                                     <f:selectItem itemLabel="1" itemValue="1"/>
                                     <f:selectItem itemLabel="2" itemValue="2"/>
@@ -118,18 +133,30 @@
                                     <f:selectItem itemLabel="9" itemValue="9"/>
                                     <f:selectItem itemLabel="10" itemValue="10"/>
                                 </p:selectOneMenu>
+                                <p:message for="reincidencia" display="text"/>
 
 
                             </h:panelGrid>
-                            <h:panelGrid columns="2" >
-                                <h:commandButton value="Registrar" action="#{beanAlumno.agregarAlumno()}"/>
-                            </h:panelGrid>
+
+
+
+
+
                         </h:panelGrid>
-
+                        
+                        <p:commandButton  update="grid" value="Registrar"  actionListener="#{beanAlumno.agregarAlumno()}" icon="ui-icon-check">
+                            <p:confirm header="Confirmation" message="¿Estas seguro de agregar este Grupo?" icon="ui-icon-alert" />                                
+                        </p:commandButton>
+                        <p:growl id="message"/>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
                     </p:fieldset>
 
 
                 </p:layoutUnit>
+                
             </p:layout>
         </h:form>
     </h:body>

@@ -31,9 +31,9 @@
 
                             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                                 <p:outputLabel for="tipo" value="Tipo:" />
-                                <p:selectOneRadio id="tipo" value="#{beanCatAct.tipoact}"  
+                                <p:selectOneRadio id="tipo" value="#{beanCatAct.tipoact} "  
                                                   required="true" 
-                                                  requiredMessage="Nesecitas elegir un tipo">
+                                                  requiredMessage="Necesitas elegir un tipo">
                                     <f:selectItem itemLabel="Deportivo" itemValue="Deportivo" />
                                     <f:selectItem itemLabel="Cultural" itemValue="Cultural" />               
                                 </p:selectOneRadio>
@@ -44,7 +44,7 @@
                                 <p:inputText id="Actividad" 
                                              value="#{beanCatAct.nombre}" 
                                              required="true"
-                                             requiredMessage="Nesecitas ingresar nombre de actividad"/>
+                                             requiredMessage="Necesitas ingresar nombre de actividad"/>
                                 <p:message for="Actividad" display="text" />
                             </h:panelGrid>
 
