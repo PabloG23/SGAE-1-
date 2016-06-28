@@ -76,7 +76,7 @@
                                 <h:outputLabel value="¿No existe la actividad? "/>
                                 <p:link outcome="CrearCatAct" value="Registrar Aqui"/>
                             </h:panelGrid>
-                            <p:commandButton value="Guardar" update="grid" actionListener="#{beanActividad.buscaractividad()}" icon="ui-icon-check" >
+                            <p:commandButton value="Guardar" update="grid" actionListener="#{beanActividad.add()}" icon="ui-icon-check" >
                                 <p:confirm header="Confirmation" message="¿Estas seguro de agregar esta actividad?" icon="ui-icon-alert" />
                             </p:commandButton>               
                             <p:growl id="message"/>
