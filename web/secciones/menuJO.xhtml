@@ -13,8 +13,12 @@
             <p:submenu label="Jefe de Oficina">
                 <p:menuitem value="Grupo" url="Crear_grupo.xhtml" />
                 <p:menuitem value="Promotores" url="Crear_pro_JO.xhtml " />
+                <p:menuitem value="Inicio" url="index_JO.xhtml" />
             </p:submenu>
         </p:menu>
+        <h:form>
+            <p:commandButton value="Cerrar Sesión" actionListener="#{beanUsuario.cerrarsecion()}" action="/Control_Acce?faces-redirect=true"/>
+        </h:form>
     </h:body>
 </html>
 

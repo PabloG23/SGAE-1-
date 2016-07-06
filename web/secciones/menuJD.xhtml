@@ -14,8 +14,12 @@
                 <p:menuitem value="Actividad" url="Crear_act_JD.xhtml" />
                 <p:menuitem value="Promotores" url="Crear_pro_JD.xhtml " />
                 <p:menuitem value="Reportes Cuantitativos" url="Crear_rep_cuJD.xhtml" />
+                <p:menuitem value="Inicio" url="index_JD.xhtml" />
             </p:submenu>
         </p:menu>
+        <h:form>
+            <p:commandButton value="Cerrar Sesión" actionListener="#{beanUsuario.cerrarsecion()}" action="/Control_Acce?faces-redirect=true"/>
+        </h:form>
     </h:body>
 </html>
 

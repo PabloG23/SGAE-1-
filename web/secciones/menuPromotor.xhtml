@@ -10,18 +10,21 @@
     </h:head>
     <h:body>
         <h:form>           
-        
-        <p:menu>
-            <p:submenu label="Promotor">
-                <p:menuitem value="Listas de Asistencia"  url="GenerarLA.xhtml"/>
-                <p:menuitem value="Listas de Registro" url="GenerarLR.xhtml" />
-                <p:menuitem value="Cedulas de Resultados" url="GenerarAC.xhtml" />
-                <p:menuitem value="Reconocimientos"  url="GenerarRec.xhtml"/>
-                <p:menuitem value="Alumnos con habilidades"  url="GenerarHab.xhtml"/>
-                <p:menuitem value="Crear Evento"  url="CrearEvento.xhtml"/>
-                <p:menuitem value="Reportar eventos del semestre"  />
-            </p:submenu>
-        </p:menu>
-            </h:form>
+
+            <p:menu>
+                <p:submenu label="Promotor">
+                    <p:menuitem value="Listas de Asistencia"  url="GenerarLA.xhtml"/>
+                    <p:menuitem value="Listas de Registro" url="GenerarLR.xhtml" />
+                    <p:menuitem value="Cedulas de Resultados" url="GenerarAC.xhtml" />
+                    <p:menuitem value="Reconocimientos"  url="GenerarRec.xhtml"/>
+                    <p:menuitem value="Alumnos con habilidades"  url="GenerarHab.xhtml"/>
+                    <p:menuitem value="Crear Evento"  url="CrearEvento.xhtml"/>
+                    <p:menuitem value="Reportar eventos del semestre"  />
+                    <p:menuitem value="Inicio" url="indexPromotor.xhtml" />
+                </p:submenu>
+            </p:menu>
+
+            <p:commandButton value="Cerrar Sesión" actionListener="#{beanUsuario.cerrarsecion()}" action="/Control_Acce?faces-redirect=true"/>
+        </h:form>
     </h:body>
 </html>

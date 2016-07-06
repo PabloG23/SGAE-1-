@@ -28,11 +28,17 @@
                     </ui:insert>
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
-                    <div align="center">
-                        <h1>Bienvenido, Promotor.</h1>
-                        <div class="imgProm" align="center">
-                            <h:graphicImage library="image" name="ddd.jpg" height="250"/>
-                        </div>
+                    <div align="center" style="background-color: darkgray">
+                        <p:imageSwitch effect="turnDown">
+                            <ui:repeat value="#{imagesView.images}" var="image">
+                                <h:graphicImage value="/resources/image/fot11.jpg" width="800" height="493" class="img-responsive" alt="Responsive image"/>
+                                <h:graphicImage value="/resources/image/fot12.jpg" width="800" height="493" class="img-responsive" alt="Responsive image"/>
+                                <h:graphicImage value="/resources/image/fot13.jpg" width="800" height="493" class="img-responsive" alt="Responsive image"/>
+                                <h:graphicImage value="/resources/image/fot14.jpg" width="800" height="493" class="img-responsive" alt="Responsive image"/>
+                                <h:graphicImage value="/resources/image/fot15.png" width="800" height="493" class="img-responsive" alt="Responsive image"/>
+
+                            </ui:repeat>
+                        </p:imageSwitch>
                     </div>
                 </p:layoutUnit>
             </p:layout>

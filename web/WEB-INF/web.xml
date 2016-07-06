@@ -4,7 +4,7 @@
         <param-name>javax.faces.PROJECT_STAGE Production</param-name>
         <param-value>Development</param-value>
     </context-param>
-   <context-param>
+    <context-param>
         <param-name>primefaces.THEME</param-name>
         <param-value>overcast</param-value>
     </context-param>
@@ -23,6 +23,62 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/Crear_act_JD.xhtml</welcome-file>
+        <welcome-file>faces/Control_Acce.xhtml</welcome-file>
     </welcome-file-list>
+    <security-constraint>
+        <display-name>JefeD</display-name>
+        <web-resource-collection>
+            <web-resource-name>JefeDepto</web-resource-name>
+            <description>Path de pagina principal de jefe de Departamento</description>
+            <url-pattern>/JefeDepto/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>Rol de Jefe de Departamento</description>
+            <role-name>JefeD</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>JefeO</display-name>
+        <web-resource-collection>
+            <web-resource-name>JefeOficina</web-resource-name>
+            <description>Path de pagina de jefe de Oficina</description>
+            <url-pattern>/JefeOficina/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>Rol de Jefe de Oficina</description>
+            <role-name>JefeO</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Promotor</display-name>
+        <web-resource-collection>
+            <web-resource-name>Promotor</web-resource-name>
+            <description>Path de pagina de Promotor</description>
+            <url-pattern>/Promotor/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>Rol de Promotor</description>
+            <role-name>Promotor</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>jdbcRealm</realm-name>
+        <form-login-config>
+            <form-login-page>/Control_Acce.xhtml</form-login-page>
+            <form-error-page>/Pagina de error.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <description>Para Jefe de Departamento</description>
+        <role-name>JefeD</role-name>
+    </security-role>
+    <security-role>
+        <description>Pare Jefe de Oficina</description>
+        <role-name>JefeO</role-name>
+    </security-role>
+    <security-role>
+        <description>Para Promotor</description>
+        <role-name>Promotor</role-name>
+    </security-role>
 </web-app>

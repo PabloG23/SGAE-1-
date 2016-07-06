@@ -40,6 +40,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Promotor.findByTelefono", query = "SELECT p FROM Promotor p WHERE p.telefono = :telefono"),
     @NamedQuery(name = "Promotor.findByStatus", query = "SELECT p FROM Promotor p WHERE p.status = :status")})
 public class Promotor implements Serializable {
+    @OneToMany(mappedBy = "promotoridPromotor")
+    private Collection<Usuarios> usuariosCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "promotor")
     private Collection<Evento> eventoCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "promotor")
@@ -194,6 +196,15 @@ public class Promotor implements Serializable {
 
     public void setEventoCollection(Collection<Evento> eventoCollection) {
         this.eventoCollection = eventoCollection;
+    }
+
+    @XmlTransient
+    public Collection<Usuarios> getUsuariosCollection() {
+        return usuariosCollection;
+    }
+
+    public void setUsuariosCollection(Collection<Usuarios> usuariosCollection) {
+        this.usuariosCollection = usuariosCollection;
     }
     
 }

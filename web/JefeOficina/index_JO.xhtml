@@ -27,13 +27,23 @@
                     </ui:insert>
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
-                    <h1>WELCOME</h1>                   
+                    <div align="center" style="background-color: darkgray">
+                        <p:imageSwitch effect="turnDown">
+                            <ui:repeat value="#{imagesView.images}" var="image">
+                                <h:graphicImage value="/resources/image/fot6.jpg" width="800" height="480" class="img-responsive" alt="Responsive image"/>
+                                <h:graphicImage value="/resources/image/fot7.jpg" width="800" height="480" class="img-responsive" alt="Responsive image"/>
+                                <h:graphicImage value="/resources/image/fot8.jpg" width="800" height="480" class="img-responsive" alt="Responsive image"/>
+                                <h:graphicImage value="/resources/image/fot9.jpg" width="800" height="480" class="img-responsive" alt="Responsive image"/>
+                                <h:graphicImage value="/resources/image/fot10.jpg" width="800" height="480" class="img-responsive" alt="Responsive image"/>
+                            </ui:repeat>
+                        </p:imageSwitch>
+                    </div>
                 </p:layoutUnit>
                 <p:layoutUnit position="south" >
-                <ui:insert name="footer">
-                    <ui:include src="/secciones/footer.xhtml"/>
-                </ui:insert>
-            </p:layoutUnit>
+                    <ui:insert name="footer">
+                        <ui:include src="/secciones/footer.xhtml"/>
+                    </ui:insert>
+                </p:layoutUnit>
             </p:layout>
         </h:body>
     </f:view>

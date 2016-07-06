@@ -6,6 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Acceso</title>
+        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
     </h:head>
     <h:body>
 
@@ -19,18 +20,22 @@
             <p:layoutUnit position="center" style="border: none">
                 <div align="center">
                     <h1>Sistema Gestor de Actividades Extraescolares.</h1>
-                    <h:panelGrid columns="1" style="margin-bottom:10px" >
-                        <br></br>
-                        <p:outputLabel value="Usuario" for="usuario"/>
-                        <p:inputText id="usuario" /> 
-                        <br></br>
-                        <p:outputLabel value="Contraseña" for="contraseña"/>
-                        <p:inputText id="contraseña"/>
-                        <br></br>
-                    </h:panelGrid>                     
-                    <h:panelGrid columns="2" style="margin-bottom: 30px">
-                        <p:commandButton value="Ingresar"/>
-                    </h:panelGrid>
+                    <h:form id="formLogin">
+                        
+                        <h:panelGrid id="panel" columns="1" style="margin-bottom:10px" >
+                            
+                            <p:outputLabel value="Usuario" for="usuario"/>
+                            <p:inputText id="usuario" value="#{beanUsuario.usuario}" required="true" requiredMessage="Usuario Requerido"/> 
+                            <p:message for="usuario" display="text" />
+                            
+                            <p:outputLabel value="Contraseña" for="contraseña"/>
+                            <p:password id="contraseña" value="#{beanUsuario.contraseña}" required="true" requiredMessage="Contraseña Requerida"/>
+                            <p:message for="contraseña" display="text" />
+                            
+                        </h:panelGrid>  
+                        <p:growl id="message"/>
+                        <p:commandButton value="Iniciar Sesión" id="Login" update="formLogin" action="#{beanUsuario.login()}" icon="ui-icon-check" />                        
+                    </h:form>
                 </div>
             </p:layoutUnit>
             <p:layoutUnit position="south" >
