@@ -29,9 +29,8 @@
 
                     <h:form>
                         <p:fieldset  legend="Reportes Cuantitativos " style="margin-bottom: 10px">
-                            <h:panelGrid columns="1" >
-
-                            </h:panelGrid>
+                            <p:chart type="bar" model="#{chartView.barModel}" style="width: 400px "/>
+                            <p:chart type="bar" model="#{chartView.barModel2}" style="width: 400px "/>
                         </p:fieldset> 
                     </h:form>
 
