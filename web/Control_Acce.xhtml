@@ -25,11 +25,11 @@
                         <h:panelGrid id="panel" columns="1" style="margin-bottom:10px" >
                             
                             <p:outputLabel value="Usuario" for="usuario"/>
-                            <p:inputText id="usuario" value="#{beanUsuario.usuario}" required="true" requiredMessage="Usuario Requerido"/> 
+                            <p:inputText id="usuario" value="#{beanUsuario.usuarios.usuario}" required="true" requiredMessage="Usuario Requerido"/> 
                             <p:message for="usuario" display="text" />
                             
                             <p:outputLabel value="Contraseña" for="contraseña"/>
-                            <p:password id="contraseña" value="#{beanUsuario.contraseña}" required="true" requiredMessage="Contraseña Requerida"/>
+                            <p:password id="contraseña" value="#{beanUsuario.usuarios.contraseña}" required="true" requiredMessage="Contraseña Requerida"/>
                             <p:message for="contraseña" display="text" />
                             
                         </h:panelGrid>  

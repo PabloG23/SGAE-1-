@@ -32,21 +32,21 @@ public class BeanUsuario implements Serializable {
 
     public String login() {
         String outcome = "Control_Acce";
-        System.out.println("usuario:" + usuario + contraseña);
+        System.out.println("usuario:" + usuarios.getUsuario() + usuarios.getContraseña());
 
         try {
             FacesContext context = FacesContext.getCurrentInstance();
             HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-            request.login(usuario, contraseña);
-            if (this.usuario.equals("JefeD")) {
+            request.login(usuarios.getUsuario(), usuarios.getContraseña());
+            if (this.usuarios.getUsuario().equals("JefeD")) {
                 outcome = "/JefeDepto/index_JD?faces-redirect=true";
             }
-            if (this.usuario.equals("JefeO")) {
+            if (this.usuarios.getUsuario().equals("JefeO")) {
                 outcome = "/JefeOficina/index_JO?faces-redirect=true";
             }
-//            if (this.usuario!="JefeD"&&this.usuario!="JefeO" ) {
-//                outcome = "/Promotor/indexPromotor?faces-redirect=true";
-//            }
+            if (!this.usuarios.getUsuario().equals("JefeD") && !this.usuarios.getUsuario().equals("JefeO")) {
+                outcome = "/Promotor/indexPromotor?faces-redirect=true";
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

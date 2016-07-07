@@ -6,7 +6,9 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,10 +18,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -36,6 +40,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Usuarios.findByStatus", query = "SELECT u FROM Usuarios u WHERE u.status = :status"),
     @NamedQuery(name = "Usuarios.findByTiposUsuario", query = "SELECT u FROM Usuarios u WHERE u.tiposUsuario = :tiposUsuario")})
 public class Usuarios implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuariosidUsua")
+    private Collection<Grupousuarios> grupousuariosCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -152,6 +158,15 @@ public class Usuarios implements Serializable {
     @Override
     public String toString() {
         return "entities.Usuarios[ idUsua=" + idUsua + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Grupousuarios> getGrupousuariosCollection() {
+        return grupousuariosCollection;
+    }
+
+    public void setGrupousuariosCollection(Collection<Grupousuarios> grupousuariosCollection) {
+        this.grupousuariosCollection = grupousuariosCollection;
     }
     
 }
