@@ -30,6 +30,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.mail.MessagingException;
 
 /**
  *
@@ -43,6 +44,10 @@ public class BeanPromotor implements Serializable {
     private Usuarios usuariosentidad = new Usuarios();
     private Grupousuarios grupousuariosentidad = new Grupousuarios();
     private int idPromotor;
+    private String receptor;
+    private final String asunto = "Usuario y Contraseña para el SGAE";
+    private String mensaje;
+    private String statusMessage = "";
 
     @Inject
     private PromotorFacade promotorFacade;
@@ -64,21 +69,58 @@ public class BeanPromotor implements Serializable {
     }
 
     public void agregarPromotor() {
-
+        //Crear Promotor
         promotorEntidad.setStatus(true);
         promotorFacade.create(promotorEntidad);
         destroyWorld();
         //CrearUsuario
         String pass = "Prom" + generarpass.getPassword(generarpass.MINUSCULAS + generarpass.MAYUSCULAS + generarpass.NUMEROS, 6);
-        promotorEntidad = promotorFacade.find(this.idPromotor);
+        promotorEntidad = promotorFacade.find(promotorEntidad.getIdPromotor());
         usuariosentidad.setPromotoridPromotor(promotorEntidad);
-        usuariosentidad.setUsuario("Promotor5");
+        usuariosentidad.setUsuario(generarPromotor());
         usuariosentidad.setContraseña(pass);
         usuariosentidad.setStatus("Activo");
         usuariosentidad.setTiposUsuario("Promotor");
         usuariosFacade.create(usuariosentidad);
-        
+        //Crear ususario en Grupo
+        usuariosentidad = usuariosFacade.find(usuariosentidad.getIdUsua());
+        grupousuariosentidad.setUsuariosidUsua(usuariosentidad);
+        grupousuariosentidad.setUsuario(usuariosentidad.getUsuario());
+        grupousuariosentidad.setNombregrupo(usuariosentidad.getTiposUsuario());
+        grupousuariosFacade.create(grupousuariosentidad);
+        //enviar correo con usuario y pass
+        setStatusMessage("Message Sent");
+        receptor=promotorEntidad.getCorreo();
+        mensaje="Usuario: " + usuariosentidad.getUsuario() + "\nContraseña: " + usuariosentidad.getContraseña();
+        try {
+            MailService.sendMessage(receptor, asunto, mensaje);
+        }
+        catch(MessagingException ex) {
+            setStatusMessage(ex.getMessage());
+        }
 
+    }
+
+    public void send() {
+        setStatusMessage("Message Sent");
+        try {
+            MailService.sendMessage(getReceptor(), getAsunto(), getMensaje());
+        } catch (MessagingException ex) {
+            setStatusMessage(ex.getMessage());
+        }
+        // return "index1";  // redisplay page with status message
+    }
+
+    public String generarPromotor() {
+        String nompromotor = "Promotor00";
+        int numero;
+        List<Usuarios> listausuarios = usuariosFacade.findAll();
+        numero = listausuarios.size() - 1;
+        String prom = String.valueOf(numero);
+        String nombrefinal = nompromotor + prom;
+        //System.out.println("nombreeeee:"+ nombrefinal);
+
+        return nombrefinal;
     }
 
     public Promotor getPromotor() {
@@ -102,7 +144,6 @@ public class BeanPromotor implements Serializable {
         Document pdf = (Document) document;
         pdf.open();
         pdf.setPageSize(PageSize.A4);
-
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         String logo = externalContext.getRealPath("") + File.separator + "resources" + File.separator + "image" + File.separator + "ddd.jpg";
 
@@ -135,6 +176,55 @@ public class BeanPromotor implements Serializable {
      */
     public void setGrupousuariosentidad(Grupousuarios grupousuariosentidad) {
         this.grupousuariosentidad = grupousuariosentidad;
+    }
+
+    /**
+     * @return the receptor
+     */
+    public String getReceptor() {
+        return receptor;
+    }
+
+    /**
+     * @param receptor the receptor to set
+     */
+    public void setReceptor(String receptor) {
+        this.receptor = receptor;
+    }
+
+    /**
+     * @return the asunto
+     */
+    public String getAsunto() {
+        return asunto;
+    }
+
+    /**
+     * @return the mensaje
+     */
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    /**
+     * @param mensaje the mensaje to set
+     */
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
+
+    /**
+     * @return the statusMessage
+     */
+    public String getStatusMessage() {
+        return statusMessage;
+    }
+
+    /**
+     * @param statusMessage the statusMessage to set
+     */
+    public void setStatusMessage(String statusMessage) {
+        this.statusMessage = statusMessage;
     }
 
 }
