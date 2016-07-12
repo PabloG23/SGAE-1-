@@ -64,12 +64,21 @@ public class BeanUsuario implements Serializable {
 //            Logger.getLogger(BeanUsuario.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    }
+    public void logout() throws IOException {
+        // FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        this.usuarios = null;
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        session.invalidate();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("https://localhost:8080/SGAE/");
+    }
+
     public void cerrarsecion() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 
     }
 
-    public void logout() {
+    public void logoutin() {
         ExternalContext ctx
                 = FacesContext.getCurrentInstance().getExternalContext();
         String ctxPath
@@ -132,4 +141,21 @@ public class BeanUsuario implements Serializable {
         this.contraseña = contraseña;
     }
 
+    private boolean error = false;
+
+    public String cerrarSesionS() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.
+                getExternalContext().getSession(false);
+        session.invalidate();
+        return "success";
+    }
+
+    public boolean isError() {
+        return error;
+    }
+
+    public void setError(boolean error) {
+        this.error = error;
+    }
 }
