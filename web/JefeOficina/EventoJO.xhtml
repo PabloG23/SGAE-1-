@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+       <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Informe de Actividades</title>
+            </f:facet>
+    </h:head>
+    <h:body>
+        <p:layout fullPage="true">
+             <p:layoutUnit position="north" >
+                    <ui:insert name="encabezado">
+                        <ui:include src="/secciones/encabezado.xhtml"/>
+                    </ui:insert>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="250" collapsible="true">
+                    <ui:insert name="menu">
+                        <ui:include src="/secciones/menuJO.xhtml"/>
+                    </ui:insert>
+                </p:layoutUnit>
+            
+            <p:layoutUnit position="center" >
+                <p:fieldset legend="Informes de Actividades" style="margin-bottom: 10px">
+                    <h:form>
+                        <h:panelGrid columns="2"  >
+                        
+                    
+                            <p:dataTable value="#{beanEvento.jalarEvento()}" var="evento">
+                                
+                             <p:column headerText="Nombre de Evento">
+                                <div align="center">
+                                    <h:outputText value="#{evento.nombreEvento}"/>
+                                </div>
+                            </p:column>
+                                
+                            <p:column headerText="Institucion Organizadora">
+                                <div align="center">
+                                    <h:outputText value="#{evento.instOrganizadora}"/>
+                                </div>
+                            </p:column>
+                                
+                             <p:column headerText="Fecha">
+                                <div align="center">
+                                    <h:outputText value="#{evento.fechaEvento}"/>
+                                </div>
+                            </p:column>
+
+                             
+                        </p:dataTable>
+                        </h:panelGrid>
+                        
+                        
+                    </h:form>
+                    
+                    
+                </p:fieldset>
+                <a href="/SGAE/Eventos" target="_blank">Exportar a PDF</a>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>
+

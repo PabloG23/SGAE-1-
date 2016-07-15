@@ -17,6 +17,7 @@ import facade.GrupoFacade;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 /**
@@ -24,7 +25,7 @@ import javax.inject.Inject;
  * @author pablog23
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class BeanAlumno {
 
     private Alumno entidadAlumno = new Alumno();
@@ -67,6 +68,7 @@ public class BeanAlumno {
         return obj;
     }
 
+    
     public List<Grupo> jalarGrupos() {
         List<Grupo> obj = grupoFacade.findAll();
         return obj;

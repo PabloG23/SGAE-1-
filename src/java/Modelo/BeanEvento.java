@@ -11,6 +11,7 @@ import entities.Promotor;
 import facade.ActividadFacade;
 import facade.EventoFacade;
 import facade.PromotorFacade;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -26,8 +27,7 @@ public class BeanEvento {
 
     private Evento entidadEvento = new Evento();
 
-    @Inject
-    private PromotorFacade promotorFacade;
+    
     @Inject
     private ActividadFacade actividadFacade;
     @Inject
@@ -44,8 +44,6 @@ public class BeanEvento {
         Actividad obj = actividadFacade.find(this.idactividad);
         entidadEvento.setActividad(obj);
         
-        Promotor obj1 = promotorFacade.find(this.idpromotor);
-        entidadEvento.setPromotor(obj1);
         
         entidadEvento.setTotal(total());
         eventoFacade.create(entidadEvento);
@@ -58,6 +56,11 @@ public class BeanEvento {
          y= entidadEvento.getMujeres();
          z=x+y;
          return z;
+    }
+    
+    public List<Evento> jalarEvento(){
+        List<Evento> obj = eventoFacade.findAll();
+        return obj;
     }
     
 
