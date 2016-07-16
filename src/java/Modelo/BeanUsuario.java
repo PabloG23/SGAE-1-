@@ -6,13 +6,16 @@
 package Modelo;
 
 import entities.Usuarios;
+import facade.UsuariosFacade;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,9 +29,11 @@ import javax.servlet.http.HttpSession;
 public class BeanUsuario implements Serializable {
 
     private Usuarios usuarios = new Usuarios();
-
+    private String usuarionombre = "Promotor003";
     private String usuario;
     private String contraseña;
+    @Inject
+    private UsuariosFacade usuariosfacade;
 
     public String login() {
         String outcome = "Control_Acce";
@@ -46,6 +51,7 @@ public class BeanUsuario implements Serializable {
             }
             if (!this.usuarios.getUsuario().equals("JefeD") && !this.usuarios.getUsuario().equals("JefeO")) {
                 outcome = "/Promotor/indexPromotor?faces-redirect=true";
+                buscarusutabla(usuarios.getUsuario());
             }
 
         } catch (Exception e) {
@@ -55,15 +61,21 @@ public class BeanUsuario implements Serializable {
         return outcome;
     }
 
-//    public void logout() {
-//        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-//        ec.invalidateSession();
-//        try {
-//            ec.redirect(ec.getRequestContextPath());
-//        } catch (IOException ex) {
-//            Logger.getLogger(BeanUsuario.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+    public void buscarusutabla(String nombreusuario) {
+        List<Usuarios> usuobj = usuariosfacade.findAll();
+        for (int i = 0; i < usuobj.size(); i++) {
+            if (usuobj.get(i).getUsuario().equals(nombreusuario)) {
+                System.out.println("Si esta: " + usuobj.get(i).getPromotoridPromotor().getIdPromotor());
+                break;
+
+            } else {
+                System.out.println("no esta");
+            }
+
+        }
+
+    }
+
     public void logout() throws IOException {
         // FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         this.usuarios = null;

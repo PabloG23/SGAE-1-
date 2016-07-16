@@ -118,6 +118,29 @@ public class BeanGrupo {
         return obj;
     }
 
+    /////PRUEBA PARA SACAR LOS GRUPOS DE UN PROMOTOR/////
+    int pruebaidpromotor = 3;
+
+    public void buscaridgrupo() {
+        int idgrupo;
+        int numeropromotor;
+        String idcadena = "";
+        List<Grupo> gruobj = grupoFacade.findAll();
+        for (int i = 0; i < gruobj.size(); i++) {
+            idgrupo = gruobj.get(i).getIdGrupo();
+            idcadena = Integer.toString(idgrupo);
+            numeropromotor = Integer.parseInt("" + idcadena.charAt(1));
+
+            if (numeropromotor == pruebaidpromotor) {
+                System.out.println("grupos del promotor1: " + idgrupo);
+            } else {
+                System.out.println("estos no son grupos de este promotor: " + idgrupo);
+            }
+        }
+
+    }
+    /////FIN DE PRUEBA PARA SACAR LOS GRUPOS DE UN PROMOTOR/////
+
     public int getIdactividad() {
         return idactividad;
     }
