@@ -82,11 +82,11 @@ public class BeanUsuario implements Serializable {
             }
 
         }
-        System.out.println("Numero retornado: " + numeroretornado);
+        // System.out.println("Numero retornado: " + numeroretornado);
         return numeroretornado;
 
     }
-    /////PRUEBA PARA SACAR LOS GRUPOS DE UN PROMOTOR/////
+    /////CODIGO PARA SACAR LOS GRUPOS DE UN PROMOTOR/////
     int pruebaidpromotor;
     int idgrupo;
 
@@ -103,18 +103,19 @@ public class BeanUsuario implements Serializable {
             if (numeropromotor == pruebaidpromotor) {
                 setEntidadGrupo(grupoFacade.find(this.idgrupo));
                 listagruposprom.add(getEntidadGrupo());
-                System.out.println("grupos del promotor1: " + idgrupo);
-                System.out.println("Lista chida: " + listagruposprom);
-            } else {
-                System.out.println("estos no son grupos de este promotor: " + idgrupo);
+         //       System.out.println("grupos del promotor1: " + idgrupo);
+                //     System.out.println("Lista chida: " + listagruposprom);
             }
+//            else {
+//                System.out.println("estos no son grupos de este promotor: " + idgrupo);
+//            }
 
         }
         System.out.println("Lista chidafinal: " + listagruposprom);
         return listagruposprom;
 
     }
-    /////FIN DE PRUEBA PARA SACAR LOS GRUPOS DE UN PROMOTOR/////
+    /////FIN DE CODIGO PARA SACAR LOS GRUPOS DE UN PROMOTOR/////
 
     public void logout() throws IOException {
         // FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
