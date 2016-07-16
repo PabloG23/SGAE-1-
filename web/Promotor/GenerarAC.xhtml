@@ -31,67 +31,67 @@
                 <p:layoutUnit position="center">
                     <p:fieldset legend="Generar Cedulas de Resultados" style="margin-bottom: 10px">
                         <h:form>
-                    <h:panelGrid columns="1"  >
-                        
-                        <p:outputLabel value="Grupo:" for="Grupo"/>
-                        <p:selectOneMenu id="Grupo"
-                                         value="#{beanAlumno.idGrupo}"
-                                         required="true">
-                        <f:selectItem itemLabel="Seleccionar una Opción" itemValue="" noSelectionOption="true" />
-                        <f:selectItems
-                            value="#{beanAlumno.jalarGrupos()}"
-                            var="grupo"
-                            itemLabel="#{grupo.actividad.catActividad.nombre} #{grupo.dias} #{grupo.horario}"
-                            itemValue="#{grupo.idGrupo}"/>
-                        </p:selectOneMenu>
+                            <h:panelGrid columns="1"  >
 
-                    </h:panelGrid>
-                        
+                                <p:outputLabel value="Grupo:" for="Grupo"/>
+                                <p:selectOneMenu id="Grupo"
+                                                 value="#{beanAlumno.idGrupo}"
+                                                 required="true">
+                                    <f:selectItem itemLabel="Seleccionar una Opción" itemValue="" noSelectionOption="true" />
+                                    <f:selectItems
+                                        value="#{beanUsuario.jalargrupodepromotorlogeado()}"
+                                        var="grupo"
+                                        itemLabel="#{grupo.actividad.catActividad.nombre} #{grupo.dias} #{grupo.horario}"
+                                        itemValue="#{grupo.idGrupo}"/>
+                                </p:selectOneMenu>
 
-                    <h:panelGrid columns="2"  >
-                        
-                    
-                        <p:dataTable value="#{beanAlumno.jalarAlumnos()}" var="alumno">
-                             <p:column headerText="Apellido Paterno">
-                                <div align="center">
-                                    <h:outputText value="#{alumno.apPat}"/>
-                                </div>
-                            </p:column>
-                            <p:column headerText="Apellido Materno">
-                                <div align="center">
-                                    <h:outputText value="#{alumno.apMat}"/>
-                                </div>
-                            </p:column>
-                             <p:column headerText="Nombre(s)">
-                                <div align="center">
-                                    <h:outputText value="#{alumno.nombre}"/>
-                                </div>
-                            </p:column>
-                            <p:column headerText="Numero de control">
-                                <div align="center">
-                                    <h:outputText value="#{alumno.noCtrl}"/>
-                                </div>
-                            </p:column>
-                            <p:column headerText="Carrera">
-                                <div align="center">
-                                    <h:outputText value="#{alumno.catCarreras.nomCarrera}"/>
-                                </div>
-                            </p:column>
-                            <p:column headerText="Calificacion">
-                                <div align="center">
-                                    <h:outputText value="#{alumno.acreditado}"/>
-                                </div>
-                            </p:column>
-                             
-                        </p:dataTable>
-                        
-                       
-                  
-                </h:panelGrid>
-                   </h:form>
+                            </h:panelGrid>
+
+
+                            <h:panelGrid columns="2"  >
+
+
+                                <p:dataTable value="#{beanAlumno.jalarAlumnos()}" var="alumno">
+                                    <p:column headerText="Apellido Paterno">
+                                        <div align="center">
+                                            <h:outputText value="#{alumno.apPat}"/>
+                                        </div>
+                                    </p:column>
+                                    <p:column headerText="Apellido Materno">
+                                        <div align="center">
+                                            <h:outputText value="#{alumno.apMat}"/>
+                                        </div>
+                                    </p:column>
+                                    <p:column headerText="Nombre(s)">
+                                        <div align="center">
+                                            <h:outputText value="#{alumno.nombre}"/>
+                                        </div>
+                                    </p:column>
+                                    <p:column headerText="Numero de control">
+                                        <div align="center">
+                                            <h:outputText value="#{alumno.noCtrl}"/>
+                                        </div>
+                                    </p:column>
+                                    <p:column headerText="Carrera">
+                                        <div align="center">
+                                            <h:outputText value="#{alumno.catCarreras.nomCarrera}"/>
+                                        </div>
+                                    </p:column>
+                                    <p:column headerText="Calificacion">
+                                        <div align="center">
+                                            <h:outputText value="#{alumno.acreditado}"/>
+                                        </div>
+                                    </p:column>
+
+                                </p:dataTable>
+
+
+
+                            </h:panelGrid>
+                        </h:form>
                     </p:fieldset>
                     <a href="/SGAE/Acreditados" target="_blank">Exportar a PDF</a>
-                     
+
                 </p:layoutUnit>
 
             </p:layout>

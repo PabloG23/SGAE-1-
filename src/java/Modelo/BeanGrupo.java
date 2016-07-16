@@ -12,6 +12,7 @@ import entities.Promotor;
 import facade.ActividadFacade;
 import facade.GrupoFacade;
 import facade.PromotorFacade;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -119,24 +120,29 @@ public class BeanGrupo {
     }
 
     /////PRUEBA PARA SACAR LOS GRUPOS DE UN PROMOTOR/////
-    int pruebaidpromotor = 3;
+    int pruebaidpromotor = 2;
+    int idgrupo;
 
     public void buscaridgrupo() {
-        int idgrupo;
         int numeropromotor;
         String idcadena = "";
+        List<Grupo> listagruposprom = new ArrayList<Grupo>();
         List<Grupo> gruobj = grupoFacade.findAll();
         for (int i = 0; i < gruobj.size(); i++) {
             idgrupo = gruobj.get(i).getIdGrupo();
             idcadena = Integer.toString(idgrupo);
             numeropromotor = Integer.parseInt("" + idcadena.charAt(1));
-
             if (numeropromotor == pruebaidpromotor) {
+                entidadGrupo = grupoFacade.find(this.idgrupo);
+                listagruposprom.add(entidadGrupo);
                 System.out.println("grupos del promotor1: " + idgrupo);
+                System.out.println("Lista chida: " + listagruposprom);
             } else {
                 System.out.println("estos no son grupos de este promotor: " + idgrupo);
             }
+
         }
+        System.out.println("Lista chidafinal: " + listagruposprom);
 
     }
     /////FIN DE PRUEBA PARA SACAR LOS GRUPOS DE UN PROMOTOR/////

@@ -5,10 +5,13 @@
  */
 package Modelo;
 
+import entities.Grupo;
 import entities.Usuarios;
+import facade.GrupoFacade;
 import facade.UsuariosFacade;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -29,11 +32,14 @@ import javax.servlet.http.HttpSession;
 public class BeanUsuario implements Serializable {
 
     private Usuarios usuarios = new Usuarios();
-    private String usuarionombre = "Promotor003";
+    private String usuarionombre = "";
     private String usuario;
     private String contraseña;
+    private Grupo entidadGrupo = new Grupo();
     @Inject
     private UsuariosFacade usuariosfacade;
+    @Inject
+    GrupoFacade grupoFacade;
 
     public String login() {
         String outcome = "Control_Acce";
@@ -51,7 +57,8 @@ public class BeanUsuario implements Serializable {
             }
             if (!this.usuarios.getUsuario().equals("JefeD") && !this.usuarios.getUsuario().equals("JefeO")) {
                 outcome = "/Promotor/indexPromotor?faces-redirect=true";
-                buscarusutabla(usuarios.getUsuario());
+                usuarionombre = usuarios.getUsuario();
+                buscarusutabla();
             }
 
         } catch (Exception e) {
@@ -61,11 +68,13 @@ public class BeanUsuario implements Serializable {
         return outcome;
     }
 
-    public void buscarusutabla(String nombreusuario) {
+    public int buscarusutabla() {
+        int numeroretornado = 0;
         List<Usuarios> usuobj = usuariosfacade.findAll();
         for (int i = 0; i < usuobj.size(); i++) {
-            if (usuobj.get(i).getUsuario().equals(nombreusuario)) {
+            if (usuobj.get(i).getUsuario().equals(usuarionombre)) {
                 System.out.println("Si esta: " + usuobj.get(i).getPromotoridPromotor().getIdPromotor());
+                numeroretornado = usuobj.get(i).getPromotoridPromotor().getIdPromotor();
                 break;
 
             } else {
@@ -73,8 +82,39 @@ public class BeanUsuario implements Serializable {
             }
 
         }
+        System.out.println("Numero retornado: " + numeroretornado);
+        return numeroretornado;
 
     }
+    /////PRUEBA PARA SACAR LOS GRUPOS DE UN PROMOTOR/////
+    int pruebaidpromotor;
+    int idgrupo;
+
+    public List<Grupo> jalargrupodepromotorlogeado() {
+        pruebaidpromotor = buscarusutabla();
+        int numeropromotor;
+        String idcadena = "";
+        List<Grupo> listagruposprom = new ArrayList<Grupo>();
+        List<Grupo> gruobj = grupoFacade.findAll();
+        for (int i = 0; i < gruobj.size(); i++) {
+            idgrupo = gruobj.get(i).getIdGrupo();
+            idcadena = Integer.toString(idgrupo);
+            numeropromotor = Integer.parseInt("" + idcadena.charAt(1));
+            if (numeropromotor == pruebaidpromotor) {
+                setEntidadGrupo(grupoFacade.find(this.idgrupo));
+                listagruposprom.add(getEntidadGrupo());
+                System.out.println("grupos del promotor1: " + idgrupo);
+                System.out.println("Lista chida: " + listagruposprom);
+            } else {
+                System.out.println("estos no son grupos de este promotor: " + idgrupo);
+            }
+
+        }
+        System.out.println("Lista chidafinal: " + listagruposprom);
+        return listagruposprom;
+
+    }
+    /////FIN DE PRUEBA PARA SACAR LOS GRUPOS DE UN PROMOTOR/////
 
     public void logout() throws IOException {
         // FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
@@ -169,5 +209,19 @@ public class BeanUsuario implements Serializable {
 
     public void setError(boolean error) {
         this.error = error;
+    }
+
+    /**
+     * @return the entidadGrupo
+     */
+    public Grupo getEntidadGrupo() {
+        return entidadGrupo;
+    }
+
+    /**
+     * @param entidadGrupo the entidadGrupo to set
+     */
+    public void setEntidadGrupo(Grupo entidadGrupo) {
+        this.entidadGrupo = entidadGrupo;
     }
 }
