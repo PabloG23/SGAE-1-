@@ -5,8 +5,10 @@
  */
 package Modelo;
 
+import entities.Alumno;
 import entities.Grupo;
 import entities.Usuarios;
+import facade.AlumnoFacade;
 import facade.GrupoFacade;
 import facade.UsuariosFacade;
 import java.io.IOException;
@@ -40,6 +42,8 @@ public class BeanUsuario implements Serializable {
     private UsuariosFacade usuariosfacade;
     @Inject
     GrupoFacade grupoFacade;
+    @Inject
+    AlumnoFacade alumnoFacade;
 
     public String login() {
         String outcome = "Control_Acce";
@@ -116,6 +120,30 @@ public class BeanUsuario implements Serializable {
 
     }
     /////FIN DE CODIGO PARA SACAR LOS GRUPOS DE UN PROMOTOR/////
+    
+    public List<Alumno> alumno_grupo(){
+        List<Alumno> alumnos =  alumnoFacade.findAll();
+        List<Grupo> grupos = jalargrupodepromotorlogeado();
+        
+        
+        List<Alumno> listavergas = new ArrayList<Alumno>();
+        
+        
+        int idgrupo_alumno;
+        
+        for (int i = 0; i< alumnos.size(); i++) {
+            idgrupo_alumno=alumnos.get(i).getGrupo().getIdGrupo();
+            for (int j = 0; j < grupos.size(); j++) {
+                if (idgrupo_alumno==grupos.get(i).getIdGrupo()) {
+                    listavergas.add(get)
+                }
+            }
+            
+        }
+        
+        
+        
+    }
 
     public void logout() throws IOException {
         // FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
