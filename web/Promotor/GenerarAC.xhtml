@@ -35,7 +35,7 @@
 
                                 <p:outputLabel value="Grupo:" for="Grupo"/>
                                 <p:selectOneMenu id="Grupo"
-                                                 value="#{beanAlumno.idGrupo}"
+                                                 value="#{beanUsuario.idgruposeleccionado}"
                                                  required="true">
                                     <f:selectItem itemLabel="Seleccionar una Opción" itemValue="" noSelectionOption="true" />
                                     <f:selectItems
@@ -84,10 +84,11 @@
                                     </p:column>
 
                                 </p:dataTable>
-
-
-
                             </h:panelGrid>
+
+                            <p:commandButton value="Guardarchida"  actionListener="#{beanUsuario.alumno_grupo()}" icon="ui-icon-check" >
+                            </p:commandButton>  
+
                         </h:form>
                     </p:fieldset>
                     <a href="/SGAE/Acreditados" target="_blank">Exportar a PDF</a>

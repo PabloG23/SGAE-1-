@@ -38,6 +38,7 @@ public class BeanUsuario implements Serializable {
     private String usuario;
     private String contraseña;
     private Grupo entidadGrupo = new Grupo();
+    private Alumno entidadalumno = new Alumno();
     @Inject
     private UsuariosFacade usuariosfacade;
     @Inject
@@ -107,7 +108,7 @@ public class BeanUsuario implements Serializable {
             if (numeropromotor == pruebaidpromotor) {
                 setEntidadGrupo(grupoFacade.find(this.idgrupo));
                 listagruposprom.add(getEntidadGrupo());
-         //       System.out.println("grupos del promotor1: " + idgrupo);
+                //       System.out.println("grupos del promotor1: " + idgrupo);
                 //     System.out.println("Lista chida: " + listagruposprom);
             }
 //            else {
@@ -120,30 +121,29 @@ public class BeanUsuario implements Serializable {
 
     }
     /////FIN DE CODIGO PARA SACAR LOS GRUPOS DE UN PROMOTOR/////
-    
-    public List<Alumno> alumno_grupo(){
-        List<Alumno> alumnos =  alumnoFacade.findAll();
-        List<Grupo> grupos = jalargrupodepromotorlogeado();
-        
-        
-        List<Alumno> listavergas = new ArrayList<Alumno>();
-        
-        
-        int idgrupo_alumno;
-        
-        for (int i = 0; i< alumnos.size(); i++) {
-            idgrupo_alumno=alumnos.get(i).getGrupo().getIdGrupo();
-            for (int j = 0; j < grupos.size(); j++) {
-                if (idgrupo_alumno==grupos.get(i).getIdGrupo()) {
-                    listavergas.add(get)
-                }
+
+    ////CODIGO PARA JALAR LOS ALUMNOS DE CADA GRUPO/////
+    private int idgruposeleccionado;
+    private int idcomparar;
+
+    public List<Alumno> alumno_grupo() {
+        entidadGrupo = grupoFacade.find(this.idgruposeleccionado);
+        idcomparar = entidadGrupo.getIdGrupo();
+        System.out.println("iddegrupo: " + idcomparar);
+        List<Alumno> alumnos = alumnoFacade.findAll();
+        List<Alumno> listaalumno = new ArrayList<Alumno>();
+        for (int i = 0; i < alumnos.size(); i++) {
+            if (idcomparar == alumnos.get(i).getGrupo().getIdGrupo()) {
+                entidadalumno = alumnoFacade.find(alumnos.get(i).getNoCtrl());
+                listaalumno.add(entidadalumno);
+                System.out.println("Alumno: "+entidadalumno.getNombre());
             }
-            
         }
-        
-        
-        
+        System.out.println("Lista del grupo: " + listaalumno);
+        return listaalumno;
+
     }
+    ////FIN DE CODIGO PARA JALAR LOS ALUMNOS DE CADA GRUPO/////
 
     public void logout() throws IOException {
         // FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
@@ -252,5 +252,33 @@ public class BeanUsuario implements Serializable {
      */
     public void setEntidadGrupo(Grupo entidadGrupo) {
         this.entidadGrupo = entidadGrupo;
+    }
+
+    /**
+     * @return the idgruposeleccionado
+     */
+    public int getIdgruposeleccionado() {
+        return idgruposeleccionado;
+    }
+
+    /**
+     * @param idgruposeleccionado the idgruposeleccionado to set
+     */
+    public void setIdgruposeleccionado(int idgruposeleccionado) {
+        this.idgruposeleccionado = idgruposeleccionado;
+    }
+
+    /**
+     * @return the entidadalumno
+     */
+    public Alumno getEntidadalumno() {
+        return entidadalumno;
+    }
+
+    /**
+     * @param entidadalumno the entidadalumno to set
+     */
+    public void setEntidadalumno(Alumno entidadalumno) {
+        this.entidadalumno = entidadalumno;
     }
 }
