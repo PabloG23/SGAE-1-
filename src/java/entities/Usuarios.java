@@ -122,7 +122,7 @@ public class Usuarios implements Serializable {
     public String getTiposUsuario() {
         return tiposUsuario;
     }
-
+    
     public void setTiposUsuario(String tiposUsuario) {
         this.tiposUsuario = tiposUsuario;
     }
