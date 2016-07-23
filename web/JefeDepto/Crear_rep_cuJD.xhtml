@@ -28,12 +28,161 @@
                 <p:layoutUnit position="center">
 
                     <h:form>
-                        <p:fieldset  legend="Reportes Cuantitativos " style="margin-bottom: 10px">
-                            <p:chart type="bar" model="#{chartView.barModel}" style="width: 400px "/>
-                            <p:chart type="bar" model="#{chartView.barModel2}" style="width: 400px "/>
+                        <p:fieldset  legend="Reportes Cuantitativos Deportivos " style="margin-bottom: 10px">
+                            <h:panelGrid columns="2" style="margin-bottom:10px" >
+                                <p:dataTable value="#{chartView.crearactividad(Actividades, H, M,totalactividad)}" var="promotor" id="tbl">
+                                    <p:column width="90" style="text-align: left">
+                                        <f:facet name="header">
+                                            <h:outputText value="Actividad"/>
+                                        </f:facet>
+                                        <h:outputText value="#{promotor.actividades}"/>
+                                    </p:column>
+                                    <p:column style="text-align: center">
+                                        <f:facet name="header">
+                                            <h:outputText value="H"/>
+                                        </f:facet>
+                                        <h:outputText value="#{promotor.h}" />
+                                    </p:column>
+                                    <p:column style="text-align: center">
+                                        <f:facet name="header">
+                                            <h:outputText value="M" />
+                                        </f:facet>
+                                        <h:outputText value="#{promotor.m}"/>
+                                    </p:column>
+                                    <p:column  style="text-align:center">
+                                        <f:facet name="header">
+                                            <h:outputText value="Tot" />
+                                        </f:facet>
+                                        <h:outputText value="#{promotor.totalactividad}" />
+                                    </p:column>
+                                    <p:columnGroup type="footer">
+                                        <p:row>
+                                            <p:column rowspan="1" style="text-align:left" footerText="Total:" />
+                                            <p:column rowspan="1" style="text-align:center" footerText="#{chartView.totalhombres}" />
+                                            <p:column rowspan="1" style="text-align:center" footerText="#{chartView.totalmujeres}" />
+                                            <p:column rowspan="1" style="text-align:center" footerText="#{chartView.totaltablaactida}" />
+                                        </p:row>
+                                    </p:columnGroup>
+                                </p:dataTable>
+                                <p:chart type="bar" model="#{chartView.barModel}" style="width: 800px "/>
+                            </h:panelGrid>
+                            <h:panelGrid columns="2" style="margin-bottom:10px" >
+                                <p:dataTable value="#{chartView.crearcarrera(Carrera, H, M,totalcarrera)}" var="inge" id="tblcarrera">
+                                    <p:column width="100" style="text-align:left">
+                                        <f:facet name="header">
+                                            <h:outputText value="Carrera" />
+                                        </f:facet>
+                                        <h:outputText value="#{inge.carrera}" />
+                                    </p:column>
+                                    <p:column style="text-align:center">
+                                        <f:facet name="header">
+                                            <h:outputText value="H" />
+                                        </f:facet>
+                                        <h:outputText value="#{inge.h}" />
+                                    </p:column>
+                                    <p:column style="text-align:center">
+                                        <f:facet name="header">
+                                            <h:outputText value="M" />
+                                        </f:facet>
+                                        <h:outputText value="#{inge.m}" />
+                                    </p:column>
+                                    <p:column  style="text-align:center">
+                                        <f:facet name="header">
+                                            <h:outputText value="Tot" />
+                                        </f:facet>
+                                        <h:outputText value="#{inge.totalcarrera}" />
+                                    </p:column>
+                                    <p:columnGroup type="footer">
+                                        <p:row>
+                                            <p:column rowspan="1" style="text-align:left" footerText="Total:" />
+                                            <p:column rowspan="1" style="text-align:center" footerText="#{chartView.totalhombres}" />
+                                            <p:column rowspan="1" style="text-align:center" footerText="#{chartView.totalmujeres}" />
+                                            <p:column rowspan="1" style="text-align:center" footerText="#{chartView.totaltablaactida}" />
+                                        </p:row>
+                                    </p:columnGroup>
+                                </p:dataTable>
+                                <p:chart type="bar" model="#{chartView.barModel2}" style="width: 800px "/>
+                            </h:panelGrid>
                         </p:fieldset> 
                     </h:form>
-
+                    <h:form>
+                        <p:fieldset  legend="Reportes Cuantitativos Culturales " style="margin-bottom: 10px">
+                            <h:panelGrid columns="2" style="margin-bottom:10px" >
+                                <p:dataTable value="#{chartViewcultural.crearactividad(Actividades, H, M,totalactividad)}" var="promotor" id="tblcultural">
+                                    <p:column width="90" style="text-align: left">
+                                        <f:facet name="header">
+                                            <h:outputText value="Actividad"/>
+                                        </f:facet>
+                                        <h:outputText value="#{promotor.actividades}"/>
+                                    </p:column>
+                                    <p:column style="text-align: center">
+                                        <f:facet name="header">
+                                            <h:outputText value="H"/>
+                                        </f:facet>
+                                        <h:outputText value="#{promotor.h}" />
+                                    </p:column>
+                                    <p:column style="text-align: center">
+                                        <f:facet name="header">
+                                            <h:outputText value="M" />
+                                        </f:facet>
+                                        <h:outputText value="#{promotor.m}"/>
+                                    </p:column>
+                                    <p:column  style="text-align:center">
+                                        <f:facet name="header">
+                                            <h:outputText value="Tot" />
+                                        </f:facet>
+                                        <h:outputText value="#{promotor.totalactividad}" />
+                                    </p:column>
+                                    <p:columnGroup type="footer">
+                                        <p:row>
+                                            <p:column rowspan="1" style="text-align:left" footerText="Total:" />
+                                            <p:column rowspan="1" style="text-align:center" footerText="#{chartViewcultural.totalhombres}" />
+                                            <p:column rowspan="1" style="text-align:center" footerText="#{chartViewcultural.totalmujeres}" />
+                                            <p:column rowspan="1" style="text-align:center" footerText="#{chartViewcultural.totaltablaactida}" />
+                                        </p:row>
+                                    </p:columnGroup>
+                                </p:dataTable>
+                                <p:chart type="bar" model="#{chartViewcultural.barModel}" style="width: 800px "/>
+                            </h:panelGrid>
+                            <h:panelGrid columns="2" style="margin-bottom:10px" >
+                                <p:dataTable value="#{chartViewcultural.crearcarrera(Carrera, H, M,totalcarrera)}" var="inge" id="tblcarreracultural">
+                                    <p:column width="100" style="text-align:left">
+                                        <f:facet name="header">
+                                            <h:outputText value="Carrera" />
+                                        </f:facet>
+                                        <h:outputText value="#{inge.carrera}" />
+                                    </p:column>
+                                    <p:column style="text-align:center">
+                                        <f:facet name="header">
+                                            <h:outputText value="H" />
+                                        </f:facet>
+                                        <h:outputText value="#{inge.h}" />
+                                    </p:column>
+                                    <p:column style="text-align:center">
+                                        <f:facet name="header">
+                                            <h:outputText value="M" />
+                                        </f:facet>
+                                        <h:outputText value="#{inge.m}" />
+                                    </p:column>
+                                    <p:column  style="text-align:center">
+                                        <f:facet name="header">
+                                            <h:outputText value="Tot" />
+                                        </f:facet>
+                                        <h:outputText value="#{inge.totalcarrera}" />
+                                    </p:column>
+                                    <p:columnGroup type="footer">
+                                        <p:row>
+                                            <p:column rowspan="1" style="text-align:left" footerText="Total:" />
+                                            <p:column rowspan="1" style="text-align:center" footerText="#{chartViewcultural.totalhombres}" />
+                                            <p:column rowspan="1" style="text-align:center" footerText="#{chartViewcultural.totalmujeres}" />
+                                            <p:column rowspan="1" style="text-align:center" footerText="#{chartViewcultural.totaltablaactida}" />
+                                        </p:row>
+                                    </p:columnGroup>
+                                </p:dataTable>
+                                <p:chart type="bar" model="#{chartViewcultural.barModel2}" style="width: 800px "/>
+                            </h:panelGrid>
+                        </p:fieldset> 
+                    </h:form>
                 </p:layoutUnit>
                 <p:layoutUnit position="south" >
                     <ui:insert name="footer">

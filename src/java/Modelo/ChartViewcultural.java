@@ -29,7 +29,7 @@ import org.primefaces.model.chart.ChartSeries;
  * @author omar
  */
 @ManagedBean
-public class ChartView implements Serializable {
+public class ChartViewcultural implements Serializable {
 
     private Alumno entidadalumno = new Alumno();
     private Actividad entidadactividad = new Actividad();
@@ -117,21 +117,21 @@ public class ChartView implements Serializable {
         hombres.setLabel("Hombres");
         ChartSeries mujeres = new ChartSeries();
         mujeres.setLabel("Mujeres");
-        for (int i = 0; i < actdeportiva.size(); i++) {
-            idactividadtabla = actdeportiva.get(i).getIdactividad();
+        for (int i = 0; i < actcultural.size(); i++) {
+            idactividadtabla = actcultural.get(i).getIdactividad();
             aux = 0;
             Masculino = 0;
             Femenino = 0;
             totalactividad = 0;
             System.out.println("id:.." + idactividadtabla);
-            for (int j = 0; j < aludeportivo.size(); j++) {
-                idactividadtablaalumno = aludeportivo.get(j).getGrupo().getActividad().getIdactividad();
+            for (int j = 0; j < alucultural.size(); j++) {
+                idactividadtablaalumno = alucultural.get(j).getGrupo().getActividad().getIdactividad();
                 if (idactividadtabla == idactividadtablaalumno) {
                     aux = aux + 1;
-                    if (aludeportivo.get(j).getSexo().equals("M")) {
+                    if (alucultural.get(j).getSexo().equals("M")) {
                         Masculino = Masculino + 1;
                     } else {
-                        if (aludeportivo.get(j).getSexo().equals("F")) {
+                        if (alucultural.get(j).getSexo().equals("F")) {
                             Femenino = Femenino + 1;
                         }
                     }
@@ -146,9 +146,9 @@ public class ChartView implements Serializable {
 //            System.out.println("Hombres: " + Masculino);
 //            System.out.println("Mujeres: " + Femenino);
 
-            hombres.set(actdeportiva.get(i).getCatActividad().getNombre(), Masculino);
-            mujeres.set(actdeportiva.get(i).getCatActividad().getNombre(), Femenino);
-            crearactividad(actdeportiva.get(i).getCatActividad().getNombre(), Masculino, Femenino, totalactividad);
+            hombres.set(actcultural.get(i).getCatActividad().getNombre(), Masculino);
+            mujeres.set(actcultural.get(i).getCatActividad().getNombre(), Femenino);
+            crearactividad(actcultural.get(i).getCatActividad().getNombre(), Masculino, Femenino, totalactividad);
 
         }
         model.addSeries(hombres);
@@ -231,14 +231,14 @@ public class ChartView implements Serializable {
             Fem = 0;
             totalcarrera=0;
             System.out.println("idCarrera: " + idcarrera + " " + objcarrera.get(i).getNomCarrera());
-            for (int j = 0; j < aludeportivo.size(); j++) {
-                idcarreratablaalumno = aludeportivo.get(j).getCatCarreras().getIdCatCarreras();
+            for (int j = 0; j < alucultural.size(); j++) {
+                idcarreratablaalumno = alucultural.get(j).getCatCarreras().getIdCatCarreras();
                 if (idcarrera == idcarreratablaalumno) {
                     aux = aux + 1;
-                    if (aludeportivo.get(j).getSexo().equals("M")) {
+                    if (alucultural.get(j).getSexo().equals("M")) {
                         Mas = Mas + 1;
                     } else {
-                        if (aludeportivo.get(j).getSexo().equals("F")) {
+                        if (alucultural.get(j).getSexo().equals("F")) {
                             Fem = Fem + 1;
                         }
                     }

@@ -32,6 +32,7 @@ public class BeanActividad implements Serializable {
     private Actividad actividad = new Actividad();
 
     private int idCatActividad;
+    private boolean verificaractividad = false;
 
     @Inject
     private ActividadFacade actividadFacade;
@@ -41,9 +42,17 @@ public class BeanActividad implements Serializable {
 
     public void add() {
         CatActividad catActividad = catalogoFacade.find(this.idCatActividad);
-        actividad.setCatActividad(catActividad);
-        actividadFacade.create(actividad);
-        destroyWorld();
+        verificaractividad = buscaractividad();
+        if (verificaractividad == true) {
+            mensajeactivdad();
+        } else {
+            if (verificaractividad == false) {
+                actividad.setCatActividad(catActividad);
+                actividadFacade.create(actividad);
+                destroyWorld();
+            }
+        }
+
     }
 
     public List<String> completarAño(String año) {
@@ -64,21 +73,17 @@ public class BeanActividad implements Serializable {
         boolean respuesta = false;
         CatActividad catActividad = catalogoFacade.find(this.idCatActividad);
         List<Actividad> obj = actividadFacade.findAll();
-        Iterator<Actividad> it = obj.iterator();
-
         for (int i = 0; i < obj.size(); i++) {
-            if (catActividad.getIdCatAct().equals(it.next().getCatActividad().getIdCatAct())) {
-                System.out.println("SI ESTA: " + ((it.next().getCatActividad().getIdCatAct()) - 1));
+            if (catActividad.getIdCatAct().equals(obj.get(i).getCatActividad().getIdCatAct())) {
+                //System.out.println("Si esta este catact en actividad: " + catActividad.getIdCatAct() + "--" + obj.get(i).getCatActividad().getIdCatAct());
                 respuesta = true;
-                System.out.println("respuesta: " + respuesta);
                 break;
             } else {
+                //System.out.println("NO esta este catact en actividad");
                 respuesta = false;
-                System.out.println("NO ESTA respuesta: " + respuesta);
-
             }
         }
-
+        //System.out.println("respuesta:" + respuesta);
         return respuesta;
     }
 
@@ -111,5 +116,28 @@ public class BeanActividad implements Serializable {
     public void addMessage(String summary, String detail) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
         FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    public void mensajeactivdad() {
+        agregarmensaje("Esta Actividad ya ha sido agregada anteriormente", "Agregada");
+    }
+
+    public void agregarmensaje(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    /**
+     * @return the verificaractividad
+     */
+    public boolean isVerificaractividad() {
+        return verificaractividad;
+    }
+
+    /**
+     * @param verificaractividad the verificaractividad to set
+     */
+    public void setVerificaractividad(boolean verificaractividad) {
+        this.verificaractividad = verificaractividad;
     }
 }

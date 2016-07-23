@@ -87,13 +87,14 @@ public class BeanUsuario implements Serializable {
             }
 
         }
-        // System.out.println("Numero retornado: " + numeroretornado);
+        //System.out.println("Numero retornadofifado: " + numeroretornado);
         return numeroretornado;
 
     }
     /////CODIGO PARA SACAR LOS GRUPOS DE UN PROMOTOR/////
     int pruebaidpromotor;
     int idgrupo;
+    int idpromotorcomparar;
 
     public List<Grupo> jalargrupodepromotorlogeado() {
         pruebaidpromotor = buscarusutabla();
@@ -103,9 +104,10 @@ public class BeanUsuario implements Serializable {
         List<Grupo> gruobj = grupoFacade.findAll();
         for (int i = 0; i < gruobj.size(); i++) {
             idgrupo = gruobj.get(i).getIdGrupo();
-            idcadena = Integer.toString(idgrupo);
-            numeropromotor = Integer.parseInt("" + idcadena.charAt(1));
-            if (numeropromotor == pruebaidpromotor) {
+            //idcadena = Integer.toString(idgrupo);
+            idpromotorcomparar = gruobj.get(i).getPromotor().getIdPromotor();                    
+            //numeropromotor = Integer.parseInt("" + idcadena.charAt(1));
+            if (idpromotorcomparar == pruebaidpromotor) {
                 setEntidadGrupo(grupoFacade.find(this.idgrupo));
                 listagruposprom.add(getEntidadGrupo());
                 //       System.out.println("grupos del promotor1: " + idgrupo);
