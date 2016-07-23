@@ -123,7 +123,7 @@ public class ChartViewcultural implements Serializable {
             Masculino = 0;
             Femenino = 0;
             totalactividad = 0;
-            System.out.println("id:.." + idactividadtabla);
+            //System.out.println("id:.." + idactividadtabla);
             for (int j = 0; j < alucultural.size(); j++) {
                 idactividadtablaalumno = alucultural.get(j).getGrupo().getActividad().getIdactividad();
                 if (idactividadtabla == idactividadtablaalumno) {
@@ -230,7 +230,7 @@ public class ChartViewcultural implements Serializable {
             Mas = 0;
             Fem = 0;
             totalcarrera=0;
-            System.out.println("idCarrera: " + idcarrera + " " + objcarrera.get(i).getNomCarrera());
+            //System.out.println("idCarrera: " + idcarrera + " " + objcarrera.get(i).getNomCarrera());
             for (int j = 0; j < alucultural.size(); j++) {
                 idcarreratablaalumno = alucultural.get(j).getCatCarreras().getIdCatCarreras();
                 if (idcarrera == idcarreratablaalumno) {
