@@ -9,7 +9,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Grupo</title>
+                <title>Generar Listas de Asistencia</title>
             </f:facet>
         </h:head>
 
@@ -31,19 +31,20 @@
                 <p:layoutUnit position="center">
 <!--                    <h1>Generar Reporte de Lista de Asistencia.</h1>-->
                     <p:fieldset legend="Generar Reporte de Lista de Asistencia." style="margin-bottom: 20px">
-                        <h:panelGrid columns="1"  >
+                        <h:panelGrid columns="3"  >
 
                             <p:outputLabel value="Grupo:" />
                             <p:selectOneMenu id="Grupo"
-                                         value="#{beanAlumno.idGrupo}"
+                                             value="#{beanUsuario.idgruposeleccionado}"
                                          required="true">
                         <f:selectItem itemLabel="Seleccionar una Opción" itemValue="" noSelectionOption="true" />
                         <f:selectItems
-                            value="#{beanAlumno.jalarGrupos()}"
+                            value="#{beanUsuario.jalargrupodepromotorlogeado()}"
                             var="grupo"
                             itemLabel="#{grupo.actividad.catActividad.nombre} #{grupo.dias} #{grupo.horario}"
                             itemValue="#{grupo.idGrupo}"/>
                         </p:selectOneMenu>
+                            
                             </h:panelGrid>
                     </p:fieldset>
                     

@@ -29,21 +29,22 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center">
-                    <p:fieldset legend="Generar Cedulas de Resultados" style="margin-bottom: 10px">
+                    <p:fieldset legend="Generar Cédulas de Resultados" style="margin-bottom: 10px">
                         <h:form>
-                            <h:panelGrid columns="1"  >
+                            <h:panelGrid columns="3"  >
 
                                 <p:outputLabel value="Grupo:" for="Grupo"/>
                                 <p:selectOneMenu id="Grupo"
                                                  value="#{beanUsuario.idgruposeleccionado}"
                                                  required="true">
-                                    <f:selectItem itemLabel="Seleccionar una Opción" itemValue="" noSelectionOption="true" />
+                                    <!--                                    <f:selectItem itemLabel="Seleccionar una Opción" itemValue="" noSelectionOption="true" />-->
                                     <f:selectItems
                                         value="#{beanUsuario.jalargrupodepromotorlogeado()}"
                                         var="grupo"
                                         itemLabel="#{grupo.actividad.catActividad.nombre} #{grupo.dias} #{grupo.horario}"
                                         itemValue="#{grupo.idGrupo}"/>
                                 </p:selectOneMenu>
+                                <p:commandButton value="Mostrar Alumnos"  actionListener="#{beanUsuario.alumno_grupo()}" update="alu" icon="ui-icon-check" />
 
                             </h:panelGrid>
 
@@ -51,23 +52,16 @@
                             <h:panelGrid columns="2"  >
 
 
-                                <p:dataTable value="#{beanAlumno.jalarAlumnos()}" var="alumno">
-                                    <p:column headerText="Apellido Paterno">
+                                <p:dataTable id="alu" value="#{beanUsuario.alumno_grupo()}" var="alumno">
+
+                                    <p:column headerText="Nombre">
                                         <div align="center">
-                                            <h:outputText value="#{alumno.apPat}"/>
+                                            <h:outputText value="#{alumno.apPat} #{alumno.apMat} #{alumno.nombre}"/>
                                         </div>
                                     </p:column>
-                                    <p:column headerText="Apellido Materno">
-                                        <div align="center">
-                                            <h:outputText value="#{alumno.apMat}"/>
-                                        </div>
-                                    </p:column>
-                                    <p:column headerText="Nombre(s)">
-                                        <div align="center">
-                                            <h:outputText value="#{alumno.nombre}"/>
-                                        </div>
-                                    </p:column>
-                                    <p:column headerText="Numero de control">
+
+
+                                    <p:column headerText="Número de control">
                                         <div align="center">
                                             <h:outputText value="#{alumno.noCtrl}"/>
                                         </div>
@@ -77,17 +71,26 @@
                                             <h:outputText value="#{alumno.catCarreras.nomCarrera}"/>
                                         </div>
                                     </p:column>
-                                    <p:column headerText="Calificacion">
+                                    <p:column headerText="Calificación">
                                         <div align="center">
-                                            <h:outputText value="#{alumno.acreditado}"/>
+                                            <p:selectOneMenu id="calificacion" 
+                                                             required="true"
+                                                             requiredMessage="Seleccionar Calificacion"
+                                                             value="#{alumno.acreditado}">
+                                                <p:ajax listener="#{beanAlumno.calificarAlumno(alumno)}" />
+                                                <f:selectItem itemLabel="Acreditado" itemValue="true"/>
+                                                <f:selectItem itemLabel="No Acreditado" itemValue="false"/>
+                                            </p:selectOneMenu>
                                         </div>
                                     </p:column>
 
                                 </p:dataTable>
                             </h:panelGrid>
+                            
 
-                            <p:commandButton value="Guardarchida"  actionListener="#{beanUsuario.alumno_grupo()}" icon="ui-icon-check" >
-                            </p:commandButton>  
+
+
+
 
                         </h:form>
                     </p:fieldset>

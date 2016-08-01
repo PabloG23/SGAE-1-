@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,18 +27,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author pablog23
+ * @author omar
  */
 @Entity
 @Table(name = "Evento")
 @XmlRootElement
 
 public class Evento implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "idEvento")
     private Integer idEvento;
+    @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "tipo_evento")
@@ -71,23 +75,25 @@ public class Evento implements Serializable {
     private int mujeres;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "resultado")
-    private String resultado;
+    @Column(name = "total")
+    private int total;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "total")
-    private int total;
-    @JoinColumn(name = "Promotor_idPromotor", referencedColumnName = "idPromotor")
-    @ManyToOne(optional = false)
-    private Promotor promotor;
-    @JoinColumn(name = "Actividad_idActividad", referencedColumnName = "idActividad")
+    @Column(name = "resultado")
+    private String resultado;
+
+    @JoinColumn(name = "Actividad_idActividad", referencedColumnName = "idActividad", insertable = true, updatable = true)
     @ManyToOne(optional = false)
     private Actividad actividad;
-
     public Evento() {
     }
+
+    
+
+    
+
+    
 
     public String getTipoEvento() {
         return tipoEvento;
@@ -145,14 +151,6 @@ public class Evento implements Serializable {
         this.mujeres = mujeres;
     }
 
-    public String getResultado() {
-        return resultado;
-    }
-
-    public void setResultado(String resultado) {
-        this.resultado = resultado;
-    }
-
     public int getTotal() {
         return total;
     }
@@ -161,20 +159,30 @@ public class Evento implements Serializable {
         this.total = total;
     }
 
-    public Promotor getPromotor() {
-        return promotor;
+    public String getResultado() {
+        return resultado;
     }
 
-    public void setPromotor(Promotor promotor) {
-        this.promotor = promotor;
+    public void setResultado(String resultado) {
+        this.resultado = resultado;
     }
 
+    /**
+     * @return the actividad
+     */
     public Actividad getActividad() {
         return actividad;
     }
 
+    /**
+     * @param actividad the actividad to set
+     */
     public void setActividad(Actividad actividad) {
         this.actividad = actividad;
     }
+
+   
+
+   
 
 }

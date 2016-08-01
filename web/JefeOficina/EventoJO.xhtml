@@ -39,7 +39,7 @@
                                 </div>
                             </p:column>
                                 
-                            <p:column headerText="Institucion Organizadora">
+                            <p:column headerText="Institución Organizadora">
                                 <div align="center">
                                     <h:outputText value="#{evento.instOrganizadora}"/>
                                 </div>
@@ -48,6 +48,11 @@
                              <p:column headerText="Fecha">
                                 <div align="center">
                                     <h:outputText value="#{evento.fechaEvento}"/>
+                                </div>
+                            </p:column>
+                                <p:column headerText="Actividad">
+                                <div align="center">
+                                    <h:outputText value="#{evento.actividad.catActividad.nombre}"/>
                                 </div>
                             </p:column>
 

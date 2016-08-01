@@ -9,7 +9,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Grupo</title>
+                <title>Seleccionar Listas de Registro</title>
             </f:facet>
         </h:head>
 
@@ -30,15 +30,15 @@
 
                 <p:layoutUnit position="center">
                     <p:fieldset legend="Generar Reporte de Lista de Registro." style="margin-bottom: 10px">
-                        <h:panelGrid columns="1"  >
+                        <h:panelGrid columns="3"  >
 
                             <p:outputLabel value="Grupo:" />
                             <p:selectOneMenu id="Grupo"
-                                         value="#{beanAlumno.idGrupo}"
+                                             value="#{beanUsuario.idgruposeleccionado}"
                                          required="true">
                         <f:selectItem itemLabel="Seleccionar una Opción" itemValue="" noSelectionOption="true" />
                         <f:selectItems
-                            value="#{beanAlumno.jalarGrupos()}"
+                            value="#{beanUsuario.jalargrupodepromotorlogeado()}"
                             var="grupo"
                             itemLabel="#{grupo.actividad.catActividad.nombre} #{grupo.dias} #{grupo.horario}"
                             itemValue="#{grupo.idGrupo}"/>

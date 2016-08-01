@@ -17,7 +17,7 @@
                 </p:layoutUnit>
                 <p:layoutUnit position="center" style="border: none">
                     <h1>Bienvenido,Alumno.</h1>
-                    <h3>Inscripcion a las Actividades Extraescolares, ingresa tus datos.</h3>
+                    <h3>Inscripción a las Actividades Extraescolares, ingresa tus datos.</h3>
                     <p:fieldset legend="Seleccionar Grupo." style="margin-bottom: 10px">
                         <h:panelGrid columns="3" style="border: none" cellpadding="8" cellspacing="10">
 
@@ -42,17 +42,30 @@
                     <p:fieldset id="grid" legend="Ingresar Datos." style="margin-bottom: 10px">
                         <h:panelGrid columns="2" style="">
                             <h:panelGrid columns="1" style="border: none" >
-                                <p:outputLabel value="Numero de Control:" for="noctrl"/>
-                                <p:inputText id="noctrl" required="true"  requiredMessage="Ingresar Numero de Control" value="#{beanAlumno.entidadAlumno.noCtrl}"/>
-                                <p:message for="noctrl" display="text"/>
-                                <p:outputLabel value="Apellido Paterno:" for="ap"/>
-                                <p:inputText id="ap" required="true" requiredMessage="Ingresar Apellido Paterno" value="#{beanAlumno.entidadAlumno.apPat}"/>
+                                <p:outputLabel value="Número de Control:" for="noctrl"/>
+                                
+                                <p:inputMask id="noctrl" value="#{beanAlumno.entidadAlumno.noCtrl}" 
+                                                         required="true" requiredMessage="Ingresar Número de Control"
+                                                         maxlength="8" mask="99999999"/> 
+                                            <p:message for="noctrl" display="text"/>
+                                
+                                <p:outputLabel value="Apellido Paterno (Mayúsculas):" for="ap"/>
+                                <p:inputText id="ap" required="true" requiredMessage="Ingresar Apellido Paterno" value="#{beanAlumno.entidadAlumno.apPat}" />
+<!--                                    <f:validateRegex pattern="[A-Z]"/>-->
+<!--validatorMessage="Ingresa tus datos en mayúsculas, porfavor."-->
+<!--                                </p:inputText>-->
                                 <p:message for="ap" display="text"/>
-                                <p:outputLabel value="Apellido Materno:" for="am" />
+                                <p:outputLabel value="Apellido Materno (Mayúsculas):" for="am" />
                                 <p:inputText id="am" required="true" requiredMessage="Ingresar Apellido Materno" value="#{beanAlumno.entidadAlumno.apMat}"/>
+<!--                                <f:validateRegex pattern="[A-Z]"/>-->
+<!-- validatorMessage="Ingresa tus datos en mayúsculas, porfavor."-->
+<!--                                </p:inputText>-->
                                 <p:message for="am" display="text"/>
-                                <p:outputLabel value="Nombre(s):" for="nombre" />
-                                <p:inputText id="nombre" required="true" requiredMessage=" Ingresar Nombre" value="#{beanAlumno.entidadAlumno.nombre}"/>
+                                <p:outputLabel value="Nombre(s) (Mayúsculas):" for="nombre" />
+                                <p:inputText id="nombre" required="true" requiredMessage=" Ingresar Nombre" value="#{beanAlumno.entidadAlumno.nombre}" />
+<!--                                validatorMessage="Ingresa tus datos en mayúsculas, porfavor."-->
+<!--                                <f:validateRegex pattern="[A-Z]"/>-->
+<!--                                </p:inputText>-->
                                 <p:message for="nombre" display="text"/>
 
                                 <p:outputLabel value="Carrera:" for="carrera" />
@@ -99,7 +112,9 @@
                                 <p:message for="semestre" display="text"/>
 
                                 <p:outputLabel value="Edad:" for="edad" />
-                                <p:inputText id="edad" value="#{beanAlumno.entidadAlumno.edad}" required="true" requiredMessage="Ingresar Edad"/> 
+                                <p:inputText id="edad" value="#{beanAlumno.entidadAlumno.edad}"  required="true" requiredMessage="Ingresar Edad" validatorMessage="Ingresa tu edad correctamente, porfavor.">
+                                <f:validateLongRange minimum="16" maximum="35" />
+                                </p:inputText>
                                 <p:message for="edad" display="text"/>
 
                                 <p:outputLabel value="Capacidades Diferentes:" />
@@ -119,7 +134,7 @@
                                 <p:message for="capdif" display="text"/>
 
 
-                                <p:outputLabel value="¿Cuantas veces has cursado alguna Actividad Extraescolar?:" />
+                                <p:outputLabel value="¿Cuántas veces has cursado alguna Actividad Extraescolar?:" />
                                 <p:selectOneMenu id="reincidencia" required="true" requiredMessage="Ingresar reincidencia" value="#{beanAlumno.entidadAlumno.reincidencia}" >
                                     <f:selectItem itemLabel="Seleccion una Opción" itemValue="" noSelectionOption="true" />
                                     <f:selectItem itemLabel="1" itemValue="1"/>
@@ -145,11 +160,11 @@
                         </h:panelGrid>
                         
                         <p:commandButton  update="grid" value="Registrar"  actionListener="#{beanAlumno.agregarAlumno()}" icon="ui-icon-check">
-                            <p:confirm header="Confirmation" message="¿Estas seguro de agregar este Grupo?" icon="ui-icon-alert" />                                
+                            <p:confirm header="Confirmation" message="¿Estás seguro de elegir este grupo?" icon="ui-icon-alert"  />                                
                         </p:commandButton>
                         <p:growl id="message"/>
                         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                             <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                         </p:confirmDialog>
                     </p:fieldset>

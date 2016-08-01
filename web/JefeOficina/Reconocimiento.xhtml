@@ -14,52 +14,49 @@
     <h:body>
         <p:layout fullPage="true">
             <p:layoutUnit position="north" >
-                    <ui:insert name="encabezado">
-                        <ui:include src="/secciones/encabezado.xhtml"/>
-                    </ui:insert>
-                </p:layoutUnit>
-            
+                <ui:insert name="encabezado">
+                    <ui:include src="/secciones/encabezado.xhtml"/>
+                </ui:insert>
+            </p:layoutUnit>
+
             <p:layoutUnit position="west" size="250" collapsible="true">
-                    <ui:insert name="menu">
-                        <ui:include src="/secciones/menuJO.xhtml"/>
-                    </ui:insert>
-                </p:layoutUnit>
-            
+                <ui:insert name="menu">
+                    <ui:include src="/secciones/menuJO.xhtml"/>
+                </ui:insert>
+            </p:layoutUnit>
+
             <p:layoutUnit position="center">
-                 <p:fieldset legend="Alumnos con Habilidades Elegidos por los Promotores" style="margin-bottom: 10px">
-                <h:panelGrid columns="2"  >
-                   
+                <p:fieldset legend="Alumnos con Habilidades Elegidos por los Promotores" style="margin-bottom: 10px">
+                    <h:panelGrid columns="2"  >
 
-                            <p:dataTable value="#{beanAlumno.jalarAlumnos()}" var="alumno">
-                                <p:column headerText="Apellido Paterno">
-                                    <div align="center">
-                                        <h:outputText value="#{alumno.apPat}"/>
-                                    </div>
-                                </p:column>
-                                <p:column headerText="Apellido Materno">
-                                    <div align="center">
-                                        <h:outputText value="#{alumno.apMat}"/>
-                                    </div>
-                                </p:column>
-                                <p:column headerText="Nombre(s)">
-                                    <div align="center">
-                                        <h:outputText value="#{alumno.nombre}"/>
-                                    </div>
-                                </p:column>
-                                <p:column headerText="Numero de control">
-                                    <div align="center">
-                                        <h:outputText value="#{alumno.noCtrl}"/>
-                                    </div>
-                                </p:column>
-                                <p:column headerText="Carrera">
-                                    <div align="center">
-                                        <h:outputText value="#{alumno.catCarreras.nomCarrera}"/>
-                                    </div>
-                                </p:column>
 
-                            </p:dataTable>
+                        <p:dataTable value="#{beanAlumno.alumnos_rec()}" var="alumno">
+                            <p:column headerText="Nombre">
+                                <div align="center">
+                                    <h:outputText value="#{alumno.apPat} #{alumno.apMat} #{alumno.nombre}"/>
+                                </div>
+                            </p:column>
 
-                        </h:panelGrid>
+                            <p:column headerText="Número de control">
+                                <div align="center">
+                                    <h:outputText value="#{alumno.noCtrl}"/>
+                                </div>
+                            </p:column>
+                            <p:column headerText="Carrera">
+                                <div align="center">
+                                    <h:outputText value="#{alumno.catCarreras.nomCarrera}"/>
+                                </div>
+                            </p:column>
+
+                            <p:column headerText="Actividad">
+                                <div align="center">
+                                    <h:outputText value="#{alumno.grupo.actividad.catActividad.nombre}"/>
+                                </div>
+                            </p:column>
+
+                        </p:dataTable>
+
+                    </h:panelGrid>
                 </p:fieldset>
                 <a href="/SGAE/Reconocimiento" target="_blank">Exportar a PDF</a>
             </p:layoutUnit>

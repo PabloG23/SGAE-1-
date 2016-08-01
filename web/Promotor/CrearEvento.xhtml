@@ -22,70 +22,101 @@
             </p:layoutUnit>
             <p:layoutUnit position="center" style="border: none">
                 <h:form>
-                <p:fieldset legend="Crear Evento" style="margin-bottom: 10px">
-                <h:panelGrid columns="2" >
-                    
+                    <p:fieldset id="grid" legend="Crear Evento" style="margin-bottom: 10px">
+                        <h:panelGrid columns="2" >
 
 
-                    <h:panelGrid columns="1"  >
-                        <p:outputLabel value="Tipo de Evento:" for="tipoEve"/>
-                        <p:selectOneMenu id="tipoEve" value="#{beanEvento.entidadEvento.tipoEvento}" required="true" >
-                            <f:selectItem itemLabel="Seleccionar una Opcion" itemValue=""/>
-                            <f:selectItem itemLabel="Cultural" itemValue="Cultural"/>
-                            <f:selectItem itemLabel="Deportivo" itemValue="Deportivo"/>
-                        </p:selectOneMenu>
+
+                            <h:panelGrid columns="1"  >
+                                <p:outputLabel value="Selecciona  Actividad del Evento:" for="nombre"/>
+                                <p:selectOneMenu
+                                    id="nombre"
+                                    value="#{beanEvento.idactividad}"
+                                    required="true"
+                                    requiredMessage="Necesitas escoger una Actividad para el evento">
+                                    <f:selectItem itemLabel="Selecciona una Actividad" itemValue="" noSelectionOption="true" />
+                                    <f:selectItems
+                                        value="#{beanEvento.jalarActividades()}"
+                                        var="actividad"
+                                        itemLabel="#{actividad.catActividad.nombre}"
+                                        itemValue="#{actividad.idactividad}"/>
+
+                                </p:selectOneMenu>
+                                <p:message for="nombre" display="text"/>
+
+                                <p:outputLabel value="Tipo de Evento:" for="tipoEve"/>
+                                <p:selectOneMenu id="tipoEve" value="#{beanEvento.entidadEvento.tipoEvento}" required="true" requiredMessage="Necesitas escoger si el evento es cultural o deportivo">
+                                    <f:selectItem itemLabel="Seleccionar una Opcion" itemValue=""/>
+                                    <f:selectItem itemLabel="Cultural" itemValue="Cultural"/>
+                                    <f:selectItem itemLabel="Deportivo" itemValue="Deportivo"/>
+                                </p:selectOneMenu>
+                                <p:message for="tipoEve" display="text"/>
 
 
-                        <p:outputLabel value="Nombre del Evento:" for="nombreEve"/>
-                        <p:inputText id="nombreEve" value="#{beanEvento.entidadEvento.nombreEvento}" required="true"/>
-
-                        <p:outputLabel value="Institucion Organizadora:" for="institucion"/>
-                        <p:inputText id="institucion" value="#{beanEvento.entidadEvento.instOrganizadora}" required="true"/>
-
-                        <p:outputLabel value="Evento:" />
-                        <p:selectOneMenu id="evento" value="#{beanEvento.entidadEvento.evento}" required="true" >
-                            <f:selectItem itemLabel="Seleccionar una Opcion" itemValue=""/>
-                            <f:selectItem itemLabel="Interno" itemValue="Cultural"/>
-                            <f:selectItem itemLabel="Externo" itemValue="Deportivo"/>
-                        </p:selectOneMenu>
-
-                    </h:panelGrid>
+                                <p:outputLabel value="Nombre del Evento(Mayúsculas):" for="nombreEve"/>
+                                <p:inputText id="nombreEve" value="#{beanEvento.entidadEvento.nombreEvento}" required="true" validatorMessage="Ingresa los datos en mayúsculas, porfavor" requiredMessage="Necesitas ingresar el nombre del evento.">
+                                </p:inputText>
+                                <p:message for="nombreEve" display="text"/>
 
 
-                    <h:panelGrid columns="1"  >
-                        <p:outputLabel value="Fecha de Realizacion:" for="calendario"/>
-                        <p:calendar id="calendario" value="#{beanEvento.entidadEvento.fechaEvento}" required="true" />
-                        <p:outputLabel value="Numero de participantes:" />
-                        <h:panelGrid columns="2"  >
+                                <p:outputLabel value="Institución Organizadora(Mayúsculas):" for="institucion"/>
+                                <p:inputText id="institucion" value="#{beanEvento.entidadEvento.instOrganizadora}" required="true" validatorMessage="Ingresa los datos en mayúsculas, porfavor" requiredMessage="Necesitas ingresar el nombre de la institucion organizadora">
+                                                                </p:inputText>
+                                <p:message for="institucion" display="text"/>
 
-                            <p:outputLabel value="Hombres:" for="hombres" />
-                            <p:inputText id="hombres" value="#{beanEvento.entidadEvento.hombres}" required="true"/>
-                            <p:outputLabel value="Mujeres:" for="mujeres" />
-                            <p:inputText id="mujeres" value="#{beanEvento.entidadEvento.mujeres}" required="true"/>
-                            
+                                <p:outputLabel value="Lugar del Evento:" />
+                                <p:selectOneMenu id="evento" value="#{beanEvento.entidadEvento.evento}" required="true" requiredMessage="Necesitas escoger si el evento es interno o externo">
+                                    <f:selectItem itemLabel="Seleccionar una Opción" itemValue=""/>
+                                    <f:selectItem itemLabel="Interno" itemValue="Interno"/>
+                                    <f:selectItem itemLabel="Externo" itemValue="Externo"/>
+                                </p:selectOneMenu>
+                                <p:message for="evento" display="text"/>
 
+                            </h:panelGrid>
+
+
+                            <h:panelGrid columns="1"  >
+                                <p:outputLabel value="Fecha del Evento:" for="calendario"/>
+                                <p:calendar id="calendario" value="#{beanEvento.entidadEvento.fechaEvento}" required="true" requiredMessage="Ingresar Fecha"/>
+                                <p:message for="calendario" display="text"/>
+                                <p:outputLabel value="Número de participantes:" />
+                                <h:panelGrid columns="1"  >
+
+                                    <p:outputLabel value="Hombres:" for="hombres" />
+                                    <p:inputText id="hombres" value="#{beanEvento.entidadEvento.hombres}" required="true" requiredMessage="Introduce el número de hombres correctamente"/>
+                                    <p:message for="hombres" display="text"/>
+                                    <p:outputLabel value="Mujeres:" for="mujeres" />
+                                    <p:inputText id="mujeres" value="#{beanEvento.entidadEvento.mujeres}" required="true" requiredMessage="Introduce el número de mujeres correctamente"/>
+                                    <p:message for="mujeres" display="text"/>
+
+
+                                </h:panelGrid>
+
+
+                                <p:outputLabel value="Resultado Obtenido(Mayúsculas):" for="resultado"/>
+                                <p:inputText id="resultado" value="#{beanEvento.entidadEvento.resultado}" required="true" requiredMessage="Ingresa el Resultado Obtenido"/>
+                                <p:message for="resultado" display="text"/>
+
+
+                            </h:panelGrid>
 
                         </h:panelGrid>
+                    </p:fieldset>
 
+                    <br/>
+                    <h:panelGrid columns="2"  >
 
-                        <p:outputLabel value="Resultado Obtenido:" for="resultado"/>
-                        <p:inputText id="resultado" value="#{beanEvento.entidadEvento.resultado}" required="true"/>
-
-
+                        <p:commandButton update="grid" value="Crear" action="#{beanEvento.agregarEvento()}" icon="ui-icon-check">
+                            <p:confirm header="Confirmation" message="¿Está seguro de guardar el evento?" icon="ui-icon-alert"  />                                
+                        </p:commandButton>
+                        <p:growl id="message"/>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Si"  type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
 
                     </h:panelGrid>
 
-                </h:panelGrid>
-                    </p:fieldset>
-                    
-                <br/>
-                <h:panelGrid columns="2"  >
-
-                    <p:commandButton value="Crear" action="#{beanEvento.agregarEvento()}"/>
-                    
-
-                </h:panelGrid>
-                
                 </h:form>
 
 

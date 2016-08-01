@@ -7,14 +7,15 @@ package Modelo;
 
 import entities.Actividad;
 import entities.Evento;
-import entities.Promotor;
+
 import facade.ActividadFacade;
 import facade.EventoFacade;
-import facade.PromotorFacade;
+
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 /**
@@ -22,7 +23,7 @@ import javax.inject.Inject;
  * @author pablog23
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class BeanEvento {
 
     private Evento entidadEvento = new Evento();
@@ -33,7 +34,7 @@ public class BeanEvento {
     @Inject
     private EventoFacade eventoFacade;
 
-    private int idpromotor;
+    
     private int idactividad;
 
     public BeanEvento() {
@@ -42,9 +43,8 @@ public class BeanEvento {
     
     public void agregarEvento(){
         Actividad obj = actividadFacade.find(this.idactividad);
+        
         entidadEvento.setActividad(obj);
-        
-        
         entidadEvento.setTotal(total());
         eventoFacade.create(entidadEvento);
         
@@ -63,14 +63,13 @@ public class BeanEvento {
         return obj;
     }
     
-
-    public int getIdpromotor() {
-        return idpromotor;
+    public List<Actividad> jalarActividades(){
+        List<Actividad> obj = actividadFacade.findAll();
+        return obj;
     }
+    
 
-    public void setIdpromotor(int idpromotor) {
-        this.idpromotor = idpromotor;
-    }
+    
 
     public int getIdactividad() {
         return idactividad;

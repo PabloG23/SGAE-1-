@@ -99,6 +99,47 @@ public class BeanAlumno {
     }
     /////FIN DE PRUEBA PARA SACAR LOS GRUPOS DE UN PROMOTOR/////
 
+    public void calificarAlumno(Alumno alumno) {
+        alumno.setAcreditado(!alumno.isAcreditado());
+        alumnoFacade.edit(alumno);
+    }
+
+    public void reconocerAlumno(Alumno alumno) {
+        alumno.setReconocimiento(!alumno.getReconocimiento());
+        alumnoFacade.edit(alumno);
+    }
+
+    public void seleccionarAlumno(Alumno alumno) {
+        alumno.setSeleccionado(!alumno.getSeleccionado());
+        alumnoFacade.edit(alumno);
+    }
+
+    public List<Alumno> alumnos_rec() {
+        List<Alumno> alumnosR = alumnoFacade.findAll();
+        List<Alumno> alumnosN = new ArrayList<Alumno>();
+
+        for (int i = 0; i < alumnosR.size(); i++) {
+
+            if (alumnosR.get(i).getReconocimiento() == true) {
+                alumnosN.add(alumnosR.get(i));
+            }
+        }
+        return alumnosN;
+    }
+
+    public List<Alumno> alumnos_hab() {
+        List<Alumno> alumnosR = alumnoFacade.findAll();
+        List<Alumno> alumnosN = new ArrayList<Alumno>();
+
+        for (int i = 0; i < alumnosR.size(); i++) {
+
+            if (alumnosR.get(i).getSeleccionado() == true) {
+                alumnosN.add(alumnosR.get(i));
+            }
+        }
+        return alumnosN;
+    }
+
     public List<Grupo> jalarGrupos() {
         List<Grupo> obj = grupoFacade.findAll();
         return obj;

@@ -125,12 +125,16 @@ public class BeanUsuario implements Serializable {
     /////FIN DE CODIGO PARA SACAR LOS GRUPOS DE UN PROMOTOR/////
 
     ////CODIGO PARA JALAR LOS ALUMNOS DE CADA GRUPO/////
-    private int idgruposeleccionado;
+    private int idgruposeleccionado=2220162;
     private int idcomparar;
 
     public List<Alumno> alumno_grupo() {
+
         entidadGrupo = grupoFacade.find(this.idgruposeleccionado);
+
+        
         idcomparar = entidadGrupo.getIdGrupo();
+        System.out.println("!!!Entidad grupo: " + entidadGrupo);
         System.out.println("iddegrupo: " + idcomparar);
         List<Alumno> alumnos = alumnoFacade.findAll();
         List<Alumno> listaalumno = new ArrayList<Alumno>();
@@ -138,7 +142,7 @@ public class BeanUsuario implements Serializable {
             if (idcomparar == alumnos.get(i).getGrupo().getIdGrupo()) {
                 entidadalumno = alumnoFacade.find(alumnos.get(i).getNoCtrl());
                 listaalumno.add(entidadalumno);
-                System.out.println("Alumno: "+entidadalumno.getNombre());
+                System.out.println("Alumno: " + entidadalumno.getNombre());
             }
         }
         System.out.println("Lista del grupo: " + listaalumno);
