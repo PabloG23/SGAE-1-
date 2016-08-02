@@ -107,7 +107,6 @@ public class Acreditados extends HttpServlet {
                             celdabuena = new PdfPCell(new Phrase(lista.get(l).getApPat() + " " + lista.get(l).getApMat() + " " + lista.get(l).getNombre()));
                             celdabuena.setColspan(6);
                             tablabuena.addCell(celdabuena);
-
                             celdabuena = new PdfPCell(new Phrase(lista.get(l).getNoCtrl()));
                             celdabuena.setColspan(2);
                             tablabuena.addCell(celdabuena);
@@ -127,12 +126,41 @@ public class Acreditados extends HttpServlet {
                             celdabuena = new PdfPCell(new Phrase(na()));
                             celdabuena.setColspan(1);
                             tablabuena.addCell(celdabuena);
+                            //document.add(new Paragraph(lista.get(l).getNombre()));
                             System.out.println("alumno: " + lista.get(l).getNombre());
+                          
                         }
                     } ///cuando hay mas entidades que rango
                     else {
                         for (j = k; j < rango; j++) {
-                            document.add(new Paragraph(lista.get(j).getNombre()));
+                            celdabuena = new PdfPCell(new Phrase(j + 1 + ""));
+                            celdabuena.setColspan(1);
+                            tablabuena.addCell(celdabuena);
+
+                            celdabuena = new PdfPCell(new Phrase(obj.alumno_grupo().get(j).getApPat() + " " + obj.alumno_grupo().get(i).getApMat() + " " + obj.alumno_grupo().get(i).getNombre()));
+                            celdabuena.setColspan(6);
+                            tablabuena.addCell(celdabuena);
+
+                            celdabuena = new PdfPCell(new Phrase(obj.alumno_grupo().get(j).getNoCtrl()+""));
+                            celdabuena.setColspan(2);
+                            tablabuena.addCell(celdabuena);
+
+                            celdabuena = new PdfPCell(new Phrase(obj.alumno_grupo().get(j).getCatCarreras().getNomCarrera()));
+                            celdabuena.setColspan(3);
+                            tablabuena.addCell(celdabuena);
+
+                            celdabuena = new PdfPCell(new Phrase(obj.alumno_grupo().get(j).getSemestre()));
+                            celdabuena.setColspan(1);
+                            tablabuena.addCell(celdabuena);
+
+                            celdabuena = new PdfPCell(new Phrase(a()));
+                            celdabuena.setColspan(1);
+                            tablabuena.addCell(celdabuena);
+
+                            celdabuena = new PdfPCell(new Phrase(na()));
+                            celdabuena.setColspan(1);
+                            tablabuena.addCell(celdabuena);
+                            //document.add(new Paragraph(lista.get(j).getNombre()));
                             System.out.println("alumno: " + lista.get(j).getNombre());
                         }
                         k = rango;
@@ -144,6 +172,7 @@ public class Acreditados extends HttpServlet {
                     document.add(new Paragraph(" "));
                     document.add(this.t7(document));
                     document.newPage();
+                    tablabuena.deleteBodyRows();
                 }
             }
 
