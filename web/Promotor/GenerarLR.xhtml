@@ -9,7 +9,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Seleccionar Listas de Registro</title>
+                <title>Generar Cedulas de Resultados</title>
             </f:facet>
         </h:head>
 
@@ -29,30 +29,61 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center">
-                    <p:fieldset legend="Generar Reporte de Lista de Registro." style="margin-bottom: 10px">
-                        <h:panelGrid columns="3"  >
+                    <p:fieldset legend="Generar Cédulas de Registro" style="margin-bottom: 10px">
+                        <h:form>
+                            <h:panelGrid columns="3"  >
 
-                            <p:outputLabel value="Grupo:" />
-                            <p:selectOneMenu id="Grupo"
-                                             value="#{beanUsuario.idgruposeleccionado}"
-                                         required="true">
-                        <f:selectItem itemLabel="Seleccionar una Opción" itemValue="" noSelectionOption="true" />
-                        <f:selectItems
-                            value="#{beanUsuario.jalargrupodepromotorlogeado()}"
-                            var="grupo"
-                            itemLabel="#{grupo.actividad.catActividad.nombre} #{grupo.dias} #{grupo.horario}"
-                            itemValue="#{grupo.idGrupo}"/>
-                        </p:selectOneMenu>
+                                <p:outputLabel value="Grupo:" for="Grupo"/>
+                                <p:selectOneMenu id="Grupo"
+                                                 value="#{beanUsuario.idgruposeleccionado}"
+                                                 required="true">
+                                    <!--                                    <f:selectItem itemLabel="Seleccionar una Opción" itemValue="" noSelectionOption="true" />-->
+                                    <f:selectItems
+                                        value="#{beanUsuario.jalargrupodepromotorlogeado()}"
+                                        var="grupo"
+                                        itemLabel="#{grupo.actividad.catActividad.nombre} #{grupo.dias} #{grupo.horario}"
+                                        itemValue="#{grupo.idGrupo}"/>
+                                </p:selectOneMenu>
+                                <p:commandButton value="Mostrar Alumnos"  actionListener="#{beanUsuario.alumno_grupo()}" update="alu" icon="ui-icon-check" />
 
-                        </h:panelGrid>
+                            </h:panelGrid>
+
+
+                            <h:panelGrid columns="2"  >
+
+
+                                <p:dataTable id="alu" value="#{beanUsuario.alumno_grupo()}" var="alumno">
+
+                                    <p:column headerText="Nombre">
+                                        <div align="center">
+                                            <h:outputText value="#{alumno.apPat} #{alumno.apMat} #{alumno.nombre}"/>
+                                        </div>
+                                    </p:column>
+
+
+                                    <p:column headerText="Número de control">
+                                        <div align="center">
+                                            <h:outputText value="#{alumno.noCtrl}"/>
+                                        </div>
+                                    </p:column>
+                                    <p:column headerText="Carrera">
+                                        <div align="center">
+                                            <h:outputText value="#{alumno.catCarreras.nomCarrera}"/>
+                                        </div>
+                                    </p:column>
+                                    
+
+                                </p:dataTable>
+                            </h:panelGrid>
+                            
+
+
+
+
+
+                        </h:form>
                     </p:fieldset>
-
-
-
-<!--                    <h:commandButton value="Generar Reporte"/>-->
                     <a href="/SGAE/Registro" target="_blank">Exportar a PDF</a>
-
-
 
                 </p:layoutUnit>
 

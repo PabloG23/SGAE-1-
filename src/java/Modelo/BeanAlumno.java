@@ -16,9 +16,11 @@ import facade.GrupoFacade;
 import java.util.ArrayList;
 
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 /**
@@ -63,6 +65,7 @@ public class BeanAlumno {
         entidadAlumno.setSeleccionado(false);
 
         alumnoFacade.create(entidadAlumno);
+        destroyWorld();
     }
 
     public List<CatCarreras> jalarCarreras() {
@@ -102,6 +105,7 @@ public class BeanAlumno {
     public void calificarAlumno(Alumno alumno) {
         alumno.setAcreditado(!alumno.isAcreditado());
         alumnoFacade.edit(alumno);
+        alumnoCalificado();
     }
 
     public void reconocerAlumno(Alumno alumno) {
@@ -138,6 +142,24 @@ public class BeanAlumno {
             }
         }
         return alumnosN;
+    }
+    
+    public void destroyWorld() {
+        addMessage("Te has inscrito al grupo satisfactoriamente", "Agregado");
+    }
+
+    public void addMessage(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+    
+    public void alumnoCalificado() {
+        addMessage1("Alumno Acreditado Satisfactoriamente", "Acreditado");
+    }
+
+    public void addMessage1(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
     public List<Grupo> jalarGrupos() {
