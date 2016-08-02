@@ -12,10 +12,12 @@ import facade.ActividadFacade;
 import facade.EventoFacade;
 
 import java.util.List;
+import javax.faces.application.FacesMessage;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 /**
@@ -47,6 +49,7 @@ public class BeanEvento {
         entidadEvento.setActividad(obj);
         entidadEvento.setTotal(total());
         eventoFacade.create(entidadEvento);
+        destroyWorld();
         
     }
     
@@ -66,6 +69,15 @@ public class BeanEvento {
     public List<Actividad> jalarActividades(){
         List<Actividad> obj = actividadFacade.findAll();
         return obj;
+    }
+    
+    public void destroyWorld() {
+        addMessage("Evento Agregado Satisfactoriamente", "Agregado");
+    }
+
+    public void addMessage(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
     
 

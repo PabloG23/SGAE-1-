@@ -34,7 +34,8 @@ import javax.servlet.http.HttpServletResponse;
 public class Reconocimiento extends HttpServlet {
 
 //    @ManagedProperty(value = "#{beanUsuario}")
-    private BeanUsuario obj;
+    private BeanAlumno obj;
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,7 +49,7 @@ public class Reconocimiento extends HttpServlet {
     protected void Reconocimiento(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        obj = (BeanUsuario) request.getSession().getAttribute("beanUsuario");
+        obj = (BeanAlumno) request.getSession().getAttribute("beanAlumno");
 
         try (OutputStream os = response.getOutputStream()) {
 
@@ -57,7 +58,7 @@ public class Reconocimiento extends HttpServlet {
             PdfWriter.getInstance(document, baos);
             document.open();
 
-            int rango = 25, alumnos = obj.alumno_grupo().size();
+            int rango = 25, alumnos = obj.alumnos_rec().size();
             int f = alumnos;
             double y = alumnos / rango;
             double r = Math.ceil(y) + 1;
@@ -71,7 +72,7 @@ public class Reconocimiento extends HttpServlet {
             tabla.setLockedWidth(true);
 
             List<Alumno> lista = new ArrayList<Alumno>();
-            lista = obj.alumno_grupo();
+            lista = obj.alumnos_rec();
 
             if (alumnos < rango) {
                 document.add(this.addParagraph());
@@ -155,7 +156,7 @@ public class Reconocimiento extends HttpServlet {
         tabla.setTotalWidth(document.getPageSize().getWidth() - 80);
         tabla.setLockedWidth(true);
 
-        List<Alumno> lista = obj.alumno_grupo();
+        List<Alumno> lista = obj.alumnos_rec();
 
         for (int i = 0; i < lista.size(); i++) {
 
@@ -190,7 +191,7 @@ public class Reconocimiento extends HttpServlet {
                 + "REGISTRO DE ALUMNOS DE LAS ACTIVIDADES COMPLEMENTARIAS Y REPRESENTATIVOS\n"
                 + "CULTURALES Y/O DEPORTIVA PARA RECIBIR  RECONOCIMIENTO POR SU DESTACADA\n"
                 + "PARTICIPACIÓN\n"
-                + "PERIODO" + " " + obj.alumno_grupo().get(i).getGrupo().getActividad().getSemestre() + " " + obj.alumno_grupo().get(i).getGrupo().getActividad().getAño();
+                + "PERIODO" + " " + obj.alumnos_rec().get(i).getGrupo().getActividad().getSemestre() + " " + obj.alumnos_rec().get(i).getGrupo().getActividad().getAño();
         Font fuenteParrafo1 = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 10);
         Chunk chunk = new Chunk(title + "\n\n", fuenteParrafo1);
         Paragraph titleParagraph = new Paragraph(chunk);
