@@ -60,12 +60,12 @@ public class Habilidades extends HttpServlet {
             PdfWriter.getInstance(document, baos);
             document.open();
 
-            int rango = 25, alumnos = obj.alumnos_reconocidos().size();
+            int rango = 20, alumnos = obj.alumnos_preseleccionados().size();
             int f = alumnos;
             double y = alumnos / rango;
             double r = Math.ceil(y) + 1;
             int h = (int) r;
-            
+
             Font fuenteParrafo1 = FontFactory.getFont(FontFactory.HELVETICA, 10);
             PdfPCell celda;
 
@@ -74,17 +74,17 @@ public class Habilidades extends HttpServlet {
             tabla.setLockedWidth(true);
 
             List<Alumno> lista = new ArrayList<Alumno>();
-            lista = obj.alumnos_reconocidos();
+            lista = obj.alumnos_preseleccionados();
 
-            if (alumnos < rango) {
+            if (alumnos <= rango) {
                 document.add(this.addParagraph());
                 document.add(this.t1(document));
                 document.add(this.t2(document));
                 document.add(new Paragraph(" "));
                 document.add(this.t3(document));
                 document.add(tabla_alumnos(document));
-                System.out.println("######"+" "+obj.alumnos_reconocidos().size());
-                while (f < rango) {
+
+                while (f <= rango) {
                     document.add(new Paragraph(" "));
                     f++;
                 }
@@ -93,48 +93,74 @@ public class Habilidades extends HttpServlet {
                 document.add(new Paragraph(" "));
                 document.add(this.t5(document));
             } else {
-                int p = 0;
-                while (p < h) {
+                int tamañolista = lista.size(), j, k = 0;
+                for (int i = 0; i < h; i++) {
+
                     document.add(this.addParagraph());
                     document.add(this.t1(document));
                     document.add(this.t2(document));
                     document.add(new Paragraph(" "));
                     document.add(this.t3(document));
 
-                    for (int i = 0; i < rango; i++) {
+                    tamañolista = lista.size();
+                    System.out.println("tamaño actual:" + tamañolista);
+                    if (tamañolista > k && tamañolista <= rango) {
+                        for (int l = k; l < lista.size(); l++) {
+                            celda = new PdfPCell(new Phrase(l + 1 + ""));
+                            celda.setColspan(1);
+                            tabla.addCell(celda);
 
-                        celda = new PdfPCell(new Phrase(i + 1 + ""));
-                        celda.setColspan(1);
-                        tabla.addCell(celda);
+                            celda = new PdfPCell(new Phrase(lista.get(l).getApPat() + " " + lista.get(l).getApMat() + " " + lista.get(l).getNombre(), fuenteParrafo1));
+                            celda.setColspan(8);
+                            tabla.addCell(celda);
 
-                        celda = new PdfPCell(new Phrase(lista.get(i).getApPat() + " " + lista.get(i).getApMat() + " " + lista.get(i).getNombre(), fuenteParrafo1));
-                        celda.setColspan(8);
-                        tabla.addCell(celda);
+                            celda = new PdfPCell(new Phrase(lista.get(l).getCatCarreras().getNomCarrera(), fuenteParrafo1));
+                            celda.setColspan(5);
+                            tabla.addCell(celda);
 
-                        celda = new PdfPCell(new Phrase(lista.get(i).getCatCarreras().getNomCarrera(), fuenteParrafo1));
-                        celda.setColspan(5);
-                        tabla.addCell(celda);
+                            celda = new PdfPCell(new Phrase(lista.get(l).getNoCtrl() + ""));
+                            celda.setColspan(3);
+                            tabla.addCell(celda);
 
-                        celda = new PdfPCell(new Phrase(lista.get(i).getNoCtrl() + ""));
-                        celda.setColspan(3);
-                        tabla.addCell(celda);
+                            celda = new PdfPCell(new Phrase(lista.get(l).getSemestre(), fuenteParrafo1));
+                            celda.setColspan(3);
+                            tabla.addCell(celda);
 
-                        celda = new PdfPCell(new Phrase(lista.get(i).getSemestre(), fuenteParrafo1));
-                        celda.setColspan(3);
-                        tabla.addCell(celda);
+                        }
+                    } else {
+                        for (j = k; j < rango; j++) {
+                            celda = new PdfPCell(new Phrase(j + 1 + ""));
+                            celda.setColspan(1);
+                            tabla.addCell(celda);
 
-                        lista.remove(i);
+                            celda = new PdfPCell(new Phrase(lista.get(j).getApPat() + " " + lista.get(j).getApMat() + " " + lista.get(j).getNombre(), fuenteParrafo1));
+                            celda.setColspan(8);
+                            tabla.addCell(celda);
+
+                            celda = new PdfPCell(new Phrase(lista.get(j).getCatCarreras().getNomCarrera(), fuenteParrafo1));
+                            celda.setColspan(5);
+                            tabla.addCell(celda);
+
+                            celda = new PdfPCell(new Phrase(lista.get(j).getNoCtrl() + ""));
+                            celda.setColspan(3);
+                            tabla.addCell(celda);
+
+                            celda = new PdfPCell(new Phrase(lista.get(j).getSemestre(), fuenteParrafo1));
+                            celda.setColspan(3);
+                            tabla.addCell(celda);
+                        }
+                        k = rango;
+                        rango = rango + 20;
                     }
+                    document.add(tabla);
                     document.add(new Paragraph(" "));
                     document.add(this.t4(document));
                     document.add(new Paragraph(" "));
                     document.add(this.t5(document));
-                    p++;
-
+                    document.newPage();
+                    tabla.deleteBodyRows();
                 }
             }
-
-       
 
             // Close document
             document.close();
@@ -189,7 +215,7 @@ public class Habilidades extends HttpServlet {
         celda.setColspan(1);
         tablita.addCell(celda);
 
-        celda = new PdfPCell(new Phrase(cultural()));
+        celda = new PdfPCell(new Phrase("d"));
         celda.setColspan(1);
         tablita.addCell(celda);
 
@@ -197,7 +223,7 @@ public class Habilidades extends HttpServlet {
         celda.setColspan(1);
         tablita.addCell(celda);
 
-        celda = new PdfPCell(new Phrase(deportivo(), fuentePrimeraTabla));
+        celda = new PdfPCell(new Phrase("d", fuentePrimeraTabla));
         celda.setColspan(1);
         tablita.addCell(celda);
 
@@ -205,7 +231,7 @@ public class Habilidades extends HttpServlet {
         celda.setColspan(1);
         tablita.addCell(celda);
 
-        celda = new PdfPCell(new Phrase(ad(), fuentePrimeraTabla));
+        celda = new PdfPCell(new Phrase("s", fuentePrimeraTabla));
         celda.setColspan(1);
         tablita.addCell(celda);
 
@@ -213,7 +239,7 @@ public class Habilidades extends HttpServlet {
         celda.setColspan(1);
         tablita.addCell(celda);
 
-        celda = new PdfPCell(new Phrase(ej(), fuentePrimeraTabla));
+        celda = new PdfPCell(new Phrase("w", fuentePrimeraTabla));
         celda.setColspan(1);
         tablita.addCell(celda);
 
@@ -239,7 +265,7 @@ public class Habilidades extends HttpServlet {
         chida.setColspan(2);
         tablita2.addCell(chida);
         int i = 1;
-        chida = new PdfPCell(new Phrase(obj.alumnos_reconocidos().get(i).getGrupo().getActividad().getCatActividad().getNombre(), fuentePrimeraTabla));
+        chida = new PdfPCell(new Phrase(obj.alumnos_preseleccionados().get(i).getGrupo().getActividad().getCatActividad().getTipo(), fuentePrimeraTabla));
         chida.setColspan(9);
         tablita2.addCell(chida);
 
@@ -285,7 +311,7 @@ public class Habilidades extends HttpServlet {
         tabla.setTotalWidth(document.getPageSize().getWidth() - 80);
         tabla.setLockedWidth(true);
 
-        List<Alumno> lista = obj.alumnos_reconocidos();
+        List<Alumno> lista = obj.alumnos_preseleccionados();
 
         for (int i = 0; i < lista.size(); i++) {
 
@@ -375,7 +401,7 @@ public class Habilidades extends HttpServlet {
 
         PdfPCell chida4;
 
-        chida4 = new PdfPCell(new Phrase("Firma \n\n" + "Nombre:" + "Profr." + obj.alumnos_reconocidos().get(i).getGrupo().getPromotor().getApePat() + " " + obj.alumnos_reconocidos().get(i).getGrupo().getPromotor().getApeMat() + " " + obj.alumnos_reconocidos().get(i).getGrupo().getPromotor().getNombre(), fuentePrimeraTabla));
+        chida4 = new PdfPCell(new Phrase("Firma \n\n" + "Nombre:" + "Profr." + obj.alumnos_preseleccionados().get(i).getGrupo().getPromotor().getApePat() + " " + obj.alumnos_reconocidos().get(i).getGrupo().getPromotor().getApeMat() + " " + obj.alumnos_reconocidos().get(i).getGrupo().getPromotor().getNombre(), fuentePrimeraTabla));
         chida4.setColspan(5);
         tablita5.addCell(chida4);
 
@@ -399,8 +425,8 @@ public class Habilidades extends HttpServlet {
 
     public String cultural() {
         int i = 1;
-        if (obj.alumnos_reconocidos().get(i).getGrupo().getActividad().getCatActividad().getTipo().equals("Cultural")) {
-            System.out.println("********" + obj.alumnos_reconocidos().get(i).getGrupo().getActividad().getCatActividad().getTipo());
+        if (obj.alumnos_preseleccionados().get(i).getGrupo().getActividad().getCatActividad().getTipo().equals("Cultural")) {
+            System.out.println("********" + obj.alumnos_preseleccionados().get(i).getGrupo().getActividad().getCatActividad().getTipo());
             return "X";
         }
         return " ";
@@ -408,8 +434,8 @@ public class Habilidades extends HttpServlet {
 
     public String deportivo() {
         int i = 1;
-        if (obj.alumnos_reconocidos().get(i).getGrupo().getActividad().getCatActividad().getTipo().equals("Deportivo")) {
-            System.out.println("********" + obj.alumnos_reconocidos().get(i).getGrupo().getActividad().getCatActividad().getTipo());
+        if (obj.alumnos_preseleccionados().get(i).getGrupo().getActividad().getCatActividad().getTipo().equals("Deportivo")) {
+            System.out.println("********" + obj.alumnos_preseleccionados().get(i).getGrupo().getActividad().getCatActividad().getTipo());
             return "X";
         }
         return " ";
@@ -417,7 +443,7 @@ public class Habilidades extends HttpServlet {
 
     public String ej() {
         int i = 1;
-        if (obj.alumnos_reconocidos().get(i).getGrupo().getActividad().getSemestre().equals("Enero-Junio")) {
+        if (obj.alumnos_preseleccionados().get(i).getGrupo().getActividad().getSemestre().equals("Enero-Junio")) {
             return "X";
         }
         return " ";
@@ -425,7 +451,7 @@ public class Habilidades extends HttpServlet {
 
     public String ad() {
         int i = 1;
-        if (obj.alumnos_reconocidos().get(i).getGrupo().getActividad().getSemestre().equals("Agosto-Diciembre")) {
+        if (obj.alumnos_preseleccionados().get(i).getGrupo().getActividad().getSemestre().equals("Agosto-Diciembre")) {
             return "X";
         }
         return " ";

@@ -12,7 +12,6 @@ import com.lowagie.text.Paragraph;
 import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
-import com.lowagie.text.pdf.PdfTable;
 import com.lowagie.text.pdf.PdfWriter;
 import entities.Alumno;
 import java.io.ByteArrayOutputStream;
@@ -51,24 +50,21 @@ public class Registro extends HttpServlet {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             PdfWriter.getInstance(document, baos);
             document.open();
-            
-            Font fuenteParr = FontFactory.getFont(FontFactory.HELVETICA, 11, Font.BOLD);
-            Font fuenteSegundaTabla = FontFactory.getFont(FontFactory.HELVETICA, 8);
 
-            int rango = 25, alumnos = obj.alumno_grupo().size();
-            System.out.println("total de alumnos en este grupo: "+ obj.alumno_grupo().size());
-            int f=alumnos;
+            Font fuenteParr = FontFactory.getFont(FontFactory.HELVETICA, 11, Font.BOLD);
+            Font fuenteSegundaTabla = FontFactory.getFont(FontFactory.HELVETICA, 9);
+
+            int rango = 28, alumnos = obj.alumno_grupo().size();
+            int f = alumnos;
             double y = alumnos / rango;
             double r = Math.ceil(y) + 1;
             int h = (int) r;
-            
 
-            PdfPTable tablita3 = new PdfPTable(19);
-            tablita3.setTotalWidth(document.getPageSize().getWidth() - 80);
-            tablita3.setLockedWidth(true);
-
-            PdfPCell chida1;
-
+            PdfPTable tablabuena = new PdfPTable(19);//numero de columnas
+            tablabuena.setTotalWidth(document.getPageSize().getWidth() - 80);
+            tablabuena.setLockedWidth(true);
+            PdfPCell celdabuena;
+            Font fuentePrimeraTabla = FontFactory.getFont(FontFactory.HELVETICA, 9);
             List<Alumno> lista = new ArrayList<Alumno>();
             lista = obj.alumno_grupo();
 
@@ -81,7 +77,7 @@ public class Registro extends HttpServlet {
                 document.add(this.t4(document));
                 document.add(this.t5(document));//bueno 
 
-                while (f < rango) {
+                while (f <= rango) {
                     document.add(new Paragraph(" "));
                     f++;
                 }
@@ -91,8 +87,8 @@ public class Registro extends HttpServlet {
                 document.add(this.t7(document));
 
             } else {
-                int p = 0;
-                while (p < h) {
+                int tamañolista = lista.size(), j, k = 0;
+                for (int i = 0; i < h; i++) {
 
                     document.add(this.t1(document));
                     document.add(new Paragraph(" "));
@@ -101,49 +97,91 @@ public class Registro extends HttpServlet {
                     document.add(new Paragraph(" "));
                     document.add(this.t4(document));
 
-                    for (int i = 0; i < rango; i++) {
+                    tamañolista = lista.size();
+                    System.out.println("tamaño actual:" + tamañolista);
+                    if (tamañolista > k && tamañolista <= rango) {
+                        for (int l = 0; l < 10; l++) {
+                            celdabuena = new PdfPCell(new Phrase(l + 1 + "", fuenteSegundaTabla));
+                            celdabuena.setColspan(1);
+                            tablabuena.addCell(celdabuena);
 
-                        chida1 = new PdfPCell(new Phrase(i + 1 + "", fuenteSegundaTabla));
-                        chida1.setColspan(1);
-                        tablita3.addCell(chida1);
+                            celdabuena= new PdfPCell(new Phrase(obj.alumno_grupo().get(l).getApPat() + " " + obj.alumno_grupo().get(i).getApMat() + " " + obj.alumno_grupo().get(i).getNombre(), fuenteSegundaTabla));
+                            celdabuena.setColspan(6);
+                            tablabuena.addCell(celdabuena);
 
-                        chida1 = new PdfPCell(new Phrase(obj.alumno_grupo().get(i).getApPat() + " " + obj.alumno_grupo().get(i).getApMat() + " " + obj.alumno_grupo().get(i).getNombre(), fuenteSegundaTabla));
-                        chida1.setColspan(6);
-                        tablita3.addCell(chida1);
+                            celdabuena = new PdfPCell(new Phrase(obj.alumno_grupo().get(l).getNoCtrl() + "", fuenteSegundaTabla));
+                            celdabuena.setColspan(2);
+                            tablabuena.addCell(celdabuena);
 
-                        chida1 = new PdfPCell(new Phrase(obj.alumno_grupo().get(i).getNoCtrl() + "", fuenteSegundaTabla));
-                        chida1.setColspan(2);
-                        tablita3.addCell(chida1);
+                            celdabuena = new PdfPCell(new Phrase(obj.alumno_grupo().get(l).getCatCarreras().getNomCarrera(), fuenteSegundaTabla));
+                            celdabuena.setColspan(2);
+                            tablabuena.addCell(celdabuena);
 
-                        chida1 = new PdfPCell(new Phrase(obj.alumno_grupo().get(i).getCatCarreras().getNomCarrera(), fuenteSegundaTabla));
-                        chida1.setColspan(2);
-                        tablita3.addCell(chida1);
+                            celdabuena = new PdfPCell(new Phrase(obj.alumno_grupo().get(l).getSemestre(), fuenteSegundaTabla));
+                            celdabuena.setColspan(2);
+                            tablabuena.addCell(celdabuena);
 
-                        chida1 = new PdfPCell(new Phrase(obj.alumno_grupo().get(i).getSemestre(), fuenteSegundaTabla));
-                        chida1.setColspan(2);
-                        tablita3.addCell(chida1);
+                            celdabuena= new PdfPCell(new Phrase(obj.alumno_grupo().get(l).getReincidencia(), fuenteSegundaTabla));
+                            celdabuena.setColspan(2);
+                            tablabuena.addCell(celdabuena);
 
-                        chida1 = new PdfPCell(new Phrase(obj.alumno_grupo().get(i).getReincidencia(), fuenteSegundaTabla));
-                        chida1.setColspan(2);
-                        tablita3.addCell(chida1);
+                            celdabuena = new PdfPCell(new Phrase(obj.alumno_grupo().get(l).getEdad() + "", fuenteSegundaTabla));
+                            celdabuena.setColspan(1);
+                            tablabuena.addCell(celdabuena);
 
-                        chida1 = new PdfPCell(new Phrase(obj.alumno_grupo().get(i).getEdad() + "", fuenteSegundaTabla));
-                        chida1.setColspan(1);
-                        tablita3.addCell(chida1);
+                            celdabuena= new PdfPCell(new Phrase(obj.alumno_grupo().get(l).getCapDif().getNombre(), fuenteSegundaTabla));
+                            celdabuena.setColspan(3);
+                            tablabuena.addCell(celdabuena);
+                            
+                            System.out.println("alumno: " + lista.get(l).getNombre());
 
-                        chida1 = new PdfPCell(new Phrase(obj.alumno_grupo().get(i).getCapDif().getNombre(), fuenteSegundaTabla));
-                        chida1.setColspan(3);
-                        tablita3.addCell(chida1);
+                        }
+                    }else{
+                        for (j=k; j < rango; j++) {
+                            celdabuena = new PdfPCell(new Phrase(j + 1 + "", fuenteSegundaTabla));
+                            celdabuena.setColspan(1);
+                            tablabuena.addCell(celdabuena);
 
-                        lista.remove(i);
+                            celdabuena= new PdfPCell(new Phrase(obj.alumno_grupo().get(i).getApPat() + " " + obj.alumno_grupo().get(i).getApMat() + " " + obj.alumno_grupo().get(i).getNombre(), fuenteSegundaTabla));
+                            celdabuena.setColspan(6);
+                            tablabuena.addCell(celdabuena);
 
+                            celdabuena = new PdfPCell(new Phrase(obj.alumno_grupo().get(i).getNoCtrl() + "", fuenteSegundaTabla));
+                            celdabuena.setColspan(2);
+                            tablabuena.addCell(celdabuena);
+
+                            celdabuena = new PdfPCell(new Phrase(obj.alumno_grupo().get(i).getCatCarreras().getNomCarrera(), fuenteSegundaTabla));
+                            celdabuena.setColspan(2);
+                            tablabuena.addCell(celdabuena);
+
+                            celdabuena = new PdfPCell(new Phrase(obj.alumno_grupo().get(i).getSemestre(), fuenteSegundaTabla));
+                            celdabuena.setColspan(2);
+                            tablabuena.addCell(celdabuena);
+
+                            celdabuena= new PdfPCell(new Phrase(obj.alumno_grupo().get(i).getReincidencia(), fuenteSegundaTabla));
+                            celdabuena.setColspan(2);
+                            tablabuena.addCell(celdabuena);
+
+                            celdabuena = new PdfPCell(new Phrase(obj.alumno_grupo().get(i).getEdad() + "", fuenteSegundaTabla));
+                            celdabuena.setColspan(1);
+                            tablabuena.addCell(celdabuena);
+
+                            celdabuena= new PdfPCell(new Phrase(obj.alumno_grupo().get(i).getCapDif().getNombre(), fuenteSegundaTabla));
+                            celdabuena.setColspan(3);
+                            tablabuena.addCell(celdabuena);
+                        }
+                        k = rango;
+                        rango = rango + 28;
                     }
+                      
+
+                    document.add(tablabuena);
                     document.add(new Paragraph(" "));
                     document.add(this.t6(document));
                     document.add(new Paragraph(" "));
                     document.add(this.t7(document));
                     document.newPage();
-                    p++;
+                    tablabuena.deleteBodyRows();
                 }
             }
 
@@ -268,7 +306,7 @@ public class Registro extends HttpServlet {
         chida.setColspan(2);
         tablita2.addCell(chida);
         int i = 1;
-        chida = new PdfPCell(new Phrase(obj.alumno_grupo().get(i).getGrupo().getActividad().getCatActividad().getNombre()+","+obj.alumno_grupo().get(i).getGrupo().getDias()+" "+obj.alumno_grupo().get(i).getGrupo().getHorario(), fuenteParr));
+        chida = new PdfPCell(new Phrase(obj.alumno_grupo().get(i).getGrupo().getActividad().getCatActividad().getNombre() + "," + obj.alumno_grupo().get(i).getGrupo().getDias() + " " + obj.alumno_grupo().get(i).getGrupo().getHorario(), fuenteParr));
         chida.setColspan(9);
         tablita2.addCell(chida);
 

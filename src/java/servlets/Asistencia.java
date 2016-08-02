@@ -51,7 +51,7 @@ public class Asistencia extends HttpServlet {
             document.open();
 
             ////////////////////////TABLA PRINCIPAL
-            int rango = 17, alumnos = obj.alumno_grupo().size();
+            int rango = 18, alumnos = obj.alumno_grupo().size();
             int f = alumnos;
             double y = alumnos / rango;
             double r = Math.ceil(y) + 1;
@@ -67,31 +67,33 @@ public class Asistencia extends HttpServlet {
             List<Alumno> lista = new ArrayList<Alumno>();
             lista = obj.alumno_grupo();
 
-            if (alumnos < rango) {
+            if (alumnos <= rango) {
                 document.add(this.t1(document));
                 document.add(new Paragraph(" "));
                 document.add(this.t2(document));
                 document.add(this.t3(document));
-                while (f < rango) {
+                while (f <= rango) {
                     document.add(new Paragraph(" "));
                     f++;
                 }
                 document.add(new Paragraph(" "));
                 document.add(this.t4(document));
             } else {
-                int p = 0;
-                while (p < h) {
+                int tamañolista = lista.size(), j, k = 0;
+                for (int i = 0; i < h; i++) {
                     document.add(this.t1(document));
                     document.add(new Paragraph(" "));
                     document.add(this.t2(document));
+                    
+                    tamañolista = lista.size();
+                    if (tamañolista > k && tamañolista <= rango) {
+                        for (int l=k; l<lista.size(); l++) {
 
-                    for (int i = 0; i < rango; i++) {
-
-                        celda = new PdfPCell(new Phrase(i + 1 + ""));
+                        celda = new PdfPCell(new Phrase(l + 1 + ""));
                         celda.setColspan(1);
                         tablita.addCell(celda);
 
-                        celda = new PdfPCell(new Phrase(obj.alumno_grupo().get(i).getApPat() + " " + obj.alumno_grupo().get(i).getApMat() + " " + obj.alumno_grupo().get(i).getNombre(), fuente));
+                        celda = new PdfPCell(new Phrase(obj.alumno_grupo().get(l).getApPat() + " " + obj.alumno_grupo().get(l).getApMat() + " " + obj.alumno_grupo().get(l).getNombre(), fuente));
                         celda.setColspan(10);
                         tablita.addCell(celda);
 
@@ -180,11 +182,114 @@ public class Asistencia extends HttpServlet {
                         celda.setColspan(1);
                         tablita.addCell(celda);
 
-                        lista.remove(i);
+                        
                     }
+                    }else{
+                        for (j = k; j < rango; j++){
+                            
+                        celda = new PdfPCell(new Phrase(j + 1 + ""));
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+
+                        celda = new PdfPCell(new Phrase(obj.alumno_grupo().get(j).getApPat() + " " + obj.alumno_grupo().get(j).getApMat() + " " + obj.alumno_grupo().get(j).getNombre(), fuente));
+                        celda.setColspan(10);
+                        tablita.addCell(celda);
+
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        celda = new PdfPCell(new Phrase());
+                        celda.setColspan(1);
+                        tablita.addCell(celda);
+                        System.out.println("alumno: " + lista.get(j).getNombre());
+                        }
+                        k = rango;
+                        rango = rango + 18;
+                    }
+                    document.add(tablita);
                     document.add(new Paragraph(" "));
                     document.add(this.t4(document));
-                    p++;
+                    document.newPage();
+                    tablita.deleteBodyRows();
+                    
                 }
             }
 

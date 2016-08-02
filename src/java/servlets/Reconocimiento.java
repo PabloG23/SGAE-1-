@@ -21,9 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.faces.bean.ManagedProperty;
-import javax.inject.Inject;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +32,6 @@ public class Reconocimiento extends HttpServlet {
 
 //    @ManagedProperty(value = "#{beanUsuario}")
     private BeanAlumno obj;
-    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -58,29 +54,26 @@ public class Reconocimiento extends HttpServlet {
             PdfWriter.getInstance(document, baos);
             document.open();
 
-            int rango = 25, alumnos = obj.alumnos_rec().size();
+            int rango = 10, alumnos = obj.alumnos_rec().size();
             int f = alumnos;
             double y = alumnos / rango;
             double r = Math.ceil(y) + 1;
             int h = (int) r;
-
-            Font fuenteParrafo1 = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 10);
-            PdfPCell celda;
-
             PdfPTable tabla = new PdfPTable(20);
             tabla.setTotalWidth(document.getPageSize().getWidth() - 80);
             tabla.setLockedWidth(true);
-
+            Font fuenteParrafo1 = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 10);
+            PdfPCell celda;
             List<Alumno> lista = new ArrayList<Alumno>();
             lista = obj.alumnos_rec();
-
-            if (alumnos < rango) {
+            System.out.println("lista: " + lista.size());
+            if (alumnos <= rango) {
                 document.add(this.addParagraph());
                 document.add(new Paragraph(" "));
                 document.add(this.tabloide(document));
                 document.add(this.tabla_alumnos(document));
 
-                while (f < rango) {
+                while (f <= rango) {
                     document.add(new Paragraph(" "));
                     f++;
                 }
@@ -91,43 +84,71 @@ public class Reconocimiento extends HttpServlet {
                 document.add(this.tablaUltima());
 
             } else {
-                int p = 0;
-                while (p < h) {
+                int tamañolista = lista.size(), j, k = 0;
+                for (int i = 0; i < h; i++) {
+
                     document.add(this.addParagraph());
                     document.add(new Paragraph(" "));
                     document.add(this.tabloide(document));
 
-                    for (int i = 0; i < rango; i++) {
+                    tamañolista = lista.size();
+                    System.out.println("tamaño actual:" + tamañolista);
+                    if (tamañolista > k && tamañolista <= rango) {
+                        for (int l = k; l < lista.size(); l++){
+                            celda = new PdfPCell(new Phrase(l + 1 + ""));
+                            celda.setColspan(1);
+                            tabla.addCell(celda);
 
-                        celda = new PdfPCell(new Phrase(i + 1 + ""));
-                        celda.setColspan(1);
-                        tabla.addCell(celda);
+                            celda = new PdfPCell(new Phrase(lista.get(l).getGrupo().getActividad().getCatActividad().getNombre(), fuenteParrafo1));
+                            celda.setColspan(3);
+                            tabla.addCell(celda);
 
-                        celda = new PdfPCell(new Phrase(lista.get(i).getGrupo().getActividad().getCatActividad().getNombre(), fuenteParrafo1));
-                        celda.setColspan(3);
-                        tabla.addCell(celda);
+                            celda = new PdfPCell(new Phrase(lista.get(l).getApPat() + " " + lista.get(l).getApMat() + " " + lista.get(l).getNombre(), fuenteParrafo1));
+                            celda.setColspan(8);
+                            tabla.addCell(celda);
 
-                        celda = new PdfPCell(new Phrase(lista.get(i).getApPat() + " " + lista.get(i).getApMat() + " " + lista.get(i).getNombre(), fuenteParrafo1));
-                        celda.setColspan(8);
-                        tabla.addCell(celda);
+                            celda = new PdfPCell(new Phrase(lista.get(l).getCatCarreras().getNomCarrera(), fuenteParrafo1));
+                            celda.setColspan(5);
+                            tabla.addCell(celda);
 
-                        celda = new PdfPCell(new Phrase(lista.get(i).getCatCarreras().getNomCarrera(), fuenteParrafo1));
-                        celda.setColspan(5);
-                        tabla.addCell(celda);
+                            celda = new PdfPCell(new Phrase(lista.get(l).getNoCtrl() + ""));
+                            celda.setColspan(3);
+                            tabla.addCell(celda);
 
-                        celda = new PdfPCell(new Phrase(lista.get(i).getNoCtrl() + ""));
-                        celda.setColspan(3);
-                        tabla.addCell(celda);
-                        lista.remove(i);
+                        }
+                    } else {
+                        for (j = k; j < rango; j++) {
+                            celda = new PdfPCell(new Phrase(j + 1 + ""));
+                            celda.setColspan(1);
+                            tabla.addCell(celda);
+
+                            celda = new PdfPCell(new Phrase(lista.get(j).getGrupo().getActividad().getCatActividad().getNombre(), fuenteParrafo1));
+                            celda.setColspan(3);
+                            tabla.addCell(celda);
+
+                            celda = new PdfPCell(new Phrase(lista.get(j).getApPat() + " " + lista.get(j).getApMat() + " " + lista.get(j).getNombre(), fuenteParrafo1));
+                            celda.setColspan(8);
+                            tabla.addCell(celda);
+
+                            celda = new PdfPCell(new Phrase(lista.get(j).getCatCarreras().getNomCarrera(), fuenteParrafo1));
+                            celda.setColspan(5);
+                            tabla.addCell(celda);
+
+                            celda = new PdfPCell(new Phrase(lista.get(j).getNoCtrl() + ""));
+                            celda.setColspan(3);
+                            tabla.addCell(celda);
+                        }
+                        k = rango;
+                        rango = rango + 10;
                     }
-
+                    document.add(tabla);
                     document.add(new Paragraph(" "));
                     document.add(this.tablaFecha());
                     document.add(new Paragraph(" "));
                     document.add(this.tablaFirmas());
                     document.add(this.tablaUltima());
-                    p++;
-
+                    document.newPage();
+                    tabla.deleteBodyRows();
                 }
             }
 

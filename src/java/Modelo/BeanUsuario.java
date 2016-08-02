@@ -165,6 +165,21 @@ public class BeanUsuario implements Serializable {
         }
         return aRecoRet;
     }
+    
+    public List<Alumno> alumnos_preseleccionados(){
+        List<Alumno> aReco = new ArrayList<Alumno>();
+        List<Alumno> aRecoRet = new ArrayList<Alumno>();
+        
+        aReco=alumno_grupo();
+        
+        for (int i = 0; i < aReco.size(); i++) {
+            System.out.println("{çç}"+aReco.get(i));
+            if (aReco.get(i).getSeleccionado()==true) {
+                aRecoRet.add(aReco.get(i));
+            }
+        }
+        return aRecoRet;
+    }
 
     public void logout() throws IOException {
         // FacesContext.getCurrentInstance().getExternalContext().invalidateSession();

@@ -54,17 +54,11 @@ public class Eventos extends HttpServlet {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             PdfWriter.getInstance(document, baos);
             document.open();
-
-            Font fuente = FontFactory.getFont(FontFactory.HELVETICA, 8);
-            Font fuenteSegundaTabla = FontFactory.getFont(FontFactory.HELVETICA, 8);
-            Font fuentePrimeraTabla = FontFactory.getFont(FontFactory.HELVETICA, 10);
-
-            int rango = 12, eventos = obj.jalarEvento().size();
-            int f = eventos;
-            double y = eventos / rango;
+            int rango = 10, alumnos = obj.jalarEvento().size();
+            int f = alumnos;
+            double y = alumnos / rango;
             double r = Math.ceil(y) + 1;
             int h = (int) r;
-
             PdfPTable tablita3 = new PdfPTable(22);
             tablita3.setTotalWidth(document.getPageSize().getWidth() - 80);
             tablita3.setLockedWidth(true);
@@ -72,8 +66,9 @@ public class Eventos extends HttpServlet {
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
             List<Evento> lista = new ArrayList<Evento>();
             lista = obj.jalarEvento();
+            Font fuente = FontFactory.getFont(FontFactory.HELVETICA, 8);
 
-            if (eventos < rango) {
+            if (alumnos <= rango) {
                 document.add(this.t1());
                 document.add(new Paragraph(" "));
                 document.add(this.t2());
@@ -82,7 +77,7 @@ public class Eventos extends HttpServlet {
                 document.add(this.t4(document));
                 document.add(this.t5(document));//++++
 
-                while (f < rango) {
+                while (f <= rango) {
                     document.add(new Paragraph(" "));
                     f++;
                 }
@@ -91,9 +86,11 @@ public class Eventos extends HttpServlet {
                 document.add(new Paragraph(" "));
                 document.add(this.t7());
                 document.add(this.t8());
+
             } else {
-                int p = 0;
-                while (p < h) {
+                int tamañolista = lista.size(), j, k = 0;
+                for (int i = 0; i < h; i++) {
+
                     document.add(this.t1());
                     document.add(new Paragraph(" "));
                     document.add(this.t2());
@@ -101,57 +98,104 @@ public class Eventos extends HttpServlet {
                     document.add(new Paragraph(" "));
                     document.add(this.t4(document));
 
-                    for (int i = 0; i < lista.size(); i++) {
+                    tamañolista = lista.size();
+                    System.out.println("tamaño actual:" + tamañolista);
+                    if (tamañolista > k && tamañolista <= rango) {
+                        for (int l = k; l < lista.size(); l++) {
+                            celda2 = new PdfPCell(new Phrase(i + 1 + "", fuente));
+                            celda2.setColspan(1);
+                            tablita3.addCell(celda2);
 
-                        celda2 = new PdfPCell(new Phrase(i + 1 + "", fuente));
-                        celda2.setColspan(1);
-                        tablita3.addCell(celda2);
+                            celda2 = new PdfPCell(new Phrase(lista.get(l).getNombreEvento(), fuente));
+                            celda2.setColspan(5);
+                            tablita3.addCell(celda2);
 
-                        celda2 = new PdfPCell(new Phrase(lista.get(i).getNombreEvento(), fuente));
-                        celda2.setColspan(5);
-                        tablita3.addCell(celda2);
+                            celda2 = new PdfPCell(new Phrase(lista.get(l).getInstOrganizadora(), fuente));
+                            celda2.setColspan(5);
+                            tablita3.addCell(celda2);
 
-                        celda2 = new PdfPCell(new Phrase(lista.get(i).getInstOrganizadora(), fuente));
-                        celda2.setColspan(5);
-                        tablita3.addCell(celda2);
+                            celda2 = new PdfPCell(new Phrase(interno(l), fuente));
+                            celda2.setColspan(1);
+                            tablita3.addCell(celda2);
 
-                        celda2 = new PdfPCell(new Phrase(interno(i), fuente));
-                        celda2.setColspan(1);
-                        tablita3.addCell(celda2);
+                            celda2 = new PdfPCell(new Phrase(externo(l), fuente));
+                            celda2.setColspan(1);
+                            tablita3.addCell(celda2);
 
-                        celda2 = new PdfPCell(new Phrase(externo(i), fuente));
-                        celda2.setColspan(1);
-                        tablita3.addCell(celda2);
+                            celda2 = new PdfPCell(new Phrase(formatter.format(lista.get(l).getFechaEvento()) + "", fuente));
+                            celda2.setColspan(2);
+                            tablita3.addCell(celda2);
 
-                        celda2 = new PdfPCell(new Phrase(formatter.format(lista.get(i).getFechaEvento()) + "", fuente));
-                        celda2.setColspan(2);
-                        tablita3.addCell(celda2);
+                            celda2 = new PdfPCell(new Phrase(lista.get(l).getHombres() + "", fuente));
+                            celda2.setColspan(1);
+                            tablita3.addCell(celda2);
 
-                        celda2 = new PdfPCell(new Phrase(lista.get(i).getHombres() + "", fuente));
-                        celda2.setColspan(1);
-                        tablita3.addCell(celda2);
+                            celda2 = new PdfPCell(new Phrase(lista.get(l).getMujeres() + "", fuente));
+                            celda2.setColspan(1);
+                            tablita3.addCell(celda2);
 
-                        celda2 = new PdfPCell(new Phrase(lista.get(i).getMujeres() + "", fuente));
-                        celda2.setColspan(1);
-                        tablita3.addCell(celda2);
+                            celda2 = new PdfPCell(new Phrase(lista.get(l).getTotal() + "", fuente));
+                            celda2.setColspan(1);
+                            tablita3.addCell(celda2);
 
-                        celda2 = new PdfPCell(new Phrase(lista.get(i).getTotal() + "", fuente));
-                        celda2.setColspan(1);
-                        tablita3.addCell(celda2);
+                            celda2 = new PdfPCell(new Phrase(lista.get(l).getResultado(), fuente));
+                            celda2.setColspan(5);
+                            tablita3.addCell(celda2);
 
-                        celda2 = new PdfPCell(new Phrase(lista.get(i).getResultado(), fuente));
-                        celda2.setColspan(5);
-                        tablita3.addCell(celda2);
+                        }
+                    } else {
+                        for (j = k; j < rango; j++) {
+                            celda2 = new PdfPCell(new Phrase(j + 1 + "", fuente));
+                            celda2.setColspan(1);
+                            tablita3.addCell(celda2);
 
-                        lista.remove(i);
+                            celda2 = new PdfPCell(new Phrase(lista.get(j).getNombreEvento(), fuente));
+                            celda2.setColspan(5);
+                            tablita3.addCell(celda2);
 
+                            celda2 = new PdfPCell(new Phrase(lista.get(j).getInstOrganizadora(), fuente));
+                            celda2.setColspan(5);
+                            tablita3.addCell(celda2);
+
+                            celda2 = new PdfPCell(new Phrase(interno(j), fuente));
+                            celda2.setColspan(1);
+                            tablita3.addCell(celda2);
+
+                            celda2 = new PdfPCell(new Phrase(externo(j), fuente));
+                            celda2.setColspan(1);
+                            tablita3.addCell(celda2);
+
+                            celda2 = new PdfPCell(new Phrase(formatter.format(lista.get(j).getFechaEvento()) + "", fuente));
+                            celda2.setColspan(2);
+                            tablita3.addCell(celda2);
+
+                            celda2 = new PdfPCell(new Phrase(lista.get(j).getHombres() + "", fuente));
+                            celda2.setColspan(1);
+                            tablita3.addCell(celda2);
+
+                            celda2 = new PdfPCell(new Phrase(lista.get(j).getMujeres() + "", fuente));
+                            celda2.setColspan(1);
+                            tablita3.addCell(celda2);
+
+                            celda2 = new PdfPCell(new Phrase(lista.get(j).getTotal() + "", fuente));
+                            celda2.setColspan(1);
+                            tablita3.addCell(celda2);
+
+                            celda2 = new PdfPCell(new Phrase(lista.get(j).getResultado(), fuente));
+                            celda2.setColspan(5);
+                            tablita3.addCell(celda2);
+                        }
+                        k = rango;
+                        rango = rango + 10;
                     }
+                    document.add(tablita3);
                     document.add(new Paragraph(" "));
                     document.add(this.t6());
                     document.add(new Paragraph(" "));
                     document.add(this.t7());
                     document.add(this.t8());
-                    p++;
+                    document.newPage();
+                    tablita3.deleteBodyRows();
                 }
             }
             // Close document
@@ -487,8 +531,6 @@ public class Eventos extends HttpServlet {
         }
         return " ";
     }
-    
-   
 
 //    public String meses(){
 //        int i =1;

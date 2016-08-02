@@ -60,7 +60,7 @@ public class BeanEvento {
          z=x+y;
          return z;
     }
-    
+        
     public List<Evento> jalarEvento(){
         List<Evento> obj = eventoFacade.findAll();
         return obj;
