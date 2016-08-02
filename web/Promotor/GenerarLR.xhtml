@@ -35,21 +35,20 @@
                             <p:outputLabel value="Grupo:" />
                             <p:selectOneMenu id="Grupo"
                                              value="#{beanUsuario.idgruposeleccionado}"
-                                         required="true">
-                        <f:selectItem itemLabel="Seleccionar una Opción" itemValue="" noSelectionOption="true" />
-                        <f:selectItems
-                            value="#{beanUsuario.jalargrupodepromotorlogeado()}"
-                            var="grupo"
-                            itemLabel="#{grupo.actividad.catActividad.nombre} #{grupo.dias} #{grupo.horario}"
-                            itemValue="#{grupo.idGrupo}"/>
-                        </p:selectOneMenu>
+                                             required="true">
+                                <f:selectItems
+                                    value="#{beanUsuario.jalargrupodepromotorlogeado()}"
+                                    var="grupo"
+                                    itemLabel="#{grupo.actividad.catActividad.nombre} #{grupo.dias} #{grupo.horario}"
+                                    itemValue="#{grupo.idGrupo}"/>
+                            </p:selectOneMenu>
 
                         </h:panelGrid>
                     </p:fieldset>
 
 
 
-<!--                    <h:commandButton value="Generar Reporte"/>-->
+                    <!--                    <h:commandButton value="Generar Reporte"/>-->
                     <a href="/SGAE/Registro" target="_blank">Exportar a PDF</a>
 
 

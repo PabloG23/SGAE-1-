@@ -78,12 +78,12 @@ public class BeanUsuario implements Serializable {
         List<Usuarios> usuobj = usuariosfacade.findAll();
         for (int i = 0; i < usuobj.size(); i++) {
             if (usuobj.get(i).getUsuario().equals(usuarionombre)) {
-                System.out.println("Si esta: " + usuobj.get(i).getPromotoridPromotor().getIdPromotor());
+                //System.out.println("Si esta: " + usuobj.get(i).getPromotoridPromotor().getIdPromotor());
                 numeroretornado = usuobj.get(i).getPromotoridPromotor().getIdPromotor();
                 break;
 
             } else {
-                System.out.println("no esta");
+               // System.out.println("no esta");
             }
 
         }
@@ -118,7 +118,7 @@ public class BeanUsuario implements Serializable {
 //            }
 
         }
-        System.out.println("Lista chidafinal: " + listagruposprom);
+        //System.out.println("Lista chidafinal: " + listagruposprom);
         return listagruposprom;
 
     }
@@ -134,18 +134,18 @@ public class BeanUsuario implements Serializable {
 
         
         idcomparar = entidadGrupo.getIdGrupo();
-        System.out.println("!!!Entidad grupo: " + entidadGrupo);
-        System.out.println("iddegrupo: " + idcomparar);
+        //System.out.println("!!!Entidad grupo: " + entidadGrupo);
+        //System.out.println("iddegrupo: " + idcomparar);
         List<Alumno> alumnos = alumnoFacade.findAll();
         List<Alumno> listaalumno = new ArrayList<Alumno>();
         for (int i = 0; i < alumnos.size(); i++) {
             if (idcomparar == alumnos.get(i).getGrupo().getIdGrupo()) {
                 entidadalumno = alumnoFacade.find(alumnos.get(i).getNoCtrl());
                 listaalumno.add(entidadalumno);
-                System.out.println("Alumno: " + entidadalumno.getNombre());
+          //      System.out.println("Alumno: " + entidadalumno.getNombre());
             }
         }
-        System.out.println("Lista del grupo: " + listaalumno);
+        //System.out.println("Lista del grupo: " + listaalumno);
         return listaalumno;
 
     }

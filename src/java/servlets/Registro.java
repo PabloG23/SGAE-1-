@@ -56,6 +56,7 @@ public class Registro extends HttpServlet {
             Font fuenteSegundaTabla = FontFactory.getFont(FontFactory.HELVETICA, 8);
 
             int rango = 25, alumnos = obj.alumno_grupo().size();
+            System.out.println("total de alumnos en este grupo: "+ obj.alumno_grupo().size());
             int f=alumnos;
             double y = alumnos / rango;
             double r = Math.ceil(y) + 1;
