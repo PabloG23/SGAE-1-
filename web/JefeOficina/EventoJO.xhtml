@@ -31,28 +31,28 @@
                         <h:panelGrid columns="2"  >
                         
                     
-                            <p:dataTable value="#{beanEvento.jalarEvento()}" var="evento">
+                            <p:dataTable id="evento" value="#{beanUsuario.eventoslista()}" var="eve">
                                 
                              <p:column headerText="Nombre de Evento">
                                 <div align="center">
-                                    <h:outputText value="#{evento.nombreEvento}"/>
+                                    <h:outputText value="#{eve.tipoEvento}"/>
                                 </div>
                             </p:column>
                                 
                             <p:column headerText="Institución Organizadora">
                                 <div align="center">
-                                    <h:outputText value="#{evento.instOrganizadora}"/>
+                                    <h:outputText value="#{eve.instOrganizadora}"/>
                                 </div>
                             </p:column>
                                 
                              <p:column headerText="Fecha">
                                 <div align="center">
-                                    <h:outputText value="#{evento.fechaEvento}"/>
+                                    <h:outputText value="#{eve.fechaEvento}"/>
                                 </div>
                             </p:column>
                                 <p:column headerText="Actividad">
                                 <div align="center">
-                                    <h:outputText value="#{evento.actividad.catActividad.nombre}"/>
+                                    <h:outputText value="#{eve.actividad.catActividad.nombre}"/>
                                 </div>
                             </p:column>
 

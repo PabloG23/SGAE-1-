@@ -6,9 +6,11 @@
 package Modelo;
 
 import entities.Alumno;
+import entities.Evento;
 import entities.Grupo;
 import entities.Usuarios;
 import facade.AlumnoFacade;
+import facade.EventoFacade;
 import facade.GrupoFacade;
 import facade.UsuariosFacade;
 import java.io.IOException;
@@ -39,12 +41,15 @@ public class BeanUsuario implements Serializable {
     private String contraseña;
     private Grupo entidadGrupo = new Grupo();
     private Alumno entidadalumno = new Alumno();
+    private Evento entidadevento = new Evento();
     @Inject
     private UsuariosFacade usuariosfacade;
     @Inject
     GrupoFacade grupoFacade;
     @Inject
     AlumnoFacade alumnoFacade;
+    @Inject
+    EventoFacade eventoFacade;
 
     public String login() {
         String outcome = "Control_Acce";
@@ -57,10 +62,17 @@ public class BeanUsuario implements Serializable {
             if (this.usuarios.getUsuario().equals("JefeD")) {
                 outcome = "/JefeDepto/index_JD?faces-redirect=true";
             }
-            if (this.usuarios.getUsuario().equals("JefeO")) {
+            if (this.usuarios.getUsuario().equals("JefeODeportivo")) {
                 outcome = "/JefeOficina/index_JO?faces-redirect=true";
+                usuarionombre = usuarios.getUsuario();
+                eventoslista();
             }
-            if (!this.usuarios.getUsuario().equals("JefeD") && !this.usuarios.getUsuario().equals("JefeO")) {
+            if (this.usuarios.getUsuario().equals("JefeOCultural")) {
+                outcome = "/JefeOficina/index_JO?faces-redirect=true";
+                usuarionombre = usuarios.getUsuario();
+                eventoslista();
+            }
+            if (!this.usuarios.getUsuario().equals("JefeD") && !this.usuarios.getUsuario().equals("JefeODeportivo") && !this.usuarios.getUsuario().equals("JefeOCultural")) {
                 outcome = "/Promotor/indexPromotor?faces-redirect=true";
                 usuarionombre = usuarios.getUsuario();
                 buscarusutabla();
@@ -73,6 +85,45 @@ public class BeanUsuario implements Serializable {
         return outcome;
     }
 
+    public List<Evento> eventoslista() {
+        String nombre = "";
+        nombre = jalarsesionJO();
+        List<Evento> objevento = eventoFacade.findAll();
+        List<Evento> objdepo = new ArrayList<Evento>();
+        List<Evento> objcult = new ArrayList<Evento>();
+        List<Evento> objretornar = new ArrayList<Evento>();
+        for (int i = 0; i < objevento.size(); i++) {
+            if (nombre.equals("Deportivo")) {
+                if (objevento.get(i).getActividad().getCatActividad().getTipo().equals("Deportivo")) {
+                    objdepo.add(this.entidadevento);
+                }
+                objretornar = objdepo;
+            } else {
+                if (nombre.equals("Cultural")) {
+                    if (objevento.get(i).getActividad().getCatActividad().getTipo().equals("Cultural")) {
+                        objcult.add(this.entidadevento);
+                    }
+                    objretornar = objcult;
+                }
+            }
+        }
+        //System.out.println("lista123: " + objretornar);
+        return objretornar;
+
+    }
+
+    public String jalarsesionJO() {
+        String tipo = "";
+        if (usuarionombre.equals("JefeODeportivo")) {
+            tipo = "Deportivo";
+        } else {
+            if (usuarionombre.equals("JefeOCultural")) {
+                tipo = "Cultural";
+            }
+        }
+        return tipo;
+    }
+
     public int buscarusutabla() {
         int numeroretornado = 0;
         List<Usuarios> usuobj = usuariosfacade.findAll();
@@ -83,7 +134,7 @@ public class BeanUsuario implements Serializable {
                 break;
 
             } else {
-               // System.out.println("no esta");
+                // System.out.println("no esta");
             }
 
         }
@@ -105,7 +156,7 @@ public class BeanUsuario implements Serializable {
         for (int i = 0; i < gruobj.size(); i++) {
             idgrupo = gruobj.get(i).getIdGrupo();
             //idcadena = Integer.toString(idgrupo);
-            idpromotorcomparar = gruobj.get(i).getPromotor().getIdPromotor();                    
+            idpromotorcomparar = gruobj.get(i).getPromotor().getIdPromotor();
             //numeropromotor = Integer.parseInt("" + idcadena.charAt(1));
             if (idpromotorcomparar == pruebaidpromotor) {
                 setEntidadGrupo(grupoFacade.find(this.idgrupo));
@@ -125,14 +176,13 @@ public class BeanUsuario implements Serializable {
     /////FIN DE CODIGO PARA SACAR LOS GRUPOS DE UN PROMOTOR/////
 
     ////CODIGO PARA JALAR LOS ALUMNOS DE CADA GRUPO/////
-    private int idgruposeleccionado=2220162;
+    private int idgruposeleccionado = 2220162;
     private int idcomparar;
 
     public List<Alumno> alumno_grupo() {
 
         entidadGrupo = grupoFacade.find(this.idgruposeleccionado);
 
-        
         idcomparar = entidadGrupo.getIdGrupo();
         //System.out.println("!!!Entidad grupo: " + entidadGrupo);
         //System.out.println("iddegrupo: " + idcomparar);
@@ -142,7 +192,7 @@ public class BeanUsuario implements Serializable {
             if (idcomparar == alumnos.get(i).getGrupo().getIdGrupo()) {
                 entidadalumno = alumnoFacade.find(alumnos.get(i).getNoCtrl());
                 listaalumno.add(entidadalumno);
-          //      System.out.println("Alumno: " + entidadalumno.getNombre());
+                //      System.out.println("Alumno: " + entidadalumno.getNombre());
             }
         }
         //System.out.println("Lista del grupo: " + listaalumno);
@@ -150,33 +200,32 @@ public class BeanUsuario implements Serializable {
 
     }
     ////FIN DE CODIGO PARA JALAR LOS ALUMNOS DE CADA GRUPO/////
-    
-    public List<Alumno> alumnos_reconocidos(){
+
+    public List<Alumno> alumnos_reconocidos() {
         List<Alumno> aReco = new ArrayList<Alumno>();
         List<Alumno> aRecoRet = new ArrayList<Alumno>();
-        
-        aReco=alumno_grupo();
-        
+
+        aReco = alumno_grupo();
+
         for (int i = 0; i < aReco.size(); i++) {
-            System.out.println("{çç}"+aReco.get(i));
-            if (aReco.get(i).getReconocimiento()==true) {
+            System.out.println("{çç}" + aReco.get(i));
+            if (aReco.get(i).getReconocimiento() == true) {
                 aRecoRet.add(aReco.get(i));
             }
         }
         return aRecoRet;
     }
-    
-    public List<Alumno> alumnos_preseleccionados(){
+
+    public List<Alumno> alumnos_preseleccionados() {
         List<Alumno> aReco = new ArrayList<Alumno>();
         List<Alumno> aRecoRet = new ArrayList<Alumno>();
-        
-        aReco=alumno_grupo();
-        
-        for (int i = 0; i < aReco.size(); i++)
-        {
-            
-            if (aReco.get(i).getSeleccionado()==true) {
-                System.out.println("{çç}"+aReco.get(i));
+
+        aReco = alumno_grupo();
+
+        for (int i = 0; i < aReco.size(); i++) {
+
+            if (aReco.get(i).getSeleccionado() == true) {
+                System.out.println("{çç}" + aReco.get(i));
                 aRecoRet.add(aReco.get(i));
             }
         }
@@ -318,5 +367,19 @@ public class BeanUsuario implements Serializable {
      */
     public void setEntidadalumno(Alumno entidadalumno) {
         this.entidadalumno = entidadalumno;
+    }
+
+    /**
+     * @return the entidadevento
+     */
+    public Evento getEntidadevento() {
+        return entidadevento;
+    }
+
+    /**
+     * @param entidadevento the entidadevento to set
+     */
+    public void setEntidadevento(Evento entidadevento) {
+        this.entidadevento = entidadevento;
     }
 }

@@ -43,10 +43,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Eventos", urlPatterns = {"/Eventos"})
 public class Eventos extends HttpServlet {
 
-    private BeanEvento obj;
+    private BeanUsuario obj;
 
     protected void Eventos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        obj = (BeanEvento) request.getSession().getAttribute("beanEvento");
+        obj = (BeanUsuario) request.getSession().getAttribute("beanUsuario");
         try (OutputStream os = response.getOutputStream()) {
 
             Document document = new Document(PageSize.A4.rotate());
@@ -54,7 +54,7 @@ public class Eventos extends HttpServlet {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             PdfWriter.getInstance(document, baos);
             document.open();
-            int rango = 10, alumnos = obj.jalarEvento().size();
+            int rango = 10, alumnos = obj.eventoslista().size();
             int f = alumnos;
             double y = alumnos / rango;
             double r = Math.ceil(y) + 1;
@@ -65,7 +65,7 @@ public class Eventos extends HttpServlet {
             PdfPCell celda2;
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
             List<Evento> lista = new ArrayList<Evento>();
-            lista = obj.jalarEvento();
+            lista = obj.eventoslista();
             Font fuente = FontFactory.getFont(FontFactory.HELVETICA, 8);
 
             if (alumnos <= rango) {
@@ -377,7 +377,7 @@ public class Eventos extends HttpServlet {
         tablita3.setLockedWidth(true);
         PdfPCell celda2;
         Font fuente = FontFactory.getFont(FontFactory.HELVETICA, 8);
-        List<Evento> lista = obj.jalarEvento();
+        List<Evento> lista = obj.eventoslista();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         for (int i = 0; i < lista.size(); i++) {
 
@@ -491,14 +491,15 @@ public class Eventos extends HttpServlet {
     }
 
     public String interno(int i) {
-        if (obj.jalarEvento().get(i).getEvento().equals("Interno")) {
+        System.out.println("evento: "+ obj.eventoslista());
+        if (obj.eventoslista().get(i).getEvento().equals("Interno")) {
             return "1";
         }
         return " ";
     }
 
     public String externo(int i) {
-        if (obj.jalarEvento().get(i).getEvento().equals("Externo")) {
+        if (obj.eventoslista().get(i).getEvento().equals("Externo")) {
             return "1";
         }
         return " ";

@@ -74,7 +74,7 @@ public class Habilidades extends HttpServlet {
             tabla.setLockedWidth(true);
 
             List<Alumno> lista = new ArrayList<Alumno>();
-            lista = obj.alumno_grupo();
+            lista = obj.alumnos_preseleccionados();
 
             if (alumnos <= rango) {
                 document.add(this.addParagraph());
@@ -311,7 +311,7 @@ public class Habilidades extends HttpServlet {
         tabla.setTotalWidth(document.getPageSize().getWidth() - 80);
         tabla.setLockedWidth(true);
 
-        List<Alumno> lista = obj.alumno_grupo();
+        List<Alumno> lista = obj.alumnos_preseleccionados();
 
         for (int i = 0; i < lista.size(); i++) {
 
@@ -400,8 +400,9 @@ public class Habilidades extends HttpServlet {
         tablita6.setLockedWidth(true);
 
         PdfPCell chida4;
-
-        chida4 = new PdfPCell(new Phrase("Firma \n\n" + "Nombre:" + "Profr." + obj.alumno_grupo().get(i).getGrupo().getPromotor().getApePat() + " " + obj.alumnos_reconocidos().get(i).getGrupo().getPromotor().getApeMat() + " " + obj.alumnos_reconocidos().get(i).getGrupo().getPromotor().getNombre(), fuentePrimeraTabla));
+        int h=1;
+        System.out.println("Alumnos prese: "+ obj.alumnos_preseleccionados());        
+        chida4 = new PdfPCell(new Phrase("Firma \n\n" + "Nombre:" + "Profr." + obj.alumno_grupo().get(h).getGrupo().getPromotor().getApePat(), fuentePrimeraTabla));
         chida4.setColspan(5);
         tablita5.addCell(chida4);
 
