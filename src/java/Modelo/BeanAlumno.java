@@ -104,6 +104,7 @@ public class BeanAlumno {
 
     public void calificarAlumno(Alumno alumno) {
         alumno.setAcreditado(!alumno.isAcreditado());
+        alumno.setNoAcreditado(!alumno.isNoAcreditado());
         alumnoFacade.edit(alumno);
         alumnoCalificado();
     }

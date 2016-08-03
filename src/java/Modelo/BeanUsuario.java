@@ -172,9 +172,11 @@ public class BeanUsuario implements Serializable {
         
         aReco=alumno_grupo();
         
-        for (int i = 0; i < aReco.size(); i++) {
-            System.out.println("{çç}"+aReco.get(i));
+        for (int i = 0; i < aReco.size(); i++)
+        {
+            
             if (aReco.get(i).getSeleccionado()==true) {
+                System.out.println("{çç}"+aReco.get(i));
                 aRecoRet.add(aReco.get(i));
             }
         }

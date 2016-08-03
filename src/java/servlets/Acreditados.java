@@ -122,11 +122,11 @@ public class Acreditados extends HttpServlet {
                             celdabuena.setColspan(1);
                             tablabuena.addCell(celdabuena);
 
-                            celdabuena = new PdfPCell(new Phrase(a(),fuentePrimeraTabla));
+                            celdabuena = new PdfPCell(new Phrase(a(l),fuentePrimeraTabla));
                             celdabuena.setColspan(1);
                             tablabuena.addCell(celdabuena);
 
-                            celdabuena = new PdfPCell(new Phrase(na(),fuentePrimeraTabla));
+                            celdabuena = new PdfPCell(new Phrase(na(l),fuentePrimeraTabla));
                             celdabuena.setColspan(1);
                             tablabuena.addCell(celdabuena);
                             //document.add(new Paragraph(lista.get(l).getNombre()));
@@ -156,11 +156,11 @@ public class Acreditados extends HttpServlet {
                             celdabuena.setColspan(1);
                             tablabuena.addCell(celdabuena);
 
-                            celdabuena = new PdfPCell(new Phrase(a(),fuentePrimeraTabla));
+                            celdabuena = new PdfPCell(new Phrase(a(j),fuentePrimeraTabla));
                             celdabuena.setColspan(1);
                             tablabuena.addCell(celdabuena);
 
-                            celdabuena = new PdfPCell(new Phrase(na(),fuentePrimeraTabla));
+                            celdabuena = new PdfPCell(new Phrase(na(j),fuentePrimeraTabla));
                             celdabuena.setColspan(1);
                             tablabuena.addCell(celdabuena);
                             //document.add(new Paragraph(lista.get(j).getNombre()));
@@ -378,11 +378,11 @@ public class Acreditados extends HttpServlet {
             celdabuena.setColspan(1);
             tablabuena.addCell(celdabuena);
 
-            celdabuena = new PdfPCell(new Phrase(a(),fuentePrimeraTabla));
+            celdabuena = new PdfPCell(new Phrase(a(i),fuentePrimeraTabla));
             celdabuena.setColspan(1);
             tablabuena.addCell(celdabuena);
 
-            celdabuena = new PdfPCell(new Phrase(na(),fuentePrimeraTabla));
+            celdabuena = new PdfPCell(new Phrase(na(i),fuentePrimeraTabla));
             celdabuena.setColspan(1);
             tablabuena.addCell(celdabuena);
         }
@@ -468,16 +468,16 @@ public class Acreditados extends HttpServlet {
         return tablita5;
     }
 
-    public String a() {
-        int i = 1;
+    public String a(int i) {
+        
         if (obj.alumno_grupo().get(i).isAcreditado() == true) {
             return "1";
         }
         return " ";
     }
 
-    public String na() {
-        int i = 1;
+    public String na(int i) {
+        
         if (obj.alumno_grupo().get(i).isNoAcreditado() == true) {
             return "1";
         }
