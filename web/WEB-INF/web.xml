@@ -44,6 +44,11 @@
             <description>Path de pagina de jefe de Oficina</description>
             <url-pattern>/JefeOficina/*</url-pattern>
         </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>JefeOficinaDepo</web-resource-name>
+            <description>Path para jefe de Oficina deportivo</description>
+            <url-pattern>/JefeOficinaDepo/*</url-pattern>
+        </web-resource-collection>
         <auth-constraint>
             <description>Rol de Jefe de Oficina</description>
             <role-name>JefeO</role-name>

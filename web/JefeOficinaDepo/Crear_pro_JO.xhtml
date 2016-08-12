@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Promotor</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" >
+                    <ui:insert name="encabezado">
+                        <ui:include src="/secciones/encabezado.xhtml"/>
+                    </ui:insert>
+                </p:layoutUnit>
+                <p:layoutUnit position="west" size="250" collapsible="true">
+                    <ui:insert name="menu">
+                        <ui:include src="/secciones/menuJO.xhtml"/>
+                    </ui:insert>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <h:panelGrid columns="1" style="margin-bottom:10px" >
+                        <h:form>
+                            <p:fieldset legend="Promotores Registrados" style="margin-bottom: 10px" toggleable="true">
+
+                                <p:dataTable value="#{beanPromotor.jalarPromotores()}" var="promotor" id="tbl">
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Apellido Paterno" />
+                                        </f:facet>
+                                        <h:outputText value="#{promotor.apePat}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Apellido Materno" />
+                                        </f:facet>
+                                        <h:outputText value="#{promotor.apeMat}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Nombre(s)" />
+                                        </f:facet>
+                                        <h:outputText value="#{promotor.nombre}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Correo" />
+                                        </f:facet>
+                                        <h:outputText value="#{promotor.correo}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Telefono" />
+                                        </f:facet>
+                                        <h:outputText value="#{promotor.telefono}" />
+                                    </p:column>
+                                </p:dataTable>
+
+                            </p:fieldset>
+                        </h:form>
+                        <h:form>
+                            <p:fieldset id="grid" legend="Registrar Promotor" style="margin-bottom: 10px">
+
+                                <h:panelGrid columns="2">
+                                    <h:panelGrid columns="1">
+                                        <h:panelGrid columns="1" width="300" >
+                                            <p:outputLabel value="Apellido paterno:" for="Apellidopaterno" />
+                                            <p:inputText id="Apellidopaterno" value="#{beanPromotor.promotor.apePat}" 
+                                                         required="true" requiredMessage="Ingresar Apellido Paterno"
+                                                         maxlength="20"/> 
+                                            <p:message for="Apellidopaterno" display="text"/>
+                                        </h:panelGrid>
+                                        <h:panelGrid columns="1" width="300" >
+                                            <p:outputLabel value="Apellido materno:" for="Apellidomaterno" />
+                                            <p:inputText id="Apellidomaterno" value="#{beanPromotor.promotor.apeMat}" 
+                                                         required="true" requiredMessage="Ingresar Apellido Materno"
+                                                         maxlength="20"/> 
+                                            <p:message for="Apellidomaterno" display="text"/>
+                                        </h:panelGrid>
+                                        <h:panelGrid columns="1" width="300" >
+                                            <p:outputLabel value="Nombre(s):" for="nombrepromotor" />
+                                            <p:inputText id="nombrepromotor" value="#{beanPromotor.promotor.nombre}" 
+                                                         required="true" requiredMessage="Ingresar Nombre"
+                                                         maxlength="25"/> 
+                                            <p:message for="nombrepromotor" display="text"/>
+                                        </h:panelGrid>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="1">
+
+                                        <h:panelGrid columns="1" width="300" >
+                                            <p:outputLabel value="Correo:" for="correo"/>
+                                            <p:inputText id="correo" value="#{beanPromotor.promotor.correo}"
+                                                         required="true" requiredMessage="Ingresar correo"
+                                                         maxlength="30"
+                                                         validatorMessage="Formato de Email Invalido">
+                                                <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                            </p:inputText>
+                                            <p:message for="correo" display="text"/>
+                                        </h:panelGrid>
+
+                                        <h:panelGrid columns="1" width="300" >
+                                            <p:outputLabel value="Teléfono:" for="Telefono" />
+                                            <p:inputMask id="Telefono" value="#{beanPromotor.promotor.telefono}" 
+                                                         required="true" requiredMessage="Ingresar Telefono"
+                                                         maxlength="10" mask="9999999999"/> 
+                                            <p:message for="Telefono" display="text"/>
+                                        </h:panelGrid>
+                                    </h:panelGrid>
+
+
+                                </h:panelGrid>
+                                <p:commandButton value="Guardar" update="grid" actionListener="#{beanPromotor.agregarPromotor()}" icon="ui-icon-check" >
+                                    <p:confirm header="Confirmation" message="¿Estas seguro de agregar este Promotor?" icon="ui-icon-alert" />
+                                </p:commandButton>               
+                                <p:growl id="message"/>
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+                            </p:fieldset>
+                        </h:form>
+                    </h:panelGrid>                  
+
+
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" >
+                    <ui:insert name="footer">
+                        <ui:include src="/secciones/footer.xhtml"/>
+                    </ui:insert>
+                </p:layoutUnit>
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

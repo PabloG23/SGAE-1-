@@ -68,7 +68,7 @@ public class BeanUsuario implements Serializable {
                 eventoslista();
             }
             if (this.usuarios.getUsuario().equals("JefeOCultural")) {
-                outcome = "/JefeOficina/index_JO?faces-redirect=true";
+                outcome = "/JefeOficinaDepo/index_JO?faces-redirect=true";
                 usuarionombre = usuarios.getUsuario();
                 eventoslista();
             }
