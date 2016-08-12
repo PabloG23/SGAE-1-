@@ -10,6 +10,7 @@ import entities.Evento;
 
 import facade.ActividadFacade;
 import facade.EventoFacade;
+import java.util.ArrayList;
 
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -64,6 +65,19 @@ public class BeanEvento {
     public List<Evento> jalarEvento(){
         List<Evento> obj = eventoFacade.findAll();
         return obj;
+    }
+    
+    public List<Evento> eventoCultural(){
+        List<Evento> obj = eventoFacade.findAll();
+        List<Evento> objcult = new ArrayList<Evento>();
+        
+        for (int i = 0; i < obj.size(); i++) {
+            if (obj.get(i).getTipoEvento().equals("Cultural")) {
+                System.out.println("si hay");
+                objcult.add(obj.get(i));
+            }
+        }
+        return objcult;
     }
     
     public List<Actividad> jalarActividades(){
