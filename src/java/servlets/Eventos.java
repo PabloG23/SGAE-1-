@@ -43,10 +43,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Eventos", urlPatterns = {"/Eventos"})
 public class Eventos extends HttpServlet {
 
-    private BeanUsuario obj;
+    private BeanEvento obj;
 
     protected void Eventos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        obj = (BeanUsuario) request.getSession().getAttribute("beanUsuario");
+        obj = (BeanEvento) request.getSession().getAttribute("beanEvento");
         try (OutputStream os = response.getOutputStream()) {
 
             Document document = new Document(PageSize.A4.rotate());
@@ -54,7 +54,7 @@ public class Eventos extends HttpServlet {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             PdfWriter.getInstance(document, baos);
             document.open();
-            int rango = 10, alumnos = obj.eventoslista().size();
+            int rango = 10, alumnos = obj.eventoCultural().size();
             int f = alumnos;
             double y = alumnos / rango;
             double r = Math.ceil(y) + 1;
@@ -65,7 +65,7 @@ public class Eventos extends HttpServlet {
             PdfPCell celda2;
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
             List<Evento> lista = new ArrayList<Evento>();
-            lista = obj.eventoslista();
+            lista = obj.eventoCultural();
             Font fuente = FontFactory.getFont(FontFactory.HELVETICA, 8);
 
             if (alumnos <= rango) {
@@ -305,7 +305,7 @@ public class Eventos extends HttpServlet {
         chida.setColspan(4);
         tablita2.addCell(chida);
 
-        chida = new PdfPCell(new Phrase(" ", fuenteParr));
+        chida = new PdfPCell(new Phrase(cultural(), fuenteParr));
         chida.setColspan(4);
         tablita2.addCell(chida);
 
@@ -313,7 +313,7 @@ public class Eventos extends HttpServlet {
         chida.setColspan(3);
         tablita2.addCell(chida);
 
-        chida = new PdfPCell(new Phrase(" ", fuenteParr));
+        chida = new PdfPCell(new Phrase(deportivo(), fuenteParr));
         chida.setColspan(5);
         tablita2.addCell(chida);
 
@@ -377,7 +377,7 @@ public class Eventos extends HttpServlet {
         tablita3.setLockedWidth(true);
         PdfPCell celda2;
         Font fuente = FontFactory.getFont(FontFactory.HELVETICA, 8);
-        List<Evento> lista = obj.eventoslista();
+        List<Evento> lista = obj.eventoCultural();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         for (int i = 0; i < lista.size(); i++) {
 
@@ -491,16 +491,32 @@ public class Eventos extends HttpServlet {
     }
 
     public String interno(int i) {
-        System.out.println("evento: "+ obj.eventoslista());
-        if (obj.eventoslista().get(i).getEvento().equals("Interno")) {
+        System.out.println("evento: "+ obj.eventoCultural());
+        if (obj.eventoCultural().get(i).getEvento().equals("Interno")) {
             return "1";
         }
         return " ";
     }
 
     public String externo(int i) {
-        if (obj.eventoslista().get(i).getEvento().equals("Externo")) {
+        if (obj.eventoCultural().get(i).getEvento().equals("Externo")) {
             return "1";
+        }
+        return " ";
+    }
+    
+    public String cultural(){
+        int i=1;
+        if (obj.eventoCultural().get(i).getTipoEvento().equals("Cultural")) {
+            return "X";
+        }
+        return " ";
+    }
+    
+    public String deportivo(){
+        int i=1;
+        if (obj.eventoCultural().get(i).getTipoEvento().equals("Deportivo")) {
+            return "X";
         }
         return " ";
     }
